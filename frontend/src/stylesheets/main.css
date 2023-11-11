@@ -79,3 +79,21 @@ h5, .btn-primary{
 .navbar-nav {
     margin-left: 1100px;
 }
+
+.box2{
+        display: flex;
+        flex-direction: row;
+        font-family: 'Abril Fatface', cursive;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        justify-content: space-between;
+        margin-left: 10px;
+        margin-right: 10px;
+}
+
+.card-img-top {
+    width: 100%;
+    height: 300px; /* Définissez la hauteur souhaitée en pixels */
+    object-fit: cover;
+  }

@@ -1,10 +1,10 @@
-import GamePage from '../Pages/GamePage';
+import aboutUs from '../Pages/aboutUs';
 import HomePage from '../Pages/HomePage';
 import NewPage from '../Pages/NewPage';
 
 const routes = {
   "/": HomePage,
-  '/game': GamePage,
+  '/aboutUs': aboutUs,
   '/new': NewPage,
 };
 
