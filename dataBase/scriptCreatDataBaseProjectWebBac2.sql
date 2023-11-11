@@ -10,11 +10,11 @@ CREATE TABLE QUIZZLER.quizzs(
 
 CREATE TABLE QUIZZLER.users(
     id_user SERIAL NOT NULL PRIMARY KEY,
-    email varchar NOT NULL,
+    email varchar NOT NULL UNIQUE,
     mdp varchar NOT NULL,
     username varchar NOT NULL UNIQUE,
     nbr_point INTEGER DEFAULT 0 check ( nbr_point >= 0),
-    rang varchar NULL,
+   -- rang varchar NULL,
     isAdmin BOOLEAN NOT NULL DEFAULT FALSE
 );
 
