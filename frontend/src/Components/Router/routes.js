@@ -3,7 +3,7 @@ import HomePage from '../Pages/HomePage';
 import NewPage from '../Pages/NewPage';
 
 const routes = {
-  '/': HomePage,
+  "/": HomePage,
   '/game': GamePage,
   '/new': NewPage,
 };
