@@ -5,7 +5,8 @@ import NewPage from '../Pages/NewPage';
 const routes = {
   "/": HomePage,
   '/aboutUs': aboutUs,
-  '/new': NewPage,
+  '/login': NewPage,
+  '/register' : NewPage
 };
 
 export default routes;
