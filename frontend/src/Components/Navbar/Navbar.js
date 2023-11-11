@@ -14,7 +14,7 @@ const Navbar = () => {
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container-fluid">
         <a class="navbar-brand" href="#" data-uri="/">
-          <img src="${image1}" alt="Logo" width="100" height="100" class="d-inline-block align-top">
+          <img src="${image1}" alt="Logo" width="100" height="100" class="d-inline-block align-top" href="#" data-uri="/">
         </a>
         <button
           class="navbar-toggler"
@@ -36,10 +36,10 @@ const Navbar = () => {
               <a class="nav-link" href="#" data-uri="/aboutUs">About</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#" data-uri="/game">Login</a>
+              <a class="nav-link" href="#" data-uri="/login">Login</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#" data-uri="/new">Register</a>
+              <a class="nav-link" href="#" data-uri="/register">Register</a>
             </li>                        
           </ul>
         </div>
