@@ -1,5 +1,4 @@
 // eslint-disable-next-line no-unused-vars
-import { Navbar as BootstrapNavbar } from 'bootstrap';
 import image1 from '../../img/Capture_decran_2023-10-25_134836.png'
 /**
  * Render the Navbar which is styled by using Bootstrap
