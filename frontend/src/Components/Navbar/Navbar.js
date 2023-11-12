@@ -14,7 +14,7 @@ const Navbar = () => {
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container-fluid">
         <a class="navbar-brand" href="#" data-uri="/">
-          <img src="${image1}" alt="Logo" width="100" height="100" class="d-inline-block align-top" href="#" data-uri="/">
+          <img src="${image1}" alt="Logo" width="100" height="100" class="d-inline-block align-top" href="/" data-uri="/">
         </a>
         <button
           class="navbar-toggler"
