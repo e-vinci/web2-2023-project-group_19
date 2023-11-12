@@ -1,10 +1,8 @@
-import imageAlexis from "../../img/IMG-20230810-WA0000.jpg";
-import imageSimon from "../../img/IMG_7902.jpg";
-import imageIsmet from "../../img/IMG_8258.jpg";
-import imageKeyvan from "../../img/Screenshot_20210401-100311_Instagram.jpg";
-import imageNico from "../../img/photoNico.jpg";
-
-
+import imageAlexis from "../../img/Alexis.jpg";
+import imageSimon from "../../img/Simon.jpg";
+import imageIsmet from "../../img/Ismet.jpg";
+import imageKeyvan from "../../img/Keyvan.jpg";
+import imageNico from "../../img/Nicolas.jpg";
 
 const aboutUs = () => {
   const main = document.querySelector('main');
