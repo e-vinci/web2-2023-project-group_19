@@ -1,5 +1,5 @@
 // eslint-disable-next-line no-unused-vars
-import logoQuizzLer from '../../img/logo_quizzler.png'
+import logoQuizzLer from '../../img/logo-site.png';
 /**
  * Render the Navbar which is styled by using Bootstrap
  * Each item in the Navbar is tightly coupled with the Router configuration :
