@@ -24,7 +24,7 @@ const LoginPage = () => {
                         <input type="password" name="password" id="password">
                     </div>
                     <div class="form-group">
-                        <button type="submit">Sign Up</button>
+                        <button type="submit">Sign In</button>
                     </div>
                 </form>
                 <a href="/register">Don’t have an account?</a>
