@@ -2,7 +2,7 @@ import image1 from "../../img/IMG-20230810-WA0000.jpg";
 import image2 from "../../img/IMG_7902.jpg";
 import image3 from "../../img/IMG_8258.jpg";
 import image4 from "../../img/Screenshot_20210401-100311_Instagram.jpg";
-import image5 from "../../img/To-do.jpg"
+import imageNico from "../../img/photoNico.jpg";
 
 
 
@@ -11,7 +11,7 @@ const aboutUs = () => {
   main.innerHTML = `
   <div class = "box2">
   <div class="card" style="width: 18rem;">
-  <img src="${image5}" class="card-img-top" alt="...">
+  <img src="${imageNico}" class="card-img-top" alt="...">
   <div class="card-body">
     <h5 class="card-title">Nicolas Venturini</h5>
     <p class="card-text">Nicolas est responsable de la base de donnée</p>
