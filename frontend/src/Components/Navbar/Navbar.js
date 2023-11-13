@@ -1,5 +1,5 @@
 // eslint-disable-next-line no-unused-vars
-import image1 from '../../img/Capture_decran_2023-10-25_134836.png'
+import logoQuizzLer from '../../img/logo-site.png';
 /**
  * Render the Navbar which is styled by using Bootstrap
  * Each item in the Navbar is tightly coupled with the Router configuration :
@@ -13,7 +13,7 @@ const Navbar = () => {
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container-fluid">
         <a class="navbar-brand" href="#" data-uri="/">
-          <img src="${image1}" alt="Logo" width="100" height="100" class="d-inline-block align-top" href="/" data-uri="/">
+          <img src="${logoQuizzLer}" alt="Logo" width="100" height="100" class="d-inline-block align-top" href="/" data-uri="/">
         </a>
         <button
           class="navbar-toggler"
