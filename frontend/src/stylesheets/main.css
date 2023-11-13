@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Blaka+Hollow&family=Quicksand:wght@300;400;500&display=swap');
 
+/*  css pour la HomePage    */
 a{
     text-decoration: none;
     color: #fff;
@@ -83,6 +84,9 @@ h5, .btn-primary{
     display: flex;
 }
 
+/*  css pour la navbar    */
+
+
 .navbar-nav {
     margin-left: 1100px;
 }
@@ -104,3 +108,183 @@ h5, .btn-primary{
     height: 300px; /* Définissez la hauteur souhaitée en pixels */
     object-fit: cover;
   }
+
+
+/*   css pour le création Quizz    */
+
+#all{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+}
+
+.container2{
+    background-color: #f4f4f4;
+    border-radius: 30px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.35);
+    position: relative;
+    overflow: hidden;
+    width: 900px;
+    max-width: 100%;
+    min-height: 680px;
+    margin-top: 7%;
+    margin-bottom: 7%;
+}
+
+.container2 button{
+    background-color: #a5bdfd;
+    color: #fff;
+    font-size: 12px;
+    padding: 10px 45px;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin-top: 10px;
+    cursor: pointer;
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    width: 75%;
+}
+
+.container2 form{
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0 40px;
+    height: 100;
+}
+
+.container2 input{
+    background-color: #eee;
+    border: none;
+    margin: 8px 0;
+    padding: 10px 15px;
+    font-size: 13px;
+    border-radius: 8px;
+    width: 180%;
+    outline: none;
+    margin-left: 55%;
+}
+
+.form-container2{
+    position: absolute;
+    top: 0;
+    height: 100%;
+    transition: all 0.6s ease-in-out;
+}
+
+.Next-question{
+    left: 0;
+    width: 50%;
+    z-index: 2;
+}
+
+.container2.active .Next-question{
+    transform: translateX(100%);
+}
+.Finish-the-quizz{
+    left: 0;
+    width: 50%;
+    opacity: 0;
+    z-index: 1;
+}
+
+.container2.active .Finish-the-quizz{
+    transform: translateX(100%);
+    opacity: 1;
+    z-index: 5;
+    animation: move 0.6s;
+}
+
+@keyframes move{
+    0%, 49.99%{
+        opacity: 0;
+        z-index: 1;
+    }
+    50%, 100%{
+        opacity: 1;
+        z-index: 5;
+    }
+}
+
+.toggler-container{
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 50%;
+    height: 100%;
+    overflow: hidden;
+    transition: all 0.6s ease-in-out;
+    border-radius: 150px 0 0 100px;
+    z-index: 1000;
+}
+
+.container2.active .toggler-container{
+    transform: translateX(-100%);
+    border-radius: 0 150px 100px 0;
+}
+
+.toggle{
+    background-color: #d9f2ff;
+    height: 100%;
+    columns: #fff;
+    position: relative;
+    left: -100%;
+    height: 100%;
+    width: 200%;
+    transform: translateX(0);
+    transition: all 0.6s ease-in-out;
+}
+
+.container2 .toggle{
+    transform:translateX(50%);
+}
+
+.toggle-panel{
+    position: relative;
+    width: 50%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 0 30px;
+    text-align: center;
+    top: 0;
+    transform: translateX(0);
+    transition: all 0.6s ease-in-out;
+}
+
+.toggle-left{
+    right: 0;
+    transform: translateX(-200%);
+}
+
+.container2 .toggle-left{
+    transform: translateX(0);
+}
+
+.classe-titre{
+    color: rgb(0, 0, 0);
+    font-size: 32px;
+}
+
+.Next-question{
+   margin-left: 50%;
+}
+
+.container2 span {
+    color: rgb(0, 0, 0);
+    margin-right: auto;
+}
+
+.classe-titre4{
+    margin-bottom: 20%;
+}
