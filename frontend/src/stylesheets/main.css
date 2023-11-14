@@ -114,7 +114,6 @@ h5, .btn-primary{
     width: 100%;
     height: 300px; /* Définissez la hauteur souhaitée en pixels */
     object-fit: cover;
-<<<<<<< HEAD
   }
 
 
@@ -295,7 +294,6 @@ h5, .btn-primary{
 
 .classe-titre4{
     margin-bottom: 20%;
-=======
 }
 
 /* LOGIN PAGE CSS */
@@ -400,5 +398,4 @@ h5, .btn-primary{
 
 .center-content a:hover{
     text-decoration: underline
->>>>>>> a85f11797a53932be0bde0670ea976445170108f
 }
