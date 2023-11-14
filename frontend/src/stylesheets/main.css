@@ -95,7 +95,7 @@ h5, .btn-primary{
 
 
 .navbar-nav {
-    margin-left: 1100px;
+    margin-left: 800px;
 }
 
 .box2{
@@ -398,4 +398,20 @@ h5, .btn-primary{
 
 .center-content a:hover{
     text-decoration: underline
+}
+
+/*  css pour la page avec les questions  */
+
+.glass-container-pageQuestion{
+        display: block;
+        max-width: 72vw;
+        margin-top: 10vh;
+        margin-bottom: 30px;
+        background: rgba(244, 244, 244, 1);
+        padding: 50px;
+        border-radius: 16px;
+        box-shadow: 0 4px 30px rgba(0,0,0,0.1);
+        backdrop-filter: blur(11.6px) ;
+        -webkit-backdrop-filter: blur(11.6px);
+        width: 20000px;
 }
