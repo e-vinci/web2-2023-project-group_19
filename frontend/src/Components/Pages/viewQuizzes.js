@@ -1,4 +1,4 @@
-import toDo from "../../img/To-do.jpg";
+import history from "../../img/history.jpg";
 import { clearPage } from "../../utils/render";
 
 const viewQuizzes = () => {
@@ -33,13 +33,10 @@ function generateQuizzesButtons ( quizzesArray ) {
 
     quizzesArray.map( (quizzesDifficulty) => {
 
-        const DIFFICULTIES_COLORS = [ "green", "orange", "red"];
-        const DIFFICULTIES_NAMES = [ "Easy", "Medium", "Hard"];
+        const difficultyLevel = quizzesDifficulty.difficulty;
 
-        const difficultyNumber = quizzesDifficulty.difficulty;
-
-        const difficultyColor = DIFFICULTIES_COLORS[difficultyNumber-1];
-        const difficultyName = DIFFICULTIES_NAMES[difficultyNumber-1];
+        const difficultyColor = chooseDifficultyColor( difficultyLevel );
+        const difficultyName = chooseDifficultyName( difficultyLevel );
 
         const difficultyTitle = createTitle( difficultyName, 'h2' );
         main.innerHTML += difficultyTitle;
@@ -50,7 +47,7 @@ function generateQuizzesButtons ( quizzesArray ) {
 
             const buttonSrc = 'http://localhost:8080';
 
-            const image = createButtonAndImage(toDo, buttonSrc, difficultyColor );
+            const image = createButtonAndImage(history, buttonSrc, difficultyColor );
 
             box.innerHTML += image;
 
@@ -76,13 +73,37 @@ function createBox () {
 
 function createButtonAndImage (imgSrc, buttonSrc, borderColor) {
 
-    return `<a href="${buttonSrc}" class="viewQuizzes-button-${borderColor}"><img src="${imgSrc}" class="rounded d-block" alt="${imgSrc}" style="width:18rem;margin:auto;"></a>`;
+    return `
+        <a href="${buttonSrc}">
+            <img src="${imgSrc}" class="mx-auto viewQuizzes-button-img-${borderColor}" alt="${imgSrc}">
+        </a>
+    `;
 
 };
 
 function createTitle (titleText, titleSize ) {
     
-    return `<${titleSize} class="viewQuizzes-title-${titleSize}">${titleText}</h1>`;
+    return `
+        <${titleSize} class="viewQuizzes-title-${titleSize}">
+            ${titleText}
+        </${titleSize}>
+    `;
+
+};
+
+function chooseDifficultyColor( difficultyLevel ) {
+
+    const DIFFICULTIES_COLORS = [ "green", "orange", "red"];
+
+    return DIFFICULTIES_COLORS[difficultyLevel-1];
+
+};
+
+function chooseDifficultyName( difficultyLevel ) {
+
+    const DIFFICULTIES_NAMES = [ "Easy", "Medium", "Hard"];
+    
+    return DIFFICULTIES_NAMES[difficultyLevel-1];
 
 };
 
