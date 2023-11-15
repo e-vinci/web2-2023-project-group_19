@@ -1,31 +1,47 @@
-import toDo from "../../img/To-do.jpg"
+import toDo from "../../img/To-do.jpg";
+import { clearPage } from "../../utils/render";
 
 const viewQuizzes = () => {
 
-    const main = document.querySelector('main');
-
-    const categoryTitle = createTitle( 'Histoire', 'h1', '75px', '7em' );
-
-    main.innerHTML += categoryTitle;
-
     const QUIZZES = [ 
         {
-            difficulty : 'easy',
+            difficulty : 1,
             quizzes : ["1", "2", "3", "4" ]
         },
         {
-            difficulty : 'medium',
+            difficulty : 2,
             quizzes : ["1", "2" ]
         },
         {
-            difficulty : 'hard',
+            difficulty : 3,
             quizzes : ["1", "2", "3", "4", "5", "6", "7" ]
         }
     ];
-    
-    QUIZZES.map( (quizzesDifficulty) => {
 
-        const difficultyTitle = createTitle( quizzesDifficulty.difficulty, 'h2', '125px', '4em' );
+    clearPage();
+    generateQuizzesButtons( QUIZZES );
+
+};
+
+function generateQuizzesButtons ( quizzesArray ) {
+
+    const main = document.querySelector('main');
+
+    const categoryTitle = createTitle( 'Histoire', 'h1' );
+
+    main.innerHTML += categoryTitle;
+
+    quizzesArray.map( (quizzesDifficulty) => {
+
+        const DIFFICULTIES_COLORS = [ "green", "orange", "red"];
+        const DIFFICULTIES_NAMES = [ "Easy", "Medium", "Hard"];
+
+        const difficultyNumber = quizzesDifficulty.difficulty;
+
+        const difficultyColor = DIFFICULTIES_COLORS[difficultyNumber-1];
+        const difficultyName = DIFFICULTIES_NAMES[difficultyNumber-1];
+
+        const difficultyTitle = createTitle( difficultyName, 'h2' );
         main.innerHTML += difficultyTitle;
 
         const box = createBox();
@@ -34,7 +50,7 @@ const viewQuizzes = () => {
 
             const buttonSrc = 'http://localhost:8080';
 
-            const image = createButtonAndImage(toDo, buttonSrc );
+            const image = createButtonAndImage(toDo, buttonSrc, difficultyColor );
 
             box.innerHTML += image;
 
@@ -48,34 +64,25 @@ const viewQuizzes = () => {
 
 };
 
-function createBox() {
+function createBox () {
 
     const box = document.createElement('div');
-    box.className = 'box';
 
-    box.style = { 
-        display : "grid", 
-        gridTemplateColumns: "1fr 1fr 1fr", 
-        gap: "10px 1em", 
-        margin : "5em", 
-        marginBottom : "5em",
-        textAlign : "center",
-        alignItems : "center"
-    };
+    box.className = 'viewQuizzes-box';
 
     return box;
 
 };
 
-function createButtonAndImage (imgSrc, buttonSrc) {
+function createButtonAndImage (imgSrc, buttonSrc, borderColor) {
 
-    return `<a href="${buttonSrc}"><img src="${imgSrc}" class="rounded d-block" alt="${imgSrc}" style="width: 18rem; margin: auto;"></a>`;
+    return `<a href="${buttonSrc}" class="viewQuizzes-button-${borderColor}"><img src="${imgSrc}" class="rounded d-block" alt="${imgSrc}" style="width:18rem;margin:auto;"></a>`;
 
 };
 
-function createTitle (titleText, titleSize, paddingLeft, fontSize ) {
+function createTitle (titleText, titleSize ) {
     
-    return `<${titleSize} style="display:flex;justify-content:left;color:rgb(0, 0, 0);padding:30px;padding-left:${paddingLeft};font-family:'Tilt Warp', sans-serif;font-size:${fontSize}">${titleText}</h1>`;
+    return `<${titleSize} class="viewQuizzes-title-${titleSize}">${titleText}</h1>`;
 
 };
 
