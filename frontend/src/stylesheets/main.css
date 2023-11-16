@@ -412,7 +412,7 @@ h5, .btn-primary{
         width: 20000px;
 }
 
-/* PAGE VIEWQUIZZES */
+/* CSS PAGE VIEWQUIZZES */
 
 .viewQuizzes-box {
     display: grid;
@@ -445,7 +445,6 @@ h5, .btn-primary{
     padding-left: 125px;
     font-size: 4em;
 }
-
 .viewQuizzes-button-img-green, .viewQuizzes-button-img-orange, .viewQuizzes-button-img-red {
     display: block;
     margin-left: auto;

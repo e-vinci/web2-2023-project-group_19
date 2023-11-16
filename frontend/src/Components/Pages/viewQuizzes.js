@@ -6,15 +6,15 @@ const viewQuizzes = () => {
     const QUIZZES = [ 
         {
             difficulty : 1,
-            quizzes : ["1", "2", "3", "4" ]
+            quizzes : ["1", "2", "3" ]
         },
         {
             difficulty : 2,
-            quizzes : ["1", "2" ]
+            quizzes : ["1", "2", "3" ]
         },
         {
             difficulty : 3,
-            quizzes : ["1", "2", "3", "4", "5", "6", "7" ]
+            quizzes : ["1", "2", "3" ]
         }
     ];
 
@@ -74,7 +74,7 @@ function createBox () {
 function createButtonAndImage (imgSrc, buttonSrc, borderColor) {
 
     return `
-        <a href="${buttonSrc}">
+        <a class="viewQuizzes-button" href="${buttonSrc}">
             <img src="${imgSrc}" class="mx-auto viewQuizzes-button-img-${borderColor}" alt="${imgSrc}">
         </a>
     `;
