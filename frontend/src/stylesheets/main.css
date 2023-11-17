@@ -8,14 +8,10 @@ a{
     text-decoration: none;
     color: #fff;
 }
-main {
+body {
     color: #fff;
     background-color: #bbe4e9;
     background-image: linear-gradient(to right, #82acff,#8dc6ff, #a2c9da,#eff5f5);
-}
-
-main{
-    background-color: #f4f4f4;
 }
 
 .container{
@@ -518,3 +514,70 @@ h5, .btn-primary{
     background-color: #2980b9;
     color: #ffffff;
   }
+.glass-container-pageQuestion{
+        display: block;
+        max-width: 72vw;
+        margin-top: 10vh;
+        margin-bottom: 30px;
+        background: rgba(244, 244, 244, 1);
+        padding: 50px;
+        border-radius: 16px;
+        box-shadow: 0 4px 30px rgba(0,0,0,0.1);
+        backdrop-filter: blur(11.6px) ;
+        -webkit-backdrop-filter: blur(11.6px);
+        width: 20000px;
+}
+
+/* CSS PAGE VIEWQUIZZES */
+
+.viewQuizzes-box {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 4em 2em;
+    margin: 3em 1.5em;
+    padding: 0px 75px;
+}
+
+.viewQuizzes-box:first-child {
+    align-items: center;
+}
+
+.viewQuizzes-title-h1, .viewQuizzes-title-h2 {
+    display:flex;
+    justify-content:left;
+    color:rgb(0, 0, 0);
+    padding:30px;
+    font-family:'Tilt Warp', sans-serif;
+}
+
+.viewQuizzes-title-h1 {
+    padding-top: 75px;
+    padding-left: 75px;
+    font-size: 5em;
+}
+
+.viewQuizzes-title-h2 {
+    padding-left: 125px;
+    font-size: 3em;
+}
+
+.viewQuizzes-button-img-green, .viewQuizzes-button-img-orange, .viewQuizzes-button-img-red {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width:20rem;
+    border-radius: 25px;
+}
+
+.viewQuizzes-button-img-green {
+    border : 6px solid #28a745;
+}
+
+.viewQuizzes-button-img-orange {
+    border : 6px solid #ffc107;
+}
+
+.viewQuizzes-button-img-red {
+    
+    border : 6px solid #dc3545;
+}
