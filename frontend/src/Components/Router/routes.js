@@ -5,6 +5,9 @@ import RegisterPage from '../Pages/RegisterPage';
 import NewPage from '../Pages/NewPage';
 import creationQuizz from '../Pages/creationQuizz';
 import ClassementPage from '../Pages/ClassementPage';
+import viewQuizzes from '../Pages/viewQuizzes';
+import resultQuizz from '../Pages/resultQuizz';
+import pageQuestion from '../Pages/page_questionnaire'
 
 const routes = {
   "/": HomePage,
@@ -15,6 +18,9 @@ const routes = {
   '/creationQuizz' : creationQuizz,
   '/classement' : ClassementPage,
 
+  '/viewQuizzes' : viewQuizzes,
+  '/resultQuizz' : resultQuizz,
+  '/page_questionnaire': pageQuestion
 };
 
 export default routes;
