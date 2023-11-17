@@ -4,6 +4,7 @@ import LoginPage from '../Pages/LoginPage';
 import RegisterPage from '../Pages/RegisterPage';
 import NewPage from '../Pages/NewPage';
 import creationQuizz from '../Pages/creationQuizz';
+import ClassementPage from '../Pages/ClassementPage';
 
 const routes = {
   "/": HomePage,
@@ -11,7 +12,9 @@ const routes = {
   '/login': LoginPage,
   '/register' : RegisterPage,
   '/new': NewPage,
-  '/creationQuizz' : creationQuizz
+  '/creationQuizz' : creationQuizz,
+  '/classement' : ClassementPage,
+
 };
 
 export default routes;
