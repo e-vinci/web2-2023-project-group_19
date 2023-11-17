@@ -410,7 +410,10 @@ h5, .btn-primary{
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
+    margin-top: 15px;
+    margin-bottom: 15px;
 }
+
 
 .card-img-top-pageQuestion{
     display: flex;
@@ -514,19 +517,6 @@ h5, .btn-primary{
     background-color: #2980b9;
     color: #ffffff;
   }
-.glass-container-pageQuestion{
-        display: block;
-        max-width: 72vw;
-        margin-top: 10vh;
-        margin-bottom: 30px;
-        background: rgba(244, 244, 244, 1);
-        padding: 50px;
-        border-radius: 16px;
-        box-shadow: 0 4px 30px rgba(0,0,0,0.1);
-        backdrop-filter: blur(11.6px) ;
-        -webkit-backdrop-filter: blur(11.6px);
-        width: 20000px;
-}
 
 /* CSS PAGE VIEWQUIZZES */
 
