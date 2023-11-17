@@ -1,4 +1,4 @@
-import history from "../../img/history.jpg";
+import history from "../../img/histoire.jpg";
 import { clearPage } from "../../utils/render";
 
 const viewQuizzes = () => {
