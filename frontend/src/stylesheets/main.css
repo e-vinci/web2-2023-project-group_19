@@ -581,3 +581,20 @@ h5, .btn-primary{
     
     border : 6px solid #dc3545;
 }
+
+.fs-5{
+    margin : auto;
+}
+
+.box-result{
+    width: 100%;
+}
+
+.card-result{
+    margin-bottom: 5%;
+}
+
+#button-result{
+    margin: auto;
+  display: block;
+}
