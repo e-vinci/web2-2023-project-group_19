@@ -2,9 +2,12 @@ const express = require('express');
 
 const router = express.Router();
 
+const { getAllQuizzes } = require('../models/quizzes');
+
 /* GET users listing. */
-router.get('/', (req, res) => {
-  res.json({ users: [{ name: 'e-baron' }] });
+router.get('/', async (req, res) => {
+  const QUIZZES = await getAllQuizzes();
+  res.json({ QUIZZES });
 });
 
 module.exports = router;
