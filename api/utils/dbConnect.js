@@ -45,4 +45,9 @@ async function disconnectDb() {
   }
 }
 
-module.exports = { client, connectDb, disconnectDb };
+connectDb();
+
+module.exports = {
+  client,
+  disconnectDb,
+};

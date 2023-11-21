@@ -1,10 +1,26 @@
-const { client, connectDb, disconnectDb } = require('../utils/dbConnect');
+const { client } = require('../utils/dbConnect');
 
 async function getAllQuizzes() {
-  await connectDb();
-  const result = await client.query('SELECT * FROM QUIZZLER.quizzes');
-  await disconnectDb();
-  return result;
+  const requestString = `
+    SELECT * 
+    FROM QUIZZLER.quizzes quizz
+  `;
+  const result = await client.query(requestString);
+  return result.rows;
 }
 
-module.exports = { getAllQuizzes };
+async function getQuizzContentById(quizzId) {
+  const requestString = `
+    SELECT * 
+    FROM QUIZZLER.quizzes quizz, 
+      QUIZZLER.propositions propo, 
+      QUIZZLER.questions quest
+    WHERE quest.quizz = quizz.id_quizz
+      AND propo.question = quest.id_question
+      AND quizz.id_quizz = ${quizzId}
+  `;
+  const result = await client.query(requestString);
+  return result.rows;
+}
+
+module.exports = { getAllQuizzes, getQuizzContentById };
