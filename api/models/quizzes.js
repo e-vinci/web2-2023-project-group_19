@@ -1,15 +1,34 @@
 const { client } = require('../utils/dbConnect');
 
-async function getAllQuizzes() {
+async function readAllQuizzes(category) {
   const requestString = `
     SELECT * 
     FROM QUIZZLER.quizzes quizz
   `;
   const result = await client.query(requestString);
+
+  if (category) {
+    return filterByCategory(result, category);
+  }
+
   return result.rows;
 }
 
-async function getQuizzContentById(quizzId) {
+function filterByCategory(result, categorie) {
+  return result.rows.filter((x) => x.categorie === categorie);
+}
+
+async function getAllQuizzesByCategory(category) {
+  const requestString = `
+    SELECT * 
+    FROM QUIZZLER.quizzes quizz
+    WHERE quizz.categorie = ${category}
+  `;
+  const result = await client.query(requestString);
+  return result.rows;
+}
+
+async function readOneQuizzContent(quizzId) {
   const requestString = `
     SELECT * 
     FROM QUIZZLER.quizzes quizz, 
@@ -23,4 +42,4 @@ async function getQuizzContentById(quizzId) {
   return result.rows;
 }
 
-module.exports = { getAllQuizzes, getQuizzContentById };
+module.exports = { readAllQuizzes, readOneQuizzContent, getAllQuizzesByCategory };
