@@ -29,8 +29,6 @@ const client = new Client({
   port: userCredentials.port,
 });
 
-connectDb();
-
 async function connectDb() {
   try {
     await client.connect();
@@ -39,12 +37,12 @@ async function connectDb() {
   }
 }
 
-/* async function disconnectDb(pool) {
+async function disconnectDb() {
   try {
-    await pool.end();
+    await client.end();
   } catch (error) {
     console.log(error);
   }
-} */
+}
 
-module.exports = client;
+module.exports = { client, connectDb, disconnectDb };
