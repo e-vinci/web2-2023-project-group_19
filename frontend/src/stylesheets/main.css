@@ -31,7 +31,6 @@ body {
     box-shadow: 0 4px 30px rgba(0,0,0,0.1);
     backdrop-filter: blur(11.6px);
     -webkit-backdrop-filter: blur(11.6px);
-    width: 20000px;
 }
 
 h1, h4 {
@@ -677,12 +676,17 @@ h5, .btn-primary{
     margin : auto;
 }
 
+
+
+.container-result{  
+}
+
 .box-result{
     width: 100%;
 }
 
 .card-result{
-    margin-bottom: 5%;
+    margin-bottom: 3%;
 }
 
 #button-result{
