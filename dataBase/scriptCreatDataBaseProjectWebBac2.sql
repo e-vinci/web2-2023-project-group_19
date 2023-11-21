@@ -331,3 +331,98 @@ insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('Socrat
 insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('Aristote',true,30);
 --proposition 3 question 10
 insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('Platon',false,30);
+
+
+-- Quizz 7 :
+insert into QUIZZLER.quizzes(difficultee, categorie) VALUES (3,'histoire');
+-- question 1 quizz 7:
+insert into QUIZZLER.questions(quizz, numero, intitule) VALUES (7,1,'Quel empereur romain a tenté de réformer le système politique et économique, mais a été assassiné en 180 après J.-C. ?');
+-- question 2 quizz 7:
+insert into QUIZZLER.questions(quizz, numero, intitule) VALUES (7,2,'Quelle bataille décisive a eu lieu en 732, mettant fin à l''invasion musulmane en Europe ?');
+-- question 3 quizz 7:
+insert into QUIZZLER.questions(quizz, numero, intitule) VALUES (7,3,'Qui était le dirigeant soviétique responsable de la politique de la Perestroïka dans les années 1980 ?');
+-- question 4 quizz 7:
+insert into QUIZZLER.questions(quizz, numero, intitule) VALUES (7,4,'Quel philosophe grec a enseigné à Alexandre le Grand et a fondé l''école de pensée appelée le Lycée ?');
+-- question 5 quizz 7:
+insert into QUIZZLER.questions(quizz, numero, intitule) VALUES (7,5,'Quel était le nom du premier empereur de Chine, fondateur de la dynastie Qin, au IIIe siècle avant J.-C. ?');
+-- question 6 quizz 7:
+insert into QUIZZLER.questions(quizz, numero, intitule) VALUES (7,6,'Quel événement a marqué le début de la guerre du Péloponnèse en 431 avant J.-C. ?');
+-- question 7 quizz 7:
+insert into QUIZZLER.questions(quizz, numero, intitule) VALUES (7,7,'Qui était le conquérant mongol qui a fondé la dynastie Yuan en Chine au XIIIe siècle ?');
+-- question 8 quizz 7:
+insert into QUIZZLER.questions(quizz, numero, intitule) VALUES (7,8,'Quelle bataille a été le tournant de la guerre du Pacifique pendant la Seconde Guerre mondiale, en 1942 ?');
+-- question 9 quizz 7:
+insert into QUIZZLER.questions(quizz, numero, intitule) VALUES (7,9,'Quel était le nom de l''ancienne cité mésopotamienne, souvent considérée comme la plus ancienne ville du monde ?');
+-- question 10 quizz 7:
+insert into QUIZZLER.questions(quizz, numero, intitule) VALUES (7,10,'Qui était le grand général carthaginois lors de la Deuxième Guerre punique, qui a traversé les Alpes avec des éléphants ?');
+
+-- proposition quizz 7
+--proposition 1 question 1
+insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('',false,61);
+--proposition 2 question 1
+insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('',false,61);
+--proposition 3 question 1
+insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('',false,61);
+-- proposition question 2
+--proposition 1 question 2
+insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('',true,62);
+--proposition 2 question 2
+insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('',false,62);
+--proposition 3 question 2
+insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('',false,62);
+-- proposition question 3
+--proposition 1 question 3
+insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('',true,63);
+--proposition 2 question 3
+insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('',false,63);
+--proposition 3 question 3
+insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('',false,63);
+-- proposition question 4
+--proposition 1 question 4
+insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('',false,64);
+--proposition 2 question 4
+insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('',false,64);
+--proposition 3 question 4
+insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('',true,64);
+-- proposition question 5
+--proposition 1 question 5
+insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('',false,65);
+--proposition 2 question 5
+insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('',false,65);
+--proposition 3 question 5
+insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('',true,65);
+-- proposition question 6
+--proposition 1 question 6
+insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('',true,66);
+--proposition 2 question 6
+insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('',false,66);
+--proposition 3 question 6
+insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('',false,66);
+-- proposition question 7
+--proposition 1 question 7
+insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('',true,67);
+--proposition 2 question 7
+insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('',false,67);
+--proposition 3 question 7
+insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('',false,67);
+-- proposition question 8
+--proposition 1 question 8
+insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('',true,68);
+--proposition 2 question 8
+insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('',false,68);
+--proposition 3 question 8
+insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('',false,68);
+-- proposition question 9
+--proposition 1 question 9
+insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('',true,6);
+--proposition 2 question 9
+insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('',false,);
+--proposition 3 question 9
+insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('',false,);
+-- proposition question 10
+--proposition 1 question 10
+insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('',true,);
+--proposition 2 question 10
+insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('',false,);
+--proposition 3 question 10
+insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('',false,);
