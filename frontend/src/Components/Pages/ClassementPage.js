@@ -16,7 +16,7 @@ const ClassementPage = () => {
         </div>
 
         <div class="classement-body">
-            <div class="table">
+            <div class="table text-dark">
             
                 <div class="medal-container">
                     <div class="medal">

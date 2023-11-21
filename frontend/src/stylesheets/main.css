@@ -89,7 +89,6 @@ h5, .btn-primary{
 
 /*  css pour la navbar    */
 
-
 .navbar-nav {
     margin-left: auto;
 }
@@ -318,7 +317,6 @@ h5, .btn-primary{
     padding: 23px 80px;
 }
 
-
 .center-content {
     display: flex;
     flex-direction: column;
@@ -358,7 +356,7 @@ h5, .btn-primary{
     border: none;
     background: linear-gradient(90deg, #cdffd8, #94b9ff);
     color: rgb(59, 56, 56);
-    font-family: "Abril Fatface"; 
+    font-family: 'Abril Fatface'; 
     font-size: 20px; 
     font-style: normal; 
     font-variant: normal; 
