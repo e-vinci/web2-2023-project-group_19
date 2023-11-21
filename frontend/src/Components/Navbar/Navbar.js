@@ -29,6 +29,9 @@ const Navbar = () => {
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
+              <a class="nav-link" href="#" data-uri="/Confidentialite">(Confidentialité)</a>
+            </li> 
+          <li class="nav-item">
               <a class="nav-link" href="#" data-uri="/resultQuizz">(resultQuizz)</a>
             </li>
             <li class="nav-item">
@@ -51,7 +54,7 @@ const Navbar = () => {
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#" data-uri="/register">Register</a>
-            </li>                        
+            </li>
           </ul>
         </div>
       </div>

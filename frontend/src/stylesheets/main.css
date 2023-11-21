@@ -532,7 +532,6 @@ h5, .btn-primary{
     padding: 7px 20px;
     justify-content: center;
     display: flex;
-    background-color: #fff;
     color: #333;
     font-size: 16px;
     font-family: 'Helvetica', sans-serif;
@@ -540,7 +539,6 @@ h5, .btn-primary{
     letter-spacing: 1px;
     line-height: 1.5;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-    background-color: #f0f0f0;
     border: 1px solid #ccc;
     padding: 10px 20px; /* Ajustez les valeurs de rembourrage selon vos préférences */
     box-sizing: border-box;
@@ -694,5 +692,40 @@ h5, .btn-primary{
 #button-result{
     margin: auto;
   display: block;
+}
+
+
+/*  page pour la page de confidentialité   */
+
+#inner_content-7-239{
+    display: block;
+    text-align: center;
+    color: rgb(0, 0, 0);
+    font-family: 'Times New Roman', Times, serif;
+}
+
+/* Style pour le conteneur principal des colonnes */
+.wp-block-columns {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+/* Style pour chaque colonne */
+.wp-block-column {
+    width: 50%; /* Ajustez la largeur des colonnes selon vos besoins */
+    box-sizing: border-box;
+    padding: 0 15px; /* Espacement interne des colonnes */
+}
+
+/* Style pour les listes ordonnées à l'intérieur de chaque colonne */
+.wp-block-column ol {
+    margin: 0; /* Supprime la marge par défaut des listes ordonnées */
+    padding-left: 10px; /* Ajoute un espacement à gauche pour les éléments de la liste */
+}
+
+/* Style pour chaque élément de la liste ordonnée */
+.wp-block-column ol li {
+    list-style-type: none; /* Supprime les puces de la liste ordonnée */
+    margin-bottom: 5px; /* Espacement entre chaque élément de la liste */
 }
 
