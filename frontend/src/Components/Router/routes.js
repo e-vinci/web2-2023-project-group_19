@@ -8,6 +8,7 @@ import ClassementPage from '../Pages/ClassementPage';
 import viewQuizzes from '../Pages/viewQuizzes';
 import resultQuizz from '../Pages/resultQuizz';
 import pageQuestion from '../Pages/page_questionnaire'
+import pageConfidentialité from '../Pages/Confidentialite'
 
 const routes = {
   "/": HomePage,
@@ -17,6 +18,7 @@ const routes = {
   '/new': NewPage,
   '/creationQuizz' : creationQuizz,
   '/classement' : ClassementPage,
+  '/Confidentialite' : pageConfidentialité,
 
   '/viewQuizzes' : viewQuizzes,
   '/resultQuizz' : resultQuizz,
