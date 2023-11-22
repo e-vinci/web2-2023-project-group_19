@@ -2497,28 +2497,28 @@ insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('Oxygè
 
 -- Quizz 27 :
 insert into QUIZZLER.quizzes(difficultee, categorie) VALUES (3,'science');
--- question 1 quizz 2:
+-- question 1 quizz 27:
 insert into QUIZZLER.questions(quizz, numero, intitule) VALUES (27,1,'Quelle est la particule élémentaire responsable de la médiation de la force électromagnétique ?');
--- question 2 quizz 2:
+-- question 2 quizz 27:
 insert into QUIZZLER.questions(quizz, numero, intitule) VALUES (27,2,'Quelle est la loi de la physique qui décrit la variation de la pression d un gaz avec le volume, à température constante ?');
--- question 3 quizz 2:
+-- question 3 quizz 27:
 insert into QUIZZLER.questions(quizz, numero, intitule) VALUES (27,3,'Quel est l élément le plus abondant dans l univers ?');
--- question 4 quizz 2:
+-- question 4 quizz 27:
 insert into QUIZZLER.questions(quizz, numero, intitule) VALUES (27,4,'Quelle est la théorie qui unifie la mécanique quantique et la relativité générale ?');
--- question 5 quizz 2:
+-- question 5 quizz 27:
 insert into QUIZZLER.questions(quizz, numero, intitule) VALUES (27,5,'Quel est le processus de production d énergie dans le cœur des étoiles, y compris le Soleil ?');
--- question 6 quizz 2:
+-- question 6 quizz 27:
 insert into QUIZZLER.questions(quizz, numero, intitule) VALUES (27,6,'Quelle est la principale fonction des ribosomes dans une cellule ?');
--- question 7 quizz 2:
+-- question 7 quizz 27:
 insert into QUIZZLER.questions(quizz, numero, intitule) VALUES (27,7,'Quel physicien a développé la théorie de la relativité restreinte ?');
--- question 8 quizz 2:
+-- question 8 quizz 27:
 insert into QUIZZLER.questions(quizz, numero, intitule) VALUES (27,8,'Quelle est la vitesse de la lumière dans le vide, en mètres par seconde (approximativement) ?');
--- question 9 quizz 2:
+-- question 9 quizz 27:
 insert into QUIZZLER.questions(quizz, numero, intitule) VALUES (27,9,'Quel est le processus par lequel les cellules convertissent le glucose en énergie en l absence d oxygène ?');
--- question 10 quizz 2:
+-- question 10 quizz 27:
 insert into QUIZZLER.questions(quizz, numero, intitule) VALUES (27,10,'Quelle est la constante qui représente la charge élémentaire d un électron ?');
 
--- proposition question 2
+-- proposition quizz 27
 --proposition 1 question 1
 insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('Boson de Higgs',false,261);
 --proposition 2 question 2
