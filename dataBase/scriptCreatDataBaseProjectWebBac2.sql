@@ -2026,7 +2026,7 @@ insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('Photos
 insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('Fermentation',false,210);
 
 -- Quizz 22 :
-insert into QUIZZLER.quizzes(difficultee, categorie) VALUES (2,'science');
+insert into QUIZZLER.quizzes(difficultee, categorie) VALUES (2,'sciences');
 -- question 1 quizz 22:
 insert into QUIZZLER.questions(quizz, numero, intitule) VALUES (22,1,'Quel est le processus par lequel une substance passe directement de l état solide à l état gazeux sans passer par l état liquide ?');
 -- question 2 quizz 22:
@@ -2120,7 +2120,7 @@ insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('C6H12O
 insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('C55H72MgN4O5',true,220);
 
 -- Quizz 23 :
-insert into QUIZZLER.quizzes(difficultee, categorie) VALUES (2,'science');
+insert into QUIZZLER.quizzes(difficultee, categorie) VALUES (2,'sciences');
 -- question 1 quizz 23:
 insert into QUIZZLER.questions(quizz, numero, intitule) VALUES (23,1,'Quel est le gaz responsable de l effet de serre sur la Terre ?');
 -- question 2 quizz 23:
@@ -2214,7 +2214,7 @@ insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('Traduc
 insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('Réplication',false,230);
 
 -- Quizz 24 :
-insert into QUIZZLER.quizzes(difficultee, categorie) VALUES (2,'science');
+insert into QUIZZLER.quizzes(difficultee, categorie) VALUES (2,'sciences');
 -- question 1 quizz 24:
 insert into QUIZZLER.questions(quizz, numero, intitule) VALUES (24,1,'Quel est l organe sensoriel responsable de l audition ?');
 -- question 2 quizz 24:
@@ -2308,7 +2308,7 @@ insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('Photos
 insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('Fermentation',true,240);
 
 -- Quizz 25 :
-insert into QUIZZLER.quizzes(difficultee, categorie) VALUES (3,'science');
+insert into QUIZZLER.quizzes(difficultee, categorie) VALUES (3,'sciences');
 -- question 1 quizz 25:
 insert into QUIZZLER.questions(quizz, numero, intitule) VALUES (25,1,'Quelle est la particule subatomique qui a une charge positive égale en magnitude à celle de l électron ?');
 -- question 2 quizz 25:
@@ -2402,7 +2402,7 @@ insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('Moment
 insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('Moment dipolaire',false,250);
 
 -- Quizz 26 :
-insert into QUIZZLER.quizzes(difficultee, categorie) VALUES (3,'science');
+insert into QUIZZLER.quizzes(difficultee, categorie) VALUES (3,'sciences');
 -- question 1 quizz 26:
 insert into QUIZZLER.questions(quizz, numero, intitule) VALUES (26,1,'Quelle est la loi de la physique qui décrit comment la lumière est déviée lorsqu elle passe à travers un prisme ou un milieu transparent ?');
 -- question 2 quizz 26:
@@ -2496,7 +2496,7 @@ insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('Azote 
 insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('Oxygène (O2)',false,260);
 
 -- Quizz 27 :
-insert into QUIZZLER.quizzes(difficultee, categorie) VALUES (3,'science');
+insert into QUIZZLER.quizzes(difficultee, categorie) VALUES (3,'sciences');
 -- question 1 quizz 27:
 insert into QUIZZLER.questions(quizz, numero, intitule) VALUES (27,1,'Quelle est la particule élémentaire responsable de la médiation de la force électromagnétique ?');
 -- question 2 quizz 27:
