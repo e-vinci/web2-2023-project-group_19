@@ -1,33 +1,60 @@
-import history from "../../img/histoire.jpg";
 import { clearPage } from "../../utils/render";
+import getPathParameters from  "../../utils/path-href";
+import { getAllQuizzes } from "../../utils/quizzes";
+import quizzCategories from "../../utils/quizzesCategories";
 
-const viewQuizzes = () => {
+async function viewQuizzes () {
 
-    const QUIZZES = [ 
+    const parametersObject = getPathParameters();
+
+    console.log( parametersObject );
+
+    const category = parametersObject.categorie;
+
+    const quizzData = quizzCategories.find( quizz => quizz.id === category );
+    const quizzDataImage = quizzData.image;
+    const quizzDataCategoryName = quizzData.name;
+
+    console.log( `Categorie : ${category}` );
+
+    const quizzes = await getAllQuizzes(category);
+
+    const QUIZZES = [
         {
             difficulty : 1,
-            quizzes : ["1", "2", "3" ]
+            quizzes : []
         },
         {
             difficulty : 2,
-            quizzes : ["1", "2", "3" ]
+            quizzes : []
         },
         {
             difficulty : 3,
-            quizzes : ["1", "2", "3" ]
+            quizzes : []
         }
     ];
 
+    for ( let i=0; i<quizzes.length; i+=1 ) {
+
+        const {difficultee} = quizzes[i];
+        const arrayToPush = QUIZZES.find( x => x.difficulty === difficultee ).quizzes;
+
+        arrayToPush.push( quizzes[i] );
+
+    };
+
+    console.log( JSON.stringify( QUIZZES ) );
+
     clearPage();
-    generateQuizzesButtons( QUIZZES );
+    generateQuizzesButtons( QUIZZES, quizzDataImage, quizzDataCategoryName );
 
 };
 
-function generateQuizzesButtons ( quizzesArray ) {
+function generateQuizzesButtons ( quizzesArray, quizzImage, quizzCategoryName ) {
 
     const main = document.querySelector('main');
 
-    const categoryTitle = createTitle( 'Histoire', 'h1' );
+    const categoryTitle = createTitle( quizzCategoryName, 'h1' );
 
     main.innerHTML += categoryTitle;
 
@@ -47,7 +74,7 @@ function generateQuizzesButtons ( quizzesArray ) {
 
             const buttonSrc = 'http://localhost:8080';
 
-            const image = createButtonAndImage(history, buttonSrc, difficultyColor );
+            const image = createButtonAndImage(quizzImage, buttonSrc, difficultyColor );
 
             box.innerHTML += image;
 
