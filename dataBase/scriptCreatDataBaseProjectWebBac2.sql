@@ -9,8 +9,7 @@ CREATE TABLE QUIZZLER.quizzes (
     id_quizz SERIAL PRIMARY KEY,
     difficultee INTEGER NOT NULL CHECK (difficultee > 0 AND difficultee < 4),
     categorie VARCHAR NOT NULL,
-    points_rapportes INTEGER NULL CHECK (points_rapportes >= 0),
-    nbr_points_reussies INTEGER NULL CHECK (nbr_points_reussies <= 10)
+    points_rapportes INTEGER NULL CHECK (points_rapportes >= 0)
 );
 
 -- Créer la table users
@@ -28,7 +27,8 @@ CREATE TABLE QUIZZLER.participations (
     id_participation SERIAL PRIMARY KEY,
     quizz INTEGER NOT NULL REFERENCES QUIZZLER.quizzes (id_quizz),
     utilisateur INTEGER NOT NULL REFERENCES QUIZZLER.users (id_user),
-    nbr_tentatives INTEGER NOT NULL CHECK (nbr_tentatives >= 0)
+    nbr_tentatives INTEGER NOT NULL CHECK (nbr_tentatives >= 0),
+    nbr_questions_reussies INTEGER NULL CHECK (nbr_points_reussies <= 10)
 );
 
 -- Créer la table questions
