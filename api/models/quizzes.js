@@ -57,7 +57,7 @@ async function getQuizzQuestionPropositions(quizzId, questionId) {
 
 async function readOneQuizzContent(quizzId) {
   const requestQuizzData = `
-    SELECT quizz.id_quizz, difficultee, categorie, points_rapportes, nbr_points_reussies
+    SELECT quizz.id_quizz, difficultee, categorie, points_rapportes
       FROM QUIZZLER.quizzes quizz
       WHERE quizz.id_quizz = ${quizzId};
   `;
