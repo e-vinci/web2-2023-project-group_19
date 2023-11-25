@@ -28,7 +28,7 @@ CREATE TABLE QUIZZLER.participations (
     quizz INTEGER NOT NULL REFERENCES QUIZZLER.quizzes (id_quizz),
     utilisateur INTEGER NOT NULL REFERENCES QUIZZLER.users (id_user),
     nbr_tentatives INTEGER NOT NULL CHECK (nbr_tentatives >= 0),
-    nbr_questions_reussies INTEGER NULL CHECK (nbr_points_reussies <= 10)
+    nbr_questions_reussies INTEGER NULL CHECK (nbr_questions_reussies <= 10)
 );
 
 -- Créer la table questions
