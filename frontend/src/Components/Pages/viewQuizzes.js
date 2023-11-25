@@ -11,7 +11,9 @@ async function viewQuizzes () {
 
     const category = parametersObject.categorie;
 
-    const quizzImage = quizzCategories.find( quizz => quizz.id === category ).image;
+    const quizzData = quizzCategories.find( quizz => quizz.id === category );
+    const quizzDataImage = quizzData.image;
+    const quizzDataCategoryName = quizzData.name;
 
     console.log( `Categorie : ${category}` );
 
@@ -44,15 +46,15 @@ async function viewQuizzes () {
     console.log( JSON.stringify( QUIZZES ) );
 
     clearPage();
-    generateQuizzesButtons( QUIZZES, quizzImage );
+    generateQuizzesButtons( QUIZZES, quizzDataImage, quizzDataCategoryName );
 
 };
 
-function generateQuizzesButtons ( quizzesArray, quizzImage ) {
+function generateQuizzesButtons ( quizzesArray, quizzImage, quizzCategoryName ) {
 
     const main = document.querySelector('main');
 
-    const categoryTitle = createTitle( 'Histoire', 'h1' );
+    const categoryTitle = createTitle( quizzCategoryName, 'h1' );
 
     main.innerHTML += categoryTitle;
 
