@@ -13,6 +13,24 @@ async function getOneQuizzContent(quizzId) {
   return quizz;
 }
 
+async function getAllQuizzes(category) {
+  let quizzes;
+  try {
+    const response = await fetch(`/api/quizzes?categorie=${category}`);
+
+    console.log( `/api/quizzes?categorie=${category}` )
+
+    if (!response.ok) throw new Error(`fetch error : ${response.status} : ${response.statusText}`);
+
+    quizzes = await response.json();
+  } catch (err) {
+    console.error('HomePage::error: ', err);
+  }
+
+  return quizzes;
+}
+
 module.exports = {
-    getOneQuizzContent,
+  getOneQuizzContent,
+  getAllQuizzes
 }
