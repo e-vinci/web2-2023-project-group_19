@@ -1,5 +1,5 @@
 
-import quizzesCategories from "../../utils/quizzesCategories";
+import {getAllQuizzesCategoriesData} from "../../utils/quizzesData";
 // import 'https://fonts.googleapis.com/css2?family=Blaka+Hollow&family=Quicksand:wght@300;400;500&display=swap';
 const HomePage = () => {
   generateStructure();
@@ -30,6 +30,8 @@ function generateStructure() {
 function generateCards() {
 
   const box = document.querySelector('.box');
+
+  const quizzesCategories = getAllQuizzesCategoriesData();
 
   quizzesCategories.forEach( category => {
 

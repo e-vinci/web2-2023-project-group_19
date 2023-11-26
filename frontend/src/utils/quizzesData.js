@@ -4,7 +4,7 @@ import sciencesImg from "../img/science.jpg";
 
 const viewQuizzesPath = "http://localhost:8080/viewQuizzes";
 
-const quizzesCategories = [
+const quizzesCategoriesData = [
     {
       id : "geographie",
       image : geographyImg,
@@ -25,4 +25,18 @@ const quizzesCategories = [
     },
   ];
 
-  export default quizzesCategories;
+function getQuizzCategoryData (category) {
+
+  return quizzesCategoriesData.find( quizz => quizz.id === category );
+
+}
+
+function getAllQuizzesCategoriesData () {
+
+  return quizzesCategoriesData;
+
+};
+export {
+  getQuizzCategoryData, 
+  getAllQuizzesCategoriesData
+};

@@ -1,21 +1,19 @@
 import { clearPage } from "../../utils/render";
 import getPathParameters from  "../../utils/path-href";
-import { getAllQuizzes } from "../../utils/quizzes";
-import quizzCategories from "../../utils/quizzesCategories";
+import { getAllQuizzes } from "../../utils/quizzesQueries";
+import {getQuizzCategoryData} from "../../utils/quizzesData";
 
 async function viewQuizzes () {
 
-    const parametersObject = getPathParameters();
+    clearPage();
 
-    console.log( parametersObject );
+    const parametersObject = getPathParameters();
 
     const category = parametersObject.categorie;
 
-    const quizzData = quizzCategories.find( quizz => quizz.id === category );
+    const quizzData = getQuizzCategoryData(category);
     const quizzDataImage = quizzData.image;
     const quizzDataCategoryName = quizzData.name;
-
-    console.log( `Categorie : ${category}` );
 
     const quizzes = await getAllQuizzes(category);
 
@@ -43,9 +41,6 @@ async function viewQuizzes () {
 
     };
 
-    console.log( JSON.stringify( QUIZZES ) );
-
-    clearPage();
     generateQuizzesButtons( QUIZZES, quizzDataImage, quizzDataCategoryName );
 
 };

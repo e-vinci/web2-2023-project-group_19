@@ -18,8 +18,6 @@ async function getAllQuizzes(category) {
   try {
     const response = await fetch(`/api/quizzes?categorie=${category}`);
 
-    console.log( `/api/quizzes?categorie=${category}` )
-
     if (!response.ok) throw new Error(`fetch error : ${response.status} : ${response.statusText}`);
 
     quizzes = await response.json();

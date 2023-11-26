@@ -1,19 +1,41 @@
 import imageLogo from '../../img/logo-site.png';
-import { getOneQuizzContent } from '../../utils/quizzes';
+import { getOneQuizzContent } from '../../utils/quizzesQueries';
+import getPathParameters from '../../utils/path-href';
+import Navigate from '../Router/Navigate';
+import {getQuizzCategoryData} from "../../utils/quizzesData";
 
 let currentIndexQuestion = 0;
 
 async function pageQuestionnaire () {
 
-    const quizz = await getOneQuizzContent(1);
+    const parametersObject = getPathParameters();
+    let {quizzId} = parametersObject;
 
-    const randomQuestionsOrderArray = randomQuestionsOrder(quizz);
+    if ( quizzId !== undefined && !Number.isNaN(Number(quizzId))) {
 
-    quizz.questions = randomQuestionsOrderArray;
+        quizzId = Number(quizzId);
 
-    renderQuestionnaire(quizz, currentIndexQuestion);
+        const quizz = await getOneQuizzContent(quizzId);
+        const categoryData = getQuizzCategoryData(quizz.categorie);
+        const categoryName = categoryData.name;
+        const categoryImage = categoryData.image;
 
-    currentIndexQuestion+=1;
+        console.log( JSON.stringify( parametersObject ) );
+
+        const randomQuestionsOrderArray = randomQuestionsOrder(quizz);
+
+        quizz.questions = randomQuestionsOrderArray;
+
+        renderQuestionnaire(quizz, currentIndexQuestion, categoryName);
+        applyBackgroundImageOnContainer(categoryImage);
+
+        currentIndexQuestion+=1;
+
+    } else {
+
+        Navigate('/');
+    
+    };
     
 };
 
@@ -38,7 +60,7 @@ function randomQuestionsOrder(quizz) {
     return randomQuestionsOrderArray;
 }
 
-function renderQuestionnaire (quizz, indexQuestion) {
+function renderQuestionnaire (quizz, indexQuestion, categoryName) {
 
     const question = quizz.questions[indexQuestion];
     const intituleQuestion = question.intitule;
@@ -49,7 +71,7 @@ function renderQuestionnaire (quizz, indexQuestion) {
     main.innerHTML = `
         <div class="glass-container-pageQuestion"> 
             <div class="card-pageQuestion">
-                <h5 class="card-title-pageQuestion"> ${quizz.categorie} </h5>
+                <h5 class="card-title-pageQuestion"> ${categoryName} </h5>
                 <img src="${imageLogo}" class="card-img-top-pageQuestion" alt="..."style="width: 31%;">
                 <span class = "card-title-question" >
                     ${intituleQuestion}
@@ -61,6 +83,16 @@ function renderQuestionnaire (quizz, indexQuestion) {
             </div>
         </div>
     `;
+
+}
+
+function applyBackgroundImageOnContainer (categoryImage) {
+
+    const container = document.querySelector('.glass-container-pageQuestion');
+
+    container.style.backgroundImage = `url(${categoryImage})`;
+
+    console.log( container.style );
 
 }
 

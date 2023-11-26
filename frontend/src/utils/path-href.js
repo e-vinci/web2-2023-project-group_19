@@ -8,20 +8,24 @@ function getPathParameters () {
 
     const pathHref = getPathHref();
 
-    const parameters = pathHref.split('?')[1];
-    const parametersArray = parameters.split('&');
-
     const parametersObject = {};
 
-    parametersArray.forEach( parameter => {
+    if ( pathHref.includes('?') ) {
 
-        const parameterEntries = parameter.split('=');
-        const parameterKey = parameterEntries[0];
-        const parameterValue = parameterEntries[1];
+        const parameters = pathHref.split('?')[1];
+        const parametersArray = parameters.split('&');
 
-        parametersObject[parameterKey] = parameterValue;
+        parametersArray.forEach( parameter => {
 
-    });
+            const parameterEntries = parameter.split('=');
+            const parameterKey = parameterEntries[0];
+            const parameterValue = parameterEntries[1];
+
+            parametersObject[parameterKey] = parameterValue;
+
+        });
+
+    }
 
     return parametersObject;
 
