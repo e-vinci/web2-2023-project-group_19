@@ -1,3 +1,4 @@
+import anime from 'animejs';
 import { clearPage } from "../../utils/render";
 import getPathParameters from  "../../utils/path-href";
 import { getAllQuizzes } from "../../utils/quizzesQueries";
@@ -43,7 +44,21 @@ async function viewQuizzes () {
 
     generateQuizzesButtons( QUIZZES, quizzDataImage, quizzDataCategoryName );
 
+    setInterval(animateGridElements, 2000 );
+
 };
+
+function animateGridElements() {
+
+    anime({
+        targets: '.viewQuizzes-cards',
+        scale: [
+          {value: .9, easing: 'easeOutSine', duration: 500},
+          {value: 1, easing: 'easeInOutQuad', duration: 1200}
+        ],
+        delay: anime.stagger(500, {grid: [3, 3], from: 'center'})
+      });
+}
 
 function generateQuizzesButtons ( quizzesArray, quizzImage, quizzCategoryName ) {
 
@@ -69,7 +84,7 @@ function generateQuizzesButtons ( quizzesArray, quizzImage, quizzCategoryName ) 
 
             const buttonSrc = 'http://localhost:8080';
 
-            const image = createButtonAndImage(quizzImage, buttonSrc, difficultyColor );
+            const image = createCard(quizzImage, buttonSrc, difficultyColor, difficultyName );
 
             box.innerHTML += image;
 
@@ -93,7 +108,21 @@ function createBox () {
 
 };
 
-function createButtonAndImage (imgSrc, buttonSrc, borderColor) {
+function createCard (quizzImage, buttonSrc, difficultyColor, title) {
+
+    return `
+        <div class="card viewQuizzes-cards" style="width: 18rem;">
+            <a class="viewQuizzes-button" href="${buttonSrc}">
+                <img class="card-img-top" src="${quizzImage}" alt="Card image cap">
+            </a>
+            <div class="card-body-viewQuizz">
+                <h5 class="card-title">${title}</h5>
+                <p class="card-text-viewQuizz">Quizz non effectué</p>
+            </div>
+    </div>`;
+}
+
+/* function createButtonAndImage (imgSrc, buttonSrc, borderColor) {
 
     return `
         <a class="viewQuizzes-button" href="${buttonSrc}">
@@ -101,7 +130,7 @@ function createButtonAndImage (imgSrc, buttonSrc, borderColor) {
         </a>
     `;
 
-};
+}; */
 
 function createTitle (titleText, titleSize ) {
     
