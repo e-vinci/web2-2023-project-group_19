@@ -649,7 +649,6 @@ h5, .btn-primary{
 
 .card-body-viewQuizz{
     background-color: #f4f4f4;
-    border-radius: 12%;
 }
 
 .viewQuizzes-box {
@@ -667,15 +666,8 @@ h5, .btn-primary{
 .viewQuizzes-title-h1, .viewQuizzes-title-h2 {
     display:flex;
     color:rgb(0, 0, 0);
-    padding:30px;
     justify-content:left;
     font-family:'Tilt Warp', sans-serif;
-}
-
-.viewQuizzes-title-h1 {
-    padding-top: 75px;
-    padding-left: 75px;
-    font-size: 5em;
 }
 
 .viewQuizzes-title-h2 {
@@ -683,49 +675,6 @@ h5, .btn-primary{
     font-size: 3em;
 }
 
-.viewQuizzes-button-img-green, .viewQuizzes-button-img-orange, .viewQuizzes-button-img-red {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 20rem;
-    border-radius: 25px;
-}
-
-.viewQuizzes-button-img-green {
-    border : 6px solid #28a745;
-    box-shadow: #28a745 0px 0px 5px;
-}
-
-.viewQuizzes-button-img-orange {
-    border : 6px solid #ffc107;
-    box-shadow: #ffc107 0px 0px 5px;
-}
-
-.viewQuizzes-button-img-red {
-    border : 6px solid #dc3545;
-    box-shadow: #dc3545 0px 0px 5px;
-}
-
-.viewQuizzes-button-img-green:hover, .viewQuizzes-button-img-orange:hover, .viewQuizzes-button-img-red:hover {
-    box-shadow: #f5eaea 0px 0px 75px;
-} 
-
-.fs-5{
-    margin : auto;
-}
-
-.box-result{
-    width: 100%;
-}
-
-.card-result{
-    margin-bottom: 5%;
-}
-
-#button-result{
-    margin: auto;
-  display: block;
-}
 
 
 /*  page pour la page de confidentialité   */
