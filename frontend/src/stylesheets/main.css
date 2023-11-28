@@ -532,6 +532,7 @@ h5, .btn-primary{
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(11.6px);
     -webkit-backdrop-filter: blur(11.6px);
+    background-image: url('../img/histoire.jpg');
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -544,6 +545,7 @@ h5, .btn-primary{
     display: flex;
     justify-content: center;
     margin: auto;
+    width: 30%;
 }
 
 .btn-primary-question{
@@ -553,7 +555,7 @@ h5, .btn-primary{
     height: 40px;
     font-size: 15px;
     color:rgb(0, 0, 0);
-    background-color: transparent;
+    background-color: #fff;
     border: 1px solid rgb(0, 0, 0);
     border-radius: 10px;
     cursor: pointer;
@@ -572,10 +574,6 @@ h5, .btn-primary{
     padding: 10px 20px; /* Ajustez les valeurs de rembourrage selon vos préférences */
     box-sizing: border-box;
 } 
-
-.btn-primary-question:hover{
-    background-color: #82acff;
-}
 
 .card-title-pageQuestion{
   color: #333;
@@ -596,13 +594,15 @@ h5, .btn-primary{
     align-items: center;
     color: #ffffff;
     border-radius: 5px;
-    font-family: 'Arial', sans-serif;
+    font-family: serif;
     font-size: 22px;
     font-weight: bold;
     text-align: center;
     text-transform: uppercase;
     margin-bottom: 1%;
     color: #333;
+    background-color: #fff;
+
 }
 
 .btn-primary-question-final {
@@ -629,17 +629,13 @@ h5, .btn-primary{
     background-color: #fff;
     color: #ffffff;
     border-radius: 5px;
+    border:none;
     font-size: 16px;
     font-weight: bold;
     cursor: pointer;
     transition: background-color 0.3s, color 0.3s;
     color: black;
 }
-
-.Next-question-pageQuestion:hover {
-    background-color: #2980b9;
-    color: #ffffff;
-  }
 
 /* CSS PAGE VIEWQUIZZES */
 
