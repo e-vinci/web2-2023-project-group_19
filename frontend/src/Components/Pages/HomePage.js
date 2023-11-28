@@ -1,4 +1,4 @@
- import { PerspectiveCamera, Scene, WebGLRenderer, Points, PointsMaterial, BufferGeometry, Float32BufferAttribute, MathUtils, TextureLoader, Group, Clock } from "three";
+ import { PerspectiveCamera, Scene, WebGLRenderer, Points, PointsMaterial, BufferGeometry, Float32BufferAttribute, MathUtils, TextureLoader, Group, Clock} from "three";
  // import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls' // import de l'objet
 
 import circle from '../../img/PYlN8.png'
@@ -53,6 +53,8 @@ function renderThreeDimension (){
   const { points, colors } = generateRandomPointsDistanceColor( count, distance );
 
  const Geometrie = new BufferGeometry() // cette ligne permet de créer des geometrie plus complexe par exemple des faces
+
+ 
  Geometrie.setAttribute('position', new Float32BufferAttribute(points, 3));// l'attribut va s'appeler position et va contenir des triplet d'element et prendre 3 elements qui correspond a une coordonner
  Geometrie.setAttribute('color', new Float32BufferAttribute(colors, 3));
  const pointMaterial = new PointsMaterial({
@@ -66,6 +68,19 @@ function renderThreeDimension (){
 
  const groupe = new Group();
  groupe.add(pointsObject);
+
+//  const LineMaterial = new LineBasicMaterial({
+//   color : 0xfff5f5f5,
+//   opacity : 0.001,
+//  })
+
+//  const LineObject = new Line(Geometrie, LineMaterial);
+
+//  LineObject.computeLineDistances();
+//  LineObject.scale.x = 0.5 // probleme
+//  LineObject.scale.y = 0.5 // probleme
+//  LineObject.scale.z = 0.09 //  probleme
+//  groupe.add(LineObject);
 
  scene.add(groupe);
  const renderer = new WebGLRenderer({
