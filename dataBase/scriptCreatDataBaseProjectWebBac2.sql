@@ -9,8 +9,7 @@ CREATE TABLE QUIZZLER.quizzes (
     id_quizz SERIAL PRIMARY KEY,
     difficultee INTEGER NOT NULL CHECK (difficultee > 0 AND difficultee < 4),
     categorie VARCHAR NOT NULL,
-    points_rapportes INTEGER NULL CHECK (points_rapportes >= 0),
-    nbr_points_reussies INTEGER NULL CHECK (nbr_points_reussies <= 10)
+    points_rapportes INTEGER NULL CHECK (points_rapportes >= 0)
 );
 
 -- Créer la table users
@@ -28,7 +27,8 @@ CREATE TABLE QUIZZLER.participations (
     id_participation SERIAL PRIMARY KEY,
     quizz INTEGER NOT NULL REFERENCES QUIZZLER.quizzes (id_quizz),
     utilisateur INTEGER NOT NULL REFERENCES QUIZZLER.users (id_user),
-    nbr_tentatives INTEGER NOT NULL CHECK (nbr_tentatives >= 0)
+    nbr_tentatives INTEGER NOT NULL CHECK (nbr_tentatives >= 0),
+    nbr_questions_reussies INTEGER NULL CHECK (nbr_questions_reussies <= 10)
 );
 
 -- Créer la table questions
@@ -898,7 +898,7 @@ insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('Consta
 insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('Trajan',false,90);
 
 -- Quizz 10 :
-insert into QUIZZLER.quizzes(difficultee, categorie) VALUES (1,'géographie');
+insert into QUIZZLER.quizzes(difficultee, categorie) VALUES (1,'geographie');
 -- question 1 quizz 2:
 insert into QUIZZLER.questions(quizz, numero, intitule) VALUES (10,1,'Quel est le plus grand océan de la planète ?');
 -- question 2 quizz 2:
@@ -992,7 +992,7 @@ insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('Chine'
 insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('États-Unis',false,100);
 
 -- Quizz 11 :
-insert into QUIZZLER.quizzes(difficultee, categorie) VALUES (1,'géographie');
+insert into QUIZZLER.quizzes(difficultee, categorie) VALUES (1,'geographie');
 -- question 1 quizz 2:
 insert into QUIZZLER.questions(quizz, numero, intitule) VALUES (11,1,'Quelle est la capitale de l Australie ?');
 -- question 2 quizz 2:
@@ -1086,7 +1086,7 @@ insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('Argent
 insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('Le Pérou',false,110);
 
 -- Quizz 12 :
-insert into QUIZZLER.quizzes(difficultee, categorie) VALUES (1,'géographie');
+insert into QUIZZLER.quizzes(difficultee, categorie) VALUES (1,'geographie');
 -- question 1 quizz 2:
 insert into QUIZZLER.questions(quizz, numero, intitule) VALUES (12,1,'Dans quel océan se trouve l île de Bornéo ?');
 -- question 2 quizz 2:
@@ -1180,7 +1180,7 @@ insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('La mer
 insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('La mer Rouge',false,120);
 
 -- Quizz 13 :
-insert into QUIZZLER.quizzes(difficultee, categorie) VALUES (2,'géographie');
+insert into QUIZZLER.quizzes(difficultee, categorie) VALUES (2,'geographie');
 -- question 1 quizz 13:
 insert into QUIZZLER.questions(quizz, numero, intitule) VALUES (13,1,'Quel pays est situé à la pointe sud de l Afrique ?');
 -- question 2 quizz 13:
@@ -1274,7 +1274,7 @@ insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('Ankara
 insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('Izmir',false,130);
 
 -- Quizz 14 :
-insert into QUIZZLER.quizzes(difficultee, categorie) VALUES (2,'géographie');
+insert into QUIZZLER.quizzes(difficultee, categorie) VALUES (2,'geographie');
 -- question 1 quizz 14:
 insert into QUIZZLER.questions(quizz, numero, intitule) VALUES (14,1,'Quel est le plus grand pays insulaire du monde ?');
 -- question 2 quizz 14:
@@ -1368,7 +1368,7 @@ insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('Auckla
 insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('Wellington',true,140);
 
 -- Quizz 15 :
-insert into QUIZZLER.quizzes(difficultee, categorie) VALUES (2,'géographie');
+insert into QUIZZLER.quizzes(difficultee, categorie) VALUES (2,'geographie');
 -- question 1 quizz 15:
 insert into QUIZZLER.questions(quizz, numero, intitule) VALUES (15,1,'Quel est le plus grand glacier du monde ?');
 -- question 2 quizz 15:
@@ -1462,7 +1462,7 @@ insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('Mer d 
 insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('Mer Caspienne',false,150);
 
 -- Quizz 16 :
-insert into QUIZZLER.quizzes(difficultee, categorie) VALUES (3,'géographie');
+insert into QUIZZLER.quizzes(difficultee, categorie) VALUES (3,'geographie');
 -- question 1 quizz 16:
 insert into QUIZZLER.questions(quizz, numero, intitule) VALUES (16,1,'Quel est le point le plus élevé de l Himalaya ?');
 -- question 2 quizz 16:
@@ -1556,7 +1556,7 @@ insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('Oman',
 insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('Yémen',true,160);
 
 -- Quizz 17 :
-insert into QUIZZLER.quizzes(difficultee, categorie) VALUES (3,'géographie');
+insert into QUIZZLER.quizzes(difficultee, categorie) VALUES (3,'geographie');
 -- question 1 quizz 17:
 insert into QUIZZLER.questions(quizz, numero, intitule) VALUES (17,1,'Dans quel pays se trouve le mont Elbrouz, la plus haute montagne d Europe ?');
 -- question 2 quizz 17:
@@ -1650,7 +1650,7 @@ insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('Mexiqu
 insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('Australie',false,170);
 
 -- Quizz 18 :
-insert into QUIZZLER.quizzes(difficultee, categorie) VALUES (3,'géographie');
+insert into QUIZZLER.quizzes(difficultee, categorie) VALUES (3,'geographie');
 -- question 1 quizz 18:
 insert into QUIZZLER.questions(quizz, numero, intitule) VALUES (18,1,'Quel est le plus grand lac d eau douce d Amérique du Sud ?');
 -- question 2 quizz 18:
@@ -2026,7 +2026,7 @@ insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('Photos
 insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('Fermentation',false,210);
 
 -- Quizz 22 :
-insert into QUIZZLER.quizzes(difficultee, categorie) VALUES (2,'science');
+insert into QUIZZLER.quizzes(difficultee, categorie) VALUES (2,'sciences');
 -- question 1 quizz 22:
 insert into QUIZZLER.questions(quizz, numero, intitule) VALUES (22,1,'Quel est le processus par lequel une substance passe directement de l état solide à l état gazeux sans passer par l état liquide ?');
 -- question 2 quizz 22:
@@ -2120,7 +2120,7 @@ insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('C6H12O
 insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('C55H72MgN4O5',true,220);
 
 -- Quizz 23 :
-insert into QUIZZLER.quizzes(difficultee, categorie) VALUES (2,'science');
+insert into QUIZZLER.quizzes(difficultee, categorie) VALUES (2,'sciences');
 -- question 1 quizz 23:
 insert into QUIZZLER.questions(quizz, numero, intitule) VALUES (23,1,'Quel est le gaz responsable de l effet de serre sur la Terre ?');
 -- question 2 quizz 23:
@@ -2214,7 +2214,7 @@ insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('Traduc
 insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('Réplication',false,230);
 
 -- Quizz 24 :
-insert into QUIZZLER.quizzes(difficultee, categorie) VALUES (2,'science');
+insert into QUIZZLER.quizzes(difficultee, categorie) VALUES (2,'sciences');
 -- question 1 quizz 24:
 insert into QUIZZLER.questions(quizz, numero, intitule) VALUES (24,1,'Quel est l organe sensoriel responsable de l audition ?');
 -- question 2 quizz 24:
@@ -2308,7 +2308,7 @@ insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('Photos
 insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('Fermentation',true,240);
 
 -- Quizz 25 :
-insert into QUIZZLER.quizzes(difficultee, categorie) VALUES (3,'science');
+insert into QUIZZLER.quizzes(difficultee, categorie) VALUES (3,'sciences');
 -- question 1 quizz 25:
 insert into QUIZZLER.questions(quizz, numero, intitule) VALUES (25,1,'Quelle est la particule subatomique qui a une charge positive égale en magnitude à celle de l électron ?');
 -- question 2 quizz 25:
@@ -2402,7 +2402,7 @@ insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('Moment
 insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('Moment dipolaire',false,250);
 
 -- Quizz 26 :
-insert into QUIZZLER.quizzes(difficultee, categorie) VALUES (3,'science');
+insert into QUIZZLER.quizzes(difficultee, categorie) VALUES (3,'sciences');
 -- question 1 quizz 26:
 insert into QUIZZLER.questions(quizz, numero, intitule) VALUES (26,1,'Quelle est la loi de la physique qui décrit comment la lumière est déviée lorsqu elle passe à travers un prisme ou un milieu transparent ?');
 -- question 2 quizz 26:
@@ -2496,7 +2496,7 @@ insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('Azote 
 insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('Oxygène (O2)',false,260);
 
 -- Quizz 27 :
-insert into QUIZZLER.quizzes(difficultee, categorie) VALUES (3,'science');
+insert into QUIZZLER.quizzes(difficultee, categorie) VALUES (3,'sciences');
 -- question 1 quizz 27:
 insert into QUIZZLER.questions(quizz, numero, intitule) VALUES (27,1,'Quelle est la particule élémentaire responsable de la médiation de la force électromagnétique ?');
 -- question 2 quizz 27:

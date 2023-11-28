@@ -35,9 +35,6 @@ const Navbar = () => {
               <a class="nav-link" href="#" data-uri="/resultQuizz">(resultQuizz)</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#" data-uri="/viewQuizzes">(viewQuizzes)</a>
-            </li>
-            <li class="nav-item">
               <a class="nav-link" href="#" data-uri="/page_questionnaire">(question)</a>
             </li>
             <li class="nav-item">
