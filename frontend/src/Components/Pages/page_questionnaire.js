@@ -1,41 +1,62 @@
+/* eslint-disable no-param-reassign */
 import imageLogo from '../../img/logo-site.png';
 import { getOneQuizzContent } from '../../utils/quizzesQueries';
 import getPathParameters from '../../utils/path-href';
 import Navigate from '../Router/Navigate';
 import {getQuizzCategoryData} from "../../utils/quizzesData";
 
-let currentIndexQuestion = 0;
-
 async function pageQuestionnaire () {
 
     const parametersObject = getPathParameters();
     let {quizzId} = parametersObject;
 
-    if ( quizzId !== undefined && !Number.isNaN(Number(quizzId))) {
+    if ( quizzId === undefined || Number.isNaN(Number(quizzId))) {
 
-        quizzId = Number(quizzId);
+        return Navigate('/');
 
-        const quizz = await getOneQuizzContent(quizzId);
-        const categoryData = getQuizzCategoryData(quizz.categorie);
-        const categoryName = categoryData.name;
-        const categoryImage = categoryData.image;
+    }
 
-        console.log( JSON.stringify( parametersObject ) );
+    quizzId = Number(quizzId);
+
+    const quizz = await getOneQuizzContent(quizzId);
+
+    const sessionQuizzId = Number( sessionStorage.getItem('quizzId') );
+
+    if ( sessionQuizzId !== quizzId ) {
 
         const randomQuestionsOrderArray = randomQuestionsOrder(quizz);
+        initializeSessionData( quizzId, randomQuestionsOrderArray, 0 );
 
-        quizz.questions = randomQuestionsOrderArray;
+        console.log( "session initialized" );
 
-        renderQuestionnaire(quizz, currentIndexQuestion, categoryName);
-        applyBackgroundImageOnContainer(categoryImage);
+    };
 
-        currentIndexQuestion+=1;
+    const questions = JSON.parse( sessionStorage.getItem('questions') );
+    const sessionCurrentIndex = Number( sessionStorage.getItem('currentIndexQuestion') );
+
+    const categoryData = getQuizzCategoryData(quizz.categorie);
+    const categoryName = categoryData.name;
+    const categoryImage = categoryData.image;
+
+    renderQuestionnaire(questions, sessionCurrentIndex, categoryName);
+    applyBackgroundImageOnContainer(categoryImage);
+
+    if ( sessionCurrentIndex === questions.length - 1 ) {
+
+        addEndQuizzButton();
 
     } else {
 
-        Navigate('/');
-    
+        addNextQuestionButton();
+
     };
+
+    const maxCountQuestions = questions.length;
+    addCounterQuestions( sessionCurrentIndex, maxCountQuestions );
+
+    addEventListenersToProps();
+
+    return true;
     
 };
 
@@ -60,26 +81,28 @@ function randomQuestionsOrder(quizz) {
     return randomQuestionsOrderArray;
 }
 
-function renderQuestionnaire (quizz, indexQuestion, categoryName) {
+function renderQuestionnaire (questions, indexQuestion, categoryName) {
 
-    const question = quizz.questions[indexQuestion];
+    const question = questions[indexQuestion];
     const intituleQuestion = question.intitule;
 
     const propositionsQuestion = question.propositions;
 
     const main = document.querySelector('main');
     main.innerHTML = `
-        <div class="glass-container-pageQuestion"> 
+        <div class="glass-container-pageQuestion">
             <div class="card-pageQuestion">
                 <h5 class="card-title-pageQuestion"> ${categoryName} </h5>
                 <img src="${imageLogo}" class="card-img-top-pageQuestion" alt="...">
-                <span class = "card-title-question" >
+                <span class = "card-title-question">
                     ${intituleQuestion}
                 </span>
-                <div class="card-body">
-                    ${propositionsQuestion.map( proposition => `<a href="#" class="btn btn-primary-question">${proposition.intitule}</a>` ).join("")}
+                <div class="card-body propositions">
+                    ${propositionsQuestion.map( proposition => `<a class="btn btn-primary-question" data-is-selected="false">${proposition.intitule}</a>` ).join("")}
                 </div>
-                <button class="Next-question-pageQuestion">Question suivante</button>
+                <div id="endQuizzButtonWrapper"></div>
+                <div id="nextQuestionButtonWrapper"></div>
+                <div id="counterWrapper"></div>
             </div>
         </div>
     `;
@@ -92,7 +115,157 @@ function applyBackgroundImageOnContainer (categoryImage) {
 
     container.style.backgroundImage = `url(${categoryImage})`;
 
-    console.log( container.style );
+}
+
+function addCounterQuestions ( currentIndexQuestion, maxCountQuestions ) {
+    
+    const counterWrapper = document.querySelector('#counterWrapper');
+
+    counterWrapper.innerHTML += `
+        <div class="div-counter-questions-pageQuestion">
+            <p>Question n°${currentIndexQuestion+1} / ${maxCountQuestions}</p>
+        </div>
+    `;
+
+}
+
+function addNextQuestionButton() {
+
+    const nextQuestionButtonWrapper = document.querySelector('#nextQuestionButtonWrapper');
+
+    nextQuestionButtonWrapper.innerHTML += `
+        <button class="Next-question-pageQuestion" id="nextQuestionButton">
+            Question suivante
+        </button>
+    `;
+
+    const button = document.querySelector('#nextQuestionButton');
+
+    button.addEventListener('click', (e) => {
+
+        e.preventDefault();
+
+        const propositionSelected = checkSelectedProposition();
+
+        if ( propositionSelected === null ) return false;
+
+        const questions = JSON.parse( sessionStorage.getItem('questions') );
+        const sessionCurrentIndex = Number( sessionStorage.getItem('currentIndexQuestion') );
+
+        const {propositions} = questions[sessionCurrentIndex];
+
+        const isReponse = propositions.find( p => p.intitule === propositionSelected ).isreponse;
+        
+        console.log( `isReponse ${isReponse}`);
+
+        if ( isReponse ) {
+
+            console.log( "bonne réponse !" );
+
+        }
+
+        button.style.border = "10px solid red";
+
+        sessionStorage.setItem('currentIndexQuestion', sessionCurrentIndex+1 );
+
+        setTimeout(() => {
+
+            pageQuestionnaire();
+
+        }, 3000);
+
+        
+
+        return true;
+
+    });
+
+}
+
+function checkSelectedProposition () {
+
+    const propositions = document.querySelectorAll('.btn-primary-question');
+
+    let propositionSelected = null;
+
+    propositions.forEach( proposition => {
+
+        if ( proposition.dataset.isSelected === "true" ) {
+            
+            proposition.style.backgroundColor = "green";
+            propositionSelected = proposition.innerText;
+
+        } else {
+
+            proposition.style.backgroundColor = "red";
+
+        }
+
+    })
+
+    return propositionSelected;
+
+}
+
+function addEndQuizzButton() {
+
+    const endQuizzButtonWrapper = document.querySelector('#endQuizzButtonWrapper');
+
+    endQuizzButtonWrapper.innerHTML += `
+        <button class="Next-question-pageQuestion" id="endQuizzButton">
+            Terminer le quizz
+        </button>
+    `;
+
+    const button = document.querySelector('#endQuizzButton');
+
+    console.log( button.id );
+
+    button.addEventListener('click', (e) => {
+
+        e.preventDefault();
+
+        button.style.border = "10px solid red";
+
+        return true;
+
+    });
+
+}
+
+function addEventListenersToProps () {
+
+    const propositions = document.querySelectorAll('.btn-primary-question');
+
+    propositions.forEach( proposition => {
+
+        console.log( `proposition : ${proposition.innerHTML}\n\n` );
+
+        proposition.addEventListener('click', () => {
+
+            for ( let i=0; i<propositions.length; i+=1 ) {
+
+                propositions[i].dataset.isSelected = "false";
+                propositions[i].style.border = "none";
+
+            }
+
+            proposition.dataset.isSelected = "true";
+            proposition.style.border = "5px solid blue";
+
+        });
+
+    });
+
+}
+
+function initializeSessionData ( currentQuizzId, quizzQuestions, quizzCurrentIndexQuestion ) {
+
+    sessionStorage.setItem('quizzId', currentQuizzId );
+
+    sessionStorage.setItem('questions', JSON.stringify(quizzQuestions) );
+
+    sessionStorage.setItem('currentIndexQuestion', quizzCurrentIndexQuestion );
 
 }
 
