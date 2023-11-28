@@ -4,14 +4,23 @@ import getPathParameters from  "../../utils/path-href";
 import { getAllQuizzes } from "../../utils/quizzesQueries";
 import {getQuizzCategoryData} from "../../utils/quizzesData";
 
+
 async function viewQuizzes () {
 
     clearPage();
 
+    // Prend les paramètre dans l'URL de la page (après le ?)
+    /**
+     * lien : http://localhost:8080/viewQuizzes?categorie=geographie
+     * parametersObject = {
+     *  categorie : "geographie"
+     * }
+     */
     const parametersObject = getPathParameters();
 
     const category = parametersObject.categorie;
 
+    
     const quizzData = getQuizzCategoryData(category);
     const quizzDataImage = quizzData.image;
     const quizzDataCategoryName = quizzData.name;
@@ -89,7 +98,11 @@ function generateQuizzesButtons ( quizzesArray, quizzImage, quizzCategoryName ) 
 
         for ( let i=0; i<quizzesDifficulty.quizzes.length; i+=1 ) {
 
-            const buttonSrc = 'http://localhost:8080';
+            console.log(JSON.stringify(quizzesDifficulty.quizzes))
+
+            const quizzId = quizzesDifficulty.quizzes[i].id_quizz;
+
+            const buttonSrc = `http://localhost:8080/page_questionnaire?quizzId=${quizzId}`;
 
             const image = createCard(quizzImage, buttonSrc, difficultyColor, difficultyName );
 
