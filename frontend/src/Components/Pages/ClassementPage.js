@@ -1,12 +1,25 @@
 import throphyImg from '../../img/throphyImg.png';
-import medailleBronz from '../../img/medaille_bronze.png'
-import medailleOr from '../../img/medaille_or.png'
-import medailleArgent from '../../img/medaille_argent.png'
+import medailleBronz from '../../img/medaille_bronze.png';
+import medailleOr from '../../img/medaille_or.png';
+import medailleArgent from '../../img/medaille_argent.png';
+import getClassement from '../../utils/classementQueries';
 
-const ClassementPage = () => {
-    const main = document.querySelector('main');
-    main.innerHTML = 
-    `
+const main = document.querySelector('main');
+const ClassementPage = async() => {
+ 
+  const quizzClassement = await getClassement();
+
+  const defaultObject = {
+    username : "inconnu",
+    nbr_points : 0
+  };
+
+  const first = quizzClassement[0] ? quizzClassement[0] : defaultObject;
+  const second = quizzClassement[1] ? quizzClassement[1] : defaultObject;
+  const third = quizzClassement[2] ? quizzClassement[2] : defaultObject;
+
+
+  main.innerHTML = `
     <div class="container-classement">
     <div class ="sous-classement-body">
 
@@ -21,36 +34,20 @@ const ClassementPage = () => {
                 <div class="medal-container">
                     <div class="medal">
                         <img src="${medailleArgent}" alt="Médaille d'argent">
-                        <div class="usernameClassement">vLuken</div>
-                        <div class="scoreClassement">150</div>
+                        <div class="usernameClassement">${second.username}</div>
+                        <div class="scoreClassement">${second.nbr_points}</div>
                     </div>
                     <div class="medal">
                         <img src="${medailleOr}" alt="Médaille d'or">
-                        <div class="usernameClassement">iySmo</div>
-                        <div class="scoreClassement">300</div>
+                        <div class="usernameClassement">${first.username}</div>
+                        <div class="scoreClassement">${first.nbr_points}</div>
 
                     </div>
                     <div class="medal">
                         <img src="${medailleBronz}" alt="Médaille de bronze">
-                        <div class="usernameClassement">ayaro_07</div>
-                        <div class="scoreClassement">100</div>
+                        <div class="usernameClassement">${third.username}</div>
+                        <div class="scoreClassement">${third.nbr_points}</div>
                     </div>
-                </div>
-
-                <div class="data-row">
-                    <div class="rankClassement">4</div>
-                    <div class="usernameClassement">Nicolas</div>
-                    <div class="scoreClassement">85</div>
-                </div>
-                <div class="data-row">
-                    <div class="rankClassement">5</div>
-                    <div class="usernameClassement">Simon</div>
-                    <div class="scoreClassement">67</div>
-                </div>
-                <div class="data-row">
-                    <div class="rankClassement">6</div>
-                    <div class="usernameClassement">T4</div>
-                    <div class="scoreClassement">45</div>
                 </div>
             </div>
         </div>
@@ -58,7 +55,26 @@ const ClassementPage = () => {
 </div>
 
 
-    `
-  };
-  
-  export default ClassementPage;
+    `;
+    creatCase(quizzClassement);
+};
+
+function creatCase(quizzClassement){
+    
+    if(quizzClassement.length > 3){
+        const textDark = document.querySelector('.text-dark');
+        // eslint-disable-next-line no-plusplus
+        for(let i=3; i<quizzClassement.length;i++){
+            textDark.innerHTML += `<div class="data-row">
+        <div class="rankClassement">${i+1}</div>
+        <div class="usernameClassement">${quizzClassement[i].username}</div>
+        <div class="scoreClassement">${quizzClassement[i].nbr_points}</div>
+    </div>`;
+        }
+       
+        
+    }
+}
+
+
+export default ClassementPage;
