@@ -9,6 +9,15 @@ const ClassementPage = async() => {
  
   const quizzClassement = await getClassement();
 
+  const defaultObject = {
+    username : "inconnu",
+    nbr_points : 0
+  };
+
+  const first = quizzClassement[0] ? quizzClassement[0] : defaultObject;
+  const second = quizzClassement[1] ? quizzClassement[1] : defaultObject;
+  const third = quizzClassement[2] ? quizzClassement[2] : defaultObject;
+
 
   main.innerHTML = `
     <div class="container-classement">
@@ -25,19 +34,19 @@ const ClassementPage = async() => {
                 <div class="medal-container">
                     <div class="medal">
                         <img src="${medailleArgent}" alt="Médaille d'argent">
-                        <div class="usernameClassement">${quizzClassement[1].username}</div>
-                        <div class="scoreClassement">${quizzClassement[1].nbr_points}</div>
+                        <div class="usernameClassement">${second.username}</div>
+                        <div class="scoreClassement">${second.nbr_points}</div>
                     </div>
                     <div class="medal">
                         <img src="${medailleOr}" alt="Médaille d'or">
-                        <div class="usernameClassement">${quizzClassement[0].username}</div>
-                        <div class="scoreClassement">${quizzClassement[0].nbr_points}</div>
+                        <div class="usernameClassement">${first.username}</div>
+                        <div class="scoreClassement">${first.nbr_points}</div>
 
                     </div>
                     <div class="medal">
                         <img src="${medailleBronz}" alt="Médaille de bronze">
-                        <div class="usernameClassement">${quizzClassement[2].username}</div>
-                        <div class="scoreClassement">${quizzClassement[2].nbr_points}</div>
+                        <div class="usernameClassement">${third.username}</div>
+                        <div class="scoreClassement">${third.nbr_points}</div>
                     </div>
                 </div>
             </div>
