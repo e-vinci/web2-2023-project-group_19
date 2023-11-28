@@ -523,7 +523,7 @@ h5, .btn-primary{
 }
 /*  css pour la page avec les questions  */
 
-.div-counter-questions-pageQuestion {
+.div-counter-questions-pageQuestion, .div-count-right-answers-pageQuestion {
     margin-top: 3%;
     margin-left: 37.5%;
     width: 25%;

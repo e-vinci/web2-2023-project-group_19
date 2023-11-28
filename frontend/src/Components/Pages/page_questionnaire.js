@@ -25,14 +25,13 @@ async function pageQuestionnaire () {
     if ( sessionQuizzId !== quizzId ) {
 
         const randomQuestionsOrderArray = randomQuestionsOrder(quizz);
-        initializeSessionData( quizzId, randomQuestionsOrderArray, 0 );
-
-        console.log( "session initialized" );
+        initializeSessionData( quizzId, randomQuestionsOrderArray );
 
     };
 
     const questions = JSON.parse( sessionStorage.getItem('questions') );
     const sessionCurrentIndex = Number( sessionStorage.getItem('currentIndexQuestion') );
+    const countRightAnswers = Number( sessionStorage.getItem('countRightAnswers') );
 
     const categoryData = getQuizzCategoryData(quizz.categorie);
     const categoryName = categoryData.name;
@@ -53,6 +52,7 @@ async function pageQuestionnaire () {
 
     const maxCountQuestions = questions.length;
     addCounterQuestions( sessionCurrentIndex, maxCountQuestions );
+    addCounterRightAnswers( countRightAnswers );
 
     addEventListenersToProps();
 
@@ -102,7 +102,8 @@ function renderQuestionnaire (questions, indexQuestion, categoryName) {
                 </div>
                 <div id="endQuizzButtonWrapper"></div>
                 <div id="nextQuestionButtonWrapper"></div>
-                <div id="counterWrapper"></div>
+                <div id="counterQuestionsWrapper"></div>
+                <div id="countRightAnswersWrapper"></div>
             </div>
         </div>
     `;
@@ -119,11 +120,23 @@ function applyBackgroundImageOnContainer (categoryImage) {
 
 function addCounterQuestions ( currentIndexQuestion, maxCountQuestions ) {
     
-    const counterWrapper = document.querySelector('#counterWrapper');
+    const counterQuestionsWrapper = document.querySelector('#counterQuestionsWrapper');
 
-    counterWrapper.innerHTML += `
+    counterQuestionsWrapper.innerHTML += `
         <div class="div-counter-questions-pageQuestion">
             <p>Question n°${currentIndexQuestion+1} / ${maxCountQuestions}</p>
+        </div>
+    `;
+
+}
+
+function addCounterRightAnswers ( countRightAnswers ) {
+    
+    const countRightAnswersWrapper = document.querySelector('#countRightAnswersWrapper');
+
+    countRightAnswersWrapper.innerHTML += `
+        <div class="div-count-right-answers-pageQuestion">
+            <p>${countRightAnswers} bonne(s) réponse(s)</p>
         </div>
     `;
 
@@ -145,22 +158,22 @@ function addNextQuestionButton() {
 
         e.preventDefault();
 
-        const propositionSelected = checkSelectedProposition();
-
-        if ( propositionSelected === null ) return false;
-
         const questions = JSON.parse( sessionStorage.getItem('questions') );
         const sessionCurrentIndex = Number( sessionStorage.getItem('currentIndexQuestion') );
 
         const {propositions} = questions[sessionCurrentIndex];
 
-        const isReponse = propositions.find( p => p.intitule === propositionSelected ).isreponse;
-        
-        console.log( `isReponse ${isReponse}`);
+        checkIsReponsePropositions( propositions );
 
-        if ( isReponse ) {
+        const propositionSelected = checkSelectedProposition( propositions );
 
-            console.log( "bonne réponse !" );
+        if ( propositionSelected === null ) return false;
+
+        if ( propositionSelected.isreponse ) {
+
+            const countRightAnswers = Number( sessionStorage.getItem('countRightAnswers') );
+
+            sessionStorage.setItem('countRightAnswers', countRightAnswers+1);
 
         }
 
@@ -174,8 +187,6 @@ function addNextQuestionButton() {
 
         }, 3000);
 
-        
-
         return true;
 
     });
@@ -184,26 +195,54 @@ function addNextQuestionButton() {
 
 function checkSelectedProposition () {
 
-    const propositions = document.querySelectorAll('.btn-primary-question');
+    const propositionsElements = document.querySelectorAll('.btn-primary-question');
 
     let propositionSelected = null;
 
-    propositions.forEach( proposition => {
+    propositionsElements.forEach( propositionElement => {
 
-        if ( proposition.dataset.isSelected === "true" ) {
-            
-            proposition.style.backgroundColor = "green";
-            propositionSelected = proposition.innerText;
+        if ( propositionElement.dataset.isSelected === "true" ) {
+
+            let isReponse = false;
+
+            if ( propositionElement.dataset.isReponse === "true" ) {
+                isReponse = true;
+            }
+
+            propositionSelected = {
+                intitule : propositionElement.innerText,
+                isreponse : isReponse
+            }
+
+        };
+
+    });
+
+    return propositionSelected;
+
+}
+
+function checkIsReponsePropositions ( propositions ) {
+
+    const propositionsElements = document.querySelectorAll('.btn-primary-question');
+
+    propositionsElements.forEach( propositionElement => {
+
+        const isReponse = propositions.find( p => p.intitule === propositionElement.innerText ).isreponse;
+
+        if ( isReponse ) {
+
+            propositionElement.dataset.isReponse = "true";
+            propositionElement.style.backgroundColor = "green";
 
         } else {
 
-            proposition.style.backgroundColor = "red";
+            propositionElement.dataset.isReponse = "false";
+            propositionElement.style.backgroundColor = "red";
 
-        }
+        };
 
-    })
-
-    return propositionSelected;
+    });
 
 }
 
@@ -218,8 +257,6 @@ function addEndQuizzButton() {
     `;
 
     const button = document.querySelector('#endQuizzButton');
-
-    console.log( button.id );
 
     button.addEventListener('click', (e) => {
 
@@ -239,8 +276,6 @@ function addEventListenersToProps () {
 
     propositions.forEach( proposition => {
 
-        console.log( `proposition : ${proposition.innerHTML}\n\n` );
-
         proposition.addEventListener('click', () => {
 
             for ( let i=0; i<propositions.length; i+=1 ) {
@@ -259,13 +294,15 @@ function addEventListenersToProps () {
 
 }
 
-function initializeSessionData ( currentQuizzId, quizzQuestions, quizzCurrentIndexQuestion ) {
+function initializeSessionData ( currentQuizzId, quizzQuestions ) {
 
     sessionStorage.setItem('quizzId', currentQuizzId );
 
     sessionStorage.setItem('questions', JSON.stringify(quizzQuestions) );
 
-    sessionStorage.setItem('currentIndexQuestion', quizzCurrentIndexQuestion );
+    sessionStorage.setItem('currentIndexQuestion', 0 );
+
+    sessionStorage.setItem('countRightAnswers', 0 )
 
 }
 
