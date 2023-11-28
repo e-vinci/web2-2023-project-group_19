@@ -72,7 +72,7 @@ function renderQuestionnaire (quizz, indexQuestion, categoryName) {
         <div class="glass-container-pageQuestion"> 
             <div class="card-pageQuestion">
                 <h5 class="card-title-pageQuestion"> ${categoryName} </h5>
-                <img src="${imageLogo}" class="card-img-top-pageQuestion" alt="..."style="width: 31%;">
+                <img src="${imageLogo}" class="card-img-top-pageQuestion" alt="...">
                 <span class = "card-title-question" >
                     ${intituleQuestion}
                 </span>

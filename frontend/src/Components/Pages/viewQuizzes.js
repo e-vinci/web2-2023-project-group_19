@@ -4,6 +4,7 @@ import getPathParameters from  "../../utils/path-href";
 import { getAllQuizzes } from "../../utils/quizzesQueries";
 import {getQuizzCategoryData} from "../../utils/quizzesData";
 
+
 async function viewQuizzes () {
 
     clearPage();
@@ -123,7 +124,7 @@ function createBox () {
 function createCard (quizzImage, buttonSrc, difficultyColor, title) {
 
     return `
-        <div class="card viewQuizzes-cards" style="width: 18rem;">
+        <div class="card viewQuizzes-cards" style="width: 80%; margin : auto;">
             <a class="viewQuizzes-button" href="${buttonSrc}">
                 <img class="card-img-top" src="${quizzImage}" alt="Card image cap">
             </a>

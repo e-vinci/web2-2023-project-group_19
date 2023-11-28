@@ -532,6 +532,7 @@ h5, .btn-primary{
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(11.6px);
     -webkit-backdrop-filter: blur(11.6px);
+    background-image: url('../img/histoire.jpg');
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -544,6 +545,7 @@ h5, .btn-primary{
     display: flex;
     justify-content: center;
     margin: auto;
+    width: 30%;
 }
 
 .btn-primary-question{
@@ -553,7 +555,7 @@ h5, .btn-primary{
     height: 40px;
     font-size: 15px;
     color:rgb(0, 0, 0);
-    background-color: transparent;
+    background-color: #fff;
     border: 1px solid rgb(0, 0, 0);
     border-radius: 10px;
     cursor: pointer;
@@ -572,10 +574,6 @@ h5, .btn-primary{
     padding: 10px 20px; /* Ajustez les valeurs de rembourrage selon vos préférences */
     box-sizing: border-box;
 } 
-
-.btn-primary-question:hover{
-    background-color: #82acff;
-}
 
 .card-title-pageQuestion{
   color: #333;
@@ -596,13 +594,15 @@ h5, .btn-primary{
     align-items: center;
     color: #ffffff;
     border-radius: 5px;
-    font-family: 'Arial', sans-serif;
+    font-family: serif;
     font-size: 22px;
     font-weight: bold;
     text-align: center;
     text-transform: uppercase;
     margin-bottom: 1%;
     color: #333;
+    background-color: #fff;
+
 }
 
 .btn-primary-question-final {
@@ -629,17 +629,13 @@ h5, .btn-primary{
     background-color: #fff;
     color: #ffffff;
     border-radius: 5px;
+    border:none;
     font-size: 16px;
     font-weight: bold;
     cursor: pointer;
     transition: background-color 0.3s, color 0.3s;
     color: black;
 }
-
-.Next-question-pageQuestion:hover {
-    background-color: #2980b9;
-    color: #ffffff;
-  }
 
 /* CSS PAGE VIEWQUIZZES */
 
@@ -653,7 +649,6 @@ h5, .btn-primary{
 
 .card-body-viewQuizz{
     background-color: #f4f4f4;
-    border-radius: 12%;
 }
 
 .viewQuizzes-box {
@@ -671,15 +666,8 @@ h5, .btn-primary{
 .viewQuizzes-title-h1, .viewQuizzes-title-h2 {
     display:flex;
     color:rgb(0, 0, 0);
-    padding:30px;
     justify-content:left;
     font-family:'Tilt Warp', sans-serif;
-}
-
-.viewQuizzes-title-h1 {
-    padding-top: 75px;
-    padding-left: 75px;
-    font-size: 5em;
 }
 
 .viewQuizzes-title-h2 {
@@ -687,49 +675,6 @@ h5, .btn-primary{
     font-size: 3em;
 }
 
-.viewQuizzes-button-img-green, .viewQuizzes-button-img-orange, .viewQuizzes-button-img-red {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 20rem;
-    border-radius: 25px;
-}
-
-.viewQuizzes-button-img-green {
-    border : 6px solid #28a745;
-    box-shadow: #28a745 0px 0px 5px;
-}
-
-.viewQuizzes-button-img-orange {
-    border : 6px solid #ffc107;
-    box-shadow: #ffc107 0px 0px 5px;
-}
-
-.viewQuizzes-button-img-red {
-    border : 6px solid #dc3545;
-    box-shadow: #dc3545 0px 0px 5px;
-}
-
-.viewQuizzes-button-img-green:hover, .viewQuizzes-button-img-orange:hover, .viewQuizzes-button-img-red:hover {
-    box-shadow: #f5eaea 0px 0px 75px;
-} 
-
-.fs-5{
-    margin : auto;
-}
-
-.box-result{
-    width: 100%;
-}
-
-.card-result{
-    margin-bottom: 5%;
-}
-
-#button-result{
-    margin: auto;
-  display: block;
-}
 
 
 /*  page pour la page de confidentialité   */
