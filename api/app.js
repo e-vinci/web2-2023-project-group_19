@@ -9,6 +9,7 @@ const corsOptions = {
 
 const usersRouter = require('./routes/users');
 const quizzesRouter = require('./routes/quizzes');
+const classementRouter = require('./routes/classement');
 
 const app = express();
 
@@ -21,5 +22,6 @@ app.use(cors(corsOptions));
 
 app.use('/users', usersRouter);
 app.use('/quizzes', quizzesRouter);
+app.use('/classement', classementRouter);
 
 module.exports = app;

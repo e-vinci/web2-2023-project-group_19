@@ -2,7 +2,6 @@ import aboutUs from '../Pages/aboutUs';
 import HomePage from '../Pages/HomePage';
 import LoginPage from '../Pages/LoginPage';
 import RegisterPage from '../Pages/RegisterPage';
-import NewPage from '../Pages/NewPage';
 import creationQuizz from '../Pages/creationQuizz';
 import ClassementPage from '../Pages/ClassementPage';
 import viewQuizzes from '../Pages/viewQuizzes';
@@ -15,7 +14,6 @@ const routes = {
   '/aboutUs': aboutUs,
   '/login': LoginPage,
   '/register' : RegisterPage,
-  '/new': NewPage,
   '/creationQuizz' : creationQuizz,
   '/classement' : ClassementPage,
   '/Confidentialite' : pageConfidentialité,

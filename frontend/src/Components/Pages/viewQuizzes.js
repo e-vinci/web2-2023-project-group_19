@@ -53,7 +53,14 @@ async function viewQuizzes () {
 
     generateQuizzesButtons( QUIZZES, quizzDataImage, quizzDataCategoryName );
 
-    setInterval(animateGridElements, 2000 );
+    for ( let i=0; i<3; i+=1 ) {
+
+        setTimeout(() => {
+            animateGridElements();
+        }, i * 3000);
+
+    };
+    
 
 };
 

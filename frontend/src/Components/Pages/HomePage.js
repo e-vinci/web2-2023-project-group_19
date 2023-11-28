@@ -135,7 +135,7 @@ function generateStructure() {
     <div class= "main">
       <h1> QUIZZLER </h1> <br>
       <h4>
-        Plonger dans le savoir !
+        Plongez dans le savoir !
       </h4>
       <div class = "box">
       </div>
