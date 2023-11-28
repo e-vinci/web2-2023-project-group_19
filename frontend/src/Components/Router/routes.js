@@ -19,7 +19,7 @@ const routes = {
   '/creationQuizz' : creationQuizz,
   '/classement' : ClassementPage,
   '/Confidentialite' : pageConfidentialité,
-
+  
   '/viewQuizzes' : viewQuizzes,
   '/resultQuizz' : resultQuizz,
   '/page_questionnaire': pageQuestion

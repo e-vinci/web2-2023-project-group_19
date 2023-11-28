@@ -1,10 +1,15 @@
  import { PerspectiveCamera, Scene, WebGLRenderer, Points, PointsMaterial, BufferGeometry, Float32BufferAttribute, MathUtils, TextureLoader, Group, Clock } from "three";
  // import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls' // import de l'objet
 
-import geographieImg from "../../img/géographie.jpg"
-import historyImg from "../../img/histoire.jpg";
-import scienceImg from "../../img/science.jpg";
 import circle from '../../img/PYlN8.png'
+
+import {getAllQuizzesCategoriesData} from "../../utils/quizzesData";
+
+const HomePage = () => {
+  generateStructure();
+  generateCards();
+  renderThreeDimension();
+};
 
 function generateRandomPointsDistanceColor( pointsCount, pointsDistance ) {
 
@@ -103,8 +108,9 @@ window.addEventListener('resize', () => {
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2)) // changement du pixel ratio exemple changement d'ecran
 })
 
-}
-const HomePage = () => {
+};
+function generateStructure() {
+
   const main = document.querySelector('main');
   main.innerHTML = 
   `<div id="homepage-particles-container"></div>
@@ -117,34 +123,32 @@ const HomePage = () => {
         Plonger dans le savoir !
       </h4>
       <div class = "box">
-      <div class="card">
-        <img src="${geographieImg}" class="card-img-top" alt="image">
-          <div class="card-body ">
-            <h5 class="card-title"> Géographie </h5>
-              <a href="#" class="btn-primary"> jouer </a>
-         </div>
-      </div>
-      <div class="card">
-        <img src="${historyImg}" class="card-img-top" alt="image">
-          <div class="card-body">
-            <h5 class="card-title"> Histoire </h5>
-              <a href="#" class="btn-primary"> jouer </a>
-         </div>
-      </div>
-      <div class="card">
-        <img src="${scienceImg}" class="card-img-top" alt="image">
-          <div class="card-body">
-            <h5 class="card-title"> Science </h5>
-              <a href="#" class="btn-primary"> jouer </a>
-         </div>
-      </div>
       </div>
   </div>
 </div>
 </div>
 </div>`
 
-renderThreeDimension();
-};
+}
+
+function generateCards() {
+
+  const box = document.querySelector('.box');
+
+  const quizzesCategories = getAllQuizzesCategoriesData();
+
+  quizzesCategories.forEach( category => {
+
+    box.innerHTML += `
+      <div class="card">
+        <img src="${category.image}" class="card-img-top" alt="image">
+        <div class="card-body ">
+          <h5 class="card-title"> ${category.name} </h5>
+          <a href="${category.link}" class="btn-primary"> jouer </a>
+        </div>
+      </div>`
+  });
+
+}
 
 export default HomePage;
