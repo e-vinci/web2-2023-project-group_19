@@ -129,7 +129,7 @@ function createCard (quizzImage, buttonSrc, difficultyColor, title) {
                 <img class="card-img-top" src="${quizzImage}" alt="Card image cap">
             </a>
             <div class="card-body-viewQuizz">
-                <h5 class="card-title">${title}</h5>
+                <h5 class="card-title viewQuizzes-title-${difficultyColor}">${title}</h5>
                 <p class="card-text-viewQuizz">Quizz non effectué</p>
             </div>
     </div>`;

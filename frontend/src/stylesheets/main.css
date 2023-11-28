@@ -675,6 +675,18 @@ h5, .btn-primary{
     font-size: 3em;
 }
 
+.viewQuizzes-title-orange{
+    color: orange;
+}
+
+.viewQuizzes-title-red{
+    color: red;
+}
+
+.viewQuizzes-title-green{
+    color: green;
+}
+
 
 
 /*  page pour la page de confidentialité   */
