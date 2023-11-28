@@ -102,7 +102,7 @@ function generateQuizzesButtons ( quizzesArray, quizzImage, quizzCategoryName ) 
 
             const quizzId = quizzesDifficulty.quizzes[i].id_quizz;
 
-            const buttonSrc = `http://localhost:8080/page_questionnaire?quizzId=${quizzId}`;
+            const buttonSrc = `http://localhost:8080/questionnaire?quizzId=${quizzId}`;
 
             const image = createCard(quizzImage, buttonSrc, difficultyColor, difficultyName );
 

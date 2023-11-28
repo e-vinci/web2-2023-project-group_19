@@ -1,26 +1,25 @@
-import aboutUs from '../Pages/aboutUs';
+import AboutUsPage from '../Pages/aboutUs';
 import HomePage from '../Pages/HomePage';
 import LoginPage from '../Pages/LoginPage';
 import RegisterPage from '../Pages/RegisterPage';
-import creationQuizz from '../Pages/creationQuizz';
-import ClassementPage from '../Pages/ClassementPage';
-import viewQuizzes from '../Pages/viewQuizzes';
-import resultQuizz from '../Pages/resultQuizz';
-import pageQuestion from '../Pages/page_questionnaire'
-import pageConfidentialité from '../Pages/Confidentialite'
+import CreationQuizzPage from '../Pages/creationQuizz';
+import LeaderboardPage from '../Pages/ClassementPage';
+import ViewQuizzesPage from '../Pages/viewQuizzes';
+import ResultQuizzPage from '../Pages/resultQuizz';
+import QuestionnairePage from '../Pages/page_questionnaire'
+import ConfidentialityPage from '../Pages/Confidentialite'
 
 const routes = {
   "/": HomePage,
-  '/aboutUs': aboutUs,
+  '/aboutUs': AboutUsPage,
   '/login': LoginPage,
   '/register' : RegisterPage,
-  '/creationQuizz' : creationQuizz,
-  '/classement' : ClassementPage,
-  '/Confidentialite' : pageConfidentialité,
-  
-  '/viewQuizzes' : viewQuizzes,
-  '/resultQuizz' : resultQuizz,
-  '/page_questionnaire': pageQuestion
+  '/creationQuizz' : CreationQuizzPage,
+  '/leaderboard' : LeaderboardPage,
+  '/confidentiality' : ConfidentialityPage,
+  '/viewQuizzes' : ViewQuizzesPage,
+  '/resultQuizz' : ResultQuizzPage,
+  '/questionnaire': QuestionnairePage
 };
 
 export default routes;
