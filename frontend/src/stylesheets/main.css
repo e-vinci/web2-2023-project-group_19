@@ -639,6 +639,19 @@ h5, .btn-primary{
 
 /* CSS PAGE VIEWQUIZZES */
 
+.card-text-viewQuizz{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    font-family: serif;
+    font-size: 150%;
+}
+
+.card-body-viewQuizz{
+    background-color: #f4f4f4;
+    border-radius: 12%;
+}
+
 .viewQuizzes-box {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
