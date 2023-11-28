@@ -15,6 +15,10 @@ body {
     background-image: linear-gradient(to right, #82acff,#8dc6ff, #a2c9da,#eff5f5);
 }
 
+body::-webkit-scrollbar {
+    display: none;
+}
+
 .container{
     display: flex;
     justify-content: center;
