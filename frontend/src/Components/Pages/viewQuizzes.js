@@ -142,16 +142,6 @@ function createCard (quizzImage, buttonSrc, difficultyColor, title) {
     </div>`;
 }
 
-/* function createButtonAndImage (imgSrc, buttonSrc, borderColor) {
-
-    return `
-        <a class="viewQuizzes-button" href="${buttonSrc}">
-            <img src="${imgSrc}" class="mx-auto viewQuizzes-button-img-${borderColor}" alt="${imgSrc}">
-        </a>
-    `;
-
-}; */
-
 function createTitle (titleText, titleSize ) {
     
     return `
