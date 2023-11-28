@@ -13,8 +13,11 @@ body {
     color: #fff;
     background-color: #bbe4e9;
     background-image: linear-gradient(to right, #82acff,#8dc6ff, #a2c9da,#eff5f5);
+    -ms-overflow-style: none;  /* hide scrollbar for IE and Edge */
+    scrollbar-width: none;  /* hide scrollbar for Firefox */
 }
 
+/* Hide scrollbar for Chrome, Safari and Opera */
 body::-webkit-scrollbar {
     display: none;
 }
