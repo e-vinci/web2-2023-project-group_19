@@ -22,7 +22,7 @@ async function viewQuizzes () {
 
     
     const quizzData = getQuizzCategoryData(category);
-    const quizzDataImage = quizzData.image;
+    const quizzDataImages = quizzData.images;
     const quizzDataCategoryName = quizzData.name;
 
     const quizzes = await getAllQuizzes(category);
@@ -51,7 +51,7 @@ async function viewQuizzes () {
 
     };
 
-    generateQuizzesButtons( QUIZZES, quizzDataImage, quizzDataCategoryName );
+    generateQuizzesButtons( QUIZZES, quizzDataImages, quizzDataCategoryName );
 
     for ( let i=0; i<3; i+=1 ) {
 
@@ -76,13 +76,15 @@ function animateGridElements() {
       });
 }
 
-function generateQuizzesButtons ( quizzesArray, quizzImage, quizzCategoryName ) {
+function generateQuizzesButtons ( quizzesArray, quizzDataImages, quizzCategoryName ) {
 
     const main = document.querySelector('main');
 
     const categoryTitle = createTitle( quizzCategoryName, 'h1' );
 
     main.innerHTML += categoryTitle;
+
+    let indexImg = 0;
 
     quizzesArray.map( (quizzesDifficulty) => {
 
@@ -104,7 +106,8 @@ function generateQuizzesButtons ( quizzesArray, quizzImage, quizzCategoryName ) 
 
             const buttonSrc = `http://localhost:8080/questionnaire?quizzId=${quizzId}`;
 
-            const image = createCard(quizzImage, buttonSrc, difficultyColor, difficultyName );
+            const image = createCard(quizzDataImages[indexImg], buttonSrc, difficultyColor, difficultyName );
+            indexImg+=1;
 
             box.innerHTML += image;
 

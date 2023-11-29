@@ -69,7 +69,7 @@ function creatCase(quizzClassement){
         <div class="rankClassement">${i+1}</div>
         <div class="usernameClassement">${quizzClassement[i].username}</div>
         <div class="scoreClassement">${quizzClassement[i].nbr_points}</div>
-    </div>`;
+        </div>`;
         }
        
         
