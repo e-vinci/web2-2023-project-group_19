@@ -753,8 +753,9 @@ h5, .btn-primary{
     margin-bottom: 5px; /* Espacement entre chaque élément de la liste */
 }
 
-.card viewQuizzes-cards{
-    flex-flow: row wrap;
-    width: 100%;
-    height: 100%;
+#resultQuizz-fireworks {
+    position: absolute;
+    z-index : 1; 
+    width : 100%;
+    height : 50%;
 }

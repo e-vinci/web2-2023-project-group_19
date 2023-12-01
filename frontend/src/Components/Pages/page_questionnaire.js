@@ -177,7 +177,7 @@ function addNextQuestionButton() {
 
         }
 
-        button.style.border = "10px solid red";
+        button.style.border = "5px solid red";
 
         sessionStorage.setItem('currentIndexQuestion', sessionCurrentIndex+1 );
 
@@ -185,7 +185,7 @@ function addNextQuestionButton() {
 
             pageQuestionnaire();
 
-        }, 3000);
+        }, 1250);
 
         return true;
 
