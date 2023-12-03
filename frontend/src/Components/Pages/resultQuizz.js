@@ -46,6 +46,7 @@ function createFireworks() {
     // eslint-disable-next-line new-cap
     const fireworks = new Fireworks(container, {
         autoresize : false,
+        traceSpeed : 5,
     });
 
     fireworks.start();
@@ -58,7 +59,7 @@ function endFireworks(fireworks) {
 
     setTimeout(() => {
 
-        for ( let i=0; i<30; i+=1 ) {
+        for ( let i=0; i<60; i+=1 ) {
 
             const {currentOptions} = fireworks;
 
@@ -66,9 +67,9 @@ function endFireworks(fireworks) {
 
                 console.log( JSON.stringify( currentOptions ) );
 
-                let {acceleration} = currentOptions;
+                let {intensity} = currentOptions;
 
-                if ( acceleration === 0.9850000000000011 ) {
+                if ( intensity <= 0 ) {
 
                     fireworks.stop();
 
@@ -76,10 +77,10 @@ function endFireworks(fireworks) {
 
                 } else {
 
-                    acceleration -= 0.005;
+                    intensity -= 0.5;
 
                     fireworks.updateOptions({
-                        acceleration,
+                        intensity,
                     });
 
                 }
