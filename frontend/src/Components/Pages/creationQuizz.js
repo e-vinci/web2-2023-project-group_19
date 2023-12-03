@@ -1,4 +1,4 @@
-import myFunctions from '../../utils/creatonQuizzQueries';
+// import myFunctions from '../../utils/creatonQuizzQueries';
 
 const creationQuizz = () => {
     
