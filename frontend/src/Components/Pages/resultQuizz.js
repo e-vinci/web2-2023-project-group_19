@@ -9,7 +9,7 @@ const resultQuizz = () => {
                   <div class="main">
                       <h1> Résultat du Quizz </h1>
 
-                      /**  Modifier la couleur en fonction de la réussite ou pas !! **/
+                      <!--  Modifier la couleur en fonction de la réussite ou pas !! -->
                       <h4 class="text-success"> Félicitation, vous avez réussi le quizz ! </h4>
 
                       <div class="box-result">
