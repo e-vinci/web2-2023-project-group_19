@@ -14,11 +14,17 @@ async function pageQuestionnaire () {
 
         return Navigate('/');
 
-    }
+    };
 
     quizzId = Number(quizzId);
 
     const quizz = await getOneQuizzContent(quizzId);
+
+    if ( !quizz ) {
+        const main = document.querySelector('main');
+        main.innerHTML = `<h1>Oops! Something went wrong...</h1>`;
+        return false;
+    };
 
     const sessionQuizzId = Number( sessionStorage.getItem('quizzId') );
 
@@ -54,7 +60,7 @@ async function pageQuestionnaire () {
     addCounterQuestions( sessionCurrentIndex, maxCountQuestions );
     addCounterRightAnswers( countRightAnswers );
 
-    addEventListenersToProps();
+    addPropositionsListeners();
 
     return true;
     
@@ -79,7 +85,8 @@ function randomQuestionsOrder(quizz) {
     }
 
     return randomQuestionsOrderArray;
-}
+
+};
 
 function renderQuestionnaire (questions, indexQuestion, categoryName) {
 
@@ -108,7 +115,7 @@ function renderQuestionnaire (questions, indexQuestion, categoryName) {
         </div>
     `;
 
-}
+};
 
 function applyBackgroundImageOnContainer (categoryImage) {
 
@@ -116,7 +123,7 @@ function applyBackgroundImageOnContainer (categoryImage) {
 
     container.style.backgroundImage = `url(${categoryImage})`;
 
-}
+};
 
 function addCounterQuestions ( currentIndexQuestion, maxCountQuestions ) {
     
@@ -128,9 +135,11 @@ function addCounterQuestions ( currentIndexQuestion, maxCountQuestions ) {
         </div>
     `;
 
-}
+};
 
 function addCounterRightAnswers ( countRightAnswers ) {
+
+    console.log( `countRightAnswers : ${countRightAnswers}` );
     
     const countRightAnswersWrapper = document.querySelector('#countRightAnswersWrapper');
 
@@ -140,7 +149,7 @@ function addCounterRightAnswers ( countRightAnswers ) {
         </div>
     `;
 
-}
+};
 
 function addNextQuestionButton() {
 
@@ -154,44 +163,57 @@ function addNextQuestionButton() {
 
     const button = document.querySelector('#nextQuestionButton');
 
-    button.addEventListener('click', (e) => {
+    button.addEventListener('click', onNextQuestionButton );
 
-        e.preventDefault();
+};
 
-        const questions = JSON.parse( sessionStorage.getItem('questions') );
-        const sessionCurrentIndex = Number( sessionStorage.getItem('currentIndexQuestion') );
+function onNextQuestionButton() {
 
-        const {propositions} = questions[sessionCurrentIndex];
+    const questions = JSON.parse( sessionStorage.getItem('questions') );
+    const sessionCurrentIndex = Number( sessionStorage.getItem('currentIndexQuestion') );
 
-        checkIsReponsePropositions( propositions );
+    const {propositions} = questions[sessionCurrentIndex];
 
-        const propositionSelected = checkSelectedProposition( propositions );
+    const propositionSelected = checkSelectedProposition( propositions );
 
-        if ( propositionSelected === null ) return false;
+    if ( propositionSelected === null ) {
+        
+        console.log( "C'est NUUULLL" );
+        return false;
 
-        if ( propositionSelected.isreponse ) {
+    };
 
-            const countRightAnswers = Number( sessionStorage.getItem('countRightAnswers') );
+    removePropositionsListeners();
 
-            sessionStorage.setItem('countRightAnswers', countRightAnswers+1);
+    checkIsReponsePropositions( propositions );
 
-        }
+    if ( propositionSelected.isreponse ) {
 
-        button.style.border = "5px solid red";
+        console.log( `Good answer !` );
 
-        sessionStorage.setItem('currentIndexQuestion', sessionCurrentIndex+1 );
+        const countRightAnswers = Number( sessionStorage.getItem('countRightAnswers') );
 
-        setTimeout(() => {
+        sessionStorage.setItem('countRightAnswers', countRightAnswers+1);
 
-            pageQuestionnaire();
+    };
 
-        }, 1250);
+    const buttonNextQuestion = document.querySelector('#nextQuestionButton');
 
-        return true;
+    buttonNextQuestion.style.border = "5px solid red";
 
-    });
+    sessionStorage.setItem('currentIndexQuestion', sessionCurrentIndex+1 );
 
-}
+    buttonNextQuestion.removeEventListener('click', onNextQuestionButton );
+
+    setTimeout(() => {
+
+        pageQuestionnaire();
+
+    }, 1250);
+
+    return true;
+
+};
 
 function checkSelectedProposition () {
 
@@ -201,11 +223,11 @@ function checkSelectedProposition () {
 
     propositionsElements.forEach( propositionElement => {
 
-        if ( propositionElement.dataset.isSelected === "true" ) {
+        if ( propositionElement.dataset.isSelected === 'true' ) {
 
             let isReponse = false;
 
-            if ( propositionElement.dataset.isReponse === "true" ) {
+            if ( propositionElement.dataset.isReponse === 'true' ) {
                 isReponse = true;
             }
 
@@ -220,7 +242,7 @@ function checkSelectedProposition () {
 
     return propositionSelected;
 
-}
+};
 
 function checkIsReponsePropositions ( propositions ) {
 
@@ -232,19 +254,19 @@ function checkIsReponsePropositions ( propositions ) {
 
         if ( isReponse ) {
 
-            propositionElement.dataset.isReponse = "true";
-            propositionElement.style.backgroundColor = "green";
+            propositionElement.dataset.isReponse = 'true';
+            propositionElement.style.backgroundColor = 'green';
 
         } else {
 
-            propositionElement.dataset.isReponse = "false";
-            propositionElement.style.backgroundColor = "red";
+            propositionElement.dataset.isReponse = 'false';
+            propositionElement.style.backgroundColor = 'red';
 
         };
 
     });
 
-}
+};
 
 function addEndQuizzButton() {
 
@@ -262,35 +284,53 @@ function addEndQuizzButton() {
 
         e.preventDefault();
 
-        button.style.border = "10px solid red";
+        button.style.border = '10px solid red';
 
         return true;
 
     });
 
-}
+};
 
-function addEventListenersToProps () {
+function removePropositionsListeners() {
 
     const propositions = document.querySelectorAll('.btn-primary-question');
 
     propositions.forEach( proposition => {
 
-        proposition.addEventListener('click', () => {
-
-            for ( let i=0; i<propositions.length; i+=1 ) {
-
-                propositions[i].dataset.isSelected = "false";
-                propositions[i].style.border = "none";
-
-            }
-
-            proposition.dataset.isSelected = "true";
-            proposition.style.border = "5px solid blue";
-
-        });
+        proposition.removeEventListener('click', onPropositionClick );
 
     });
+
+};
+
+function addPropositionsListeners () {
+
+    const propositions = document.querySelectorAll('.btn-primary-question');
+
+    propositions.forEach( proposition => {
+
+        proposition.addEventListener('click', onPropositionClick );
+
+    });
+
+};
+
+function onPropositionClick(event) {
+
+    const propositions = document.querySelectorAll('.btn-primary-question');
+
+    for ( let i=0; i<propositions.length; i+=1 ) {
+
+        propositions[i].dataset.isSelected = 'false';
+        propositions[i].style.border = 'none';
+
+    }
+
+    const proposition = event.target;
+
+    proposition.dataset.isSelected = 'true';
+    proposition.style.border = '5px solid blue';
 
 }
 
@@ -304,6 +344,6 @@ function initializeSessionData ( currentQuizzId, quizzQuestions ) {
 
     sessionStorage.setItem('countRightAnswers', 0 )
 
-}
+};
 
 export default pageQuestionnaire;
