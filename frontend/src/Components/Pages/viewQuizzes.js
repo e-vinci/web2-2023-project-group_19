@@ -9,18 +9,10 @@ async function viewQuizzes () {
 
     clearPage();
 
-    // Prend les paramètre dans l'URL de la page (après le ?)
-    /**
-     * lien : http://localhost:8080/viewQuizzes?categorie=geographie
-     * parametersObject = {
-     *  categorie : "geographie"
-     * }
-     */
     const parametersObject = getPathParameters();
 
     const category = parametersObject.categorie;
 
-    
     const quizzData = getQuizzCategoryData(category);
     const quizzDataImages = quizzData.images;
     const quizzDataCategoryName = quizzData.name;
