@@ -30,6 +30,8 @@ async function pageQuestionnaire () {
 
     if ( sessionQuizzId !== quizzId ) {
 
+        console.log( `initialized !` );
+
         const randomQuestionsOrderArray = randomQuestionsOrder(quizz);
         initializeSessionData( quizzId, randomQuestionsOrderArray );
 
@@ -39,9 +41,12 @@ async function pageQuestionnaire () {
     const sessionCurrentIndex = Number( sessionStorage.getItem('currentIndexQuestion') );
     const countRightAnswers = Number( sessionStorage.getItem('countRightAnswers') );
 
-    const categoryData = getQuizzCategoryData(quizz.categorie);
-    const categoryName = categoryData.name;
-    const categoryImage = categoryData.image;
+    const {
+
+        name : categoryName,
+        image : categoryImage,
+
+    } = getQuizzCategoryData(quizz.categorie);
 
     renderQuestionnaire(questions, sessionCurrentIndex, categoryName);
     applyBackgroundImageOnContainer(categoryImage);
@@ -82,7 +87,7 @@ function randomQuestionsOrder(quizz) {
 
         randomQuestionsOrderArray.push( randomQuestion );
 
-    }
+    };
 
     return randomQuestionsOrderArray;
 
@@ -174,11 +179,10 @@ function onNextQuestionButton() {
 
     const {propositions} = questions[sessionCurrentIndex];
 
-    const propositionSelected = checkSelectedProposition( propositions );
+    let propositionSelected = getPropositionSelected();
 
     if ( propositionSelected === null ) {
         
-        console.log( "C'est NUUULLL" );
         return false;
 
     };
@@ -187,9 +191,11 @@ function onNextQuestionButton() {
 
     checkIsReponsePropositions( propositions );
 
-    if ( propositionSelected.isreponse ) {
+    propositionSelected = checkSelectedProposition( propositionSelected );
 
-        console.log( `Good answer !` );
+    console.log( JSON.stringify( propositionSelected ) );
+
+    if ( propositionSelected.isreponse ) {
 
         const countRightAnswers = Number( sessionStorage.getItem('countRightAnswers') );
 
@@ -199,9 +205,9 @@ function onNextQuestionButton() {
 
     const buttonNextQuestion = document.querySelector('#nextQuestionButton');
 
-    buttonNextQuestion.style.border = "5px solid red";
+    buttonNextQuestion.style.border = '5px solid red';
 
-    sessionStorage.setItem('currentIndexQuestion', sessionCurrentIndex+1 );
+    sessionStorage.setItem('currentIndexQuestion', sessionCurrentIndex + 1 );
 
     buttonNextQuestion.removeEventListener('click', onNextQuestionButton );
 
@@ -215,7 +221,7 @@ function onNextQuestionButton() {
 
 };
 
-function checkSelectedProposition () {
+function getPropositionSelected() {
 
     const propositionsElements = document.querySelectorAll('.btn-primary-question');
 
@@ -225,16 +231,28 @@ function checkSelectedProposition () {
 
         if ( propositionElement.dataset.isSelected === 'true' ) {
 
-            let isReponse = false;
-
-            if ( propositionElement.dataset.isReponse === 'true' ) {
-                isReponse = true;
-            }
-
             propositionSelected = {
                 intitule : propositionElement.innerText,
-                isreponse : isReponse
-            }
+            };
+
+        };
+
+    });
+
+    return propositionSelected;
+
+};
+
+function checkSelectedProposition ( propositionSelected ) {
+
+    const propositionsElements = document.querySelectorAll('.btn-primary-question');
+
+    propositionsElements.forEach( propositionElement => {
+
+        if ( propositionSelected.intitule === propositionElement.innerText ) {
+
+            const booleanString = propositionElement.dataset.isReponse;
+            propositionSelected.isreponse = JSON.parse(booleanString);
 
         };
 
@@ -280,9 +298,7 @@ function addEndQuizzButton() {
 
     const button = document.querySelector('#endQuizzButton');
 
-    button.addEventListener('click', (e) => {
-
-        e.preventDefault();
+    button.addEventListener('click', () => {
 
         button.style.border = '10px solid red';
 
@@ -325,14 +341,14 @@ function onPropositionClick(event) {
         propositions[i].dataset.isSelected = 'false';
         propositions[i].style.border = 'none';
 
-    }
+    };
 
     const proposition = event.target;
 
     proposition.dataset.isSelected = 'true';
     proposition.style.border = '5px solid blue';
 
-}
+};
 
 function initializeSessionData ( currentQuizzId, quizzQuestions ) {
 
@@ -342,7 +358,7 @@ function initializeSessionData ( currentQuizzId, quizzQuestions ) {
 
     sessionStorage.setItem('currentIndexQuestion', 0 );
 
-    sessionStorage.setItem('countRightAnswers', 0 )
+    sessionStorage.setItem('countRightAnswers', 0 );
 
 };
 
