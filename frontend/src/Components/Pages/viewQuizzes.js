@@ -1,8 +1,9 @@
 import anime from 'animejs';
-import { clearPage } from "../../utils/render";
-import getPathParameters from  "../../utils/path-href";
-import { getAllQuizzes } from "../../utils/quizzesQueries";
-import {getQuizzCategoryData} from "../../utils/quizzesData";
+import { clearPage } from '../../utils/render';
+import getPathParameters from  '../../utils/path-href';
+import { getAllQuizzes } from '../../utils/quizzesQueries';
+import {getQuizzCategoryData} from '../../utils/quizzesData';
+import { chooseDifficultyColor, chooseDifficultyName } from '../../utils/difficultyData';
 
 async function viewQuizzes () {
 
@@ -143,22 +144,6 @@ function createTitle (titleText, titleSize ) {
             ${titleText}
         </${titleSize}>
     `;
-
-};
-
-function chooseDifficultyColor( difficultyLevel ) {
-
-    const DIFFICULTIES_COLORS = [ "green", "orange", "red"];
-
-    return DIFFICULTIES_COLORS[difficultyLevel-1];
-
-};
-
-function chooseDifficultyName( difficultyLevel ) {
-
-    const DIFFICULTIES_NAMES = [ "Easy", "Medium", "Hard"];
-    
-    return DIFFICULTIES_NAMES[difficultyLevel-1];
 
 };
 

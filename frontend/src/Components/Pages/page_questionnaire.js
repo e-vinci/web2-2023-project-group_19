@@ -5,6 +5,7 @@ import getPathParameters from '../../utils/path-href';
 import Navigate from '../Router/Navigate';
 import {getQuizzCategoryData} from '../../utils/quizzesData';
 import ResultQuizzPage from './resultQuizz';
+import { chooseDifficultyName } from '../../utils/difficultyData';
 
 async function pageQuestionnaire () {
 
@@ -29,25 +30,26 @@ async function pageQuestionnaire () {
 
     const sessionQuizzId = Number( sessionStorage.getItem('quizzId') );
 
-    if ( sessionQuizzId !== quizzId ) {
-
-        console.log( `initialized !` );
-
-        const randomQuestionsOrderArray = randomQuestionsOrder(quizz);
-        initializeSessionData( quizzId, randomQuestionsOrderArray );
-
-    };
-
-    const questions = JSON.parse( sessionStorage.getItem('questions') );
-    const sessionCurrentIndex = Number( sessionStorage.getItem('currentIndexQuestion') );
-    const countRightAnswers = Number( sessionStorage.getItem('countRightAnswers') );
-
     const {
 
         name : categoryName,
         image : categoryImage,
 
     } = getQuizzCategoryData(quizz.categorie);
+
+    if ( sessionQuizzId !== quizzId ) {
+
+        console.log( `initialized !` );
+
+        const randomQuestionsOrderArray = randomQuestionsOrder(quizz);
+        const difficultyName = chooseDifficultyName( quizz.difficultee );
+        initializeSessionData( quizzId, randomQuestionsOrderArray, categoryName, difficultyName );
+
+    };
+
+    const questions = JSON.parse( sessionStorage.getItem('questions') );
+    const sessionCurrentIndex = Number( sessionStorage.getItem('currentIndexQuestion') );
+    const countRightAnswers = Number( sessionStorage.getItem('countRightAnswers') );
 
     renderQuestionnaire(questions, sessionCurrentIndex, categoryName);
     applyBackgroundImageOnContainer(categoryImage);
@@ -297,11 +299,18 @@ function addEndQuizzButton() {
         </button>
     `;
 
+};
+
+function addEndQuizzButtonListener() {
+
     const button = document.querySelector('#endQuizzButton');
 
     button.addEventListener('click', () => {
 
-        ResultQuizzPage();
+        const category = sessionStorage.getItem('category');
+        const difficulty = sessionStorage.getItem('difficulty');
+
+        ResultQuizzPage( category, difficulty );
 
         button.style.border = '10px solid red';
 
@@ -309,7 +318,7 @@ function addEndQuizzButton() {
 
     });
 
-};
+}
 
 function removePropositionsListeners() {
 
@@ -351,11 +360,24 @@ function onPropositionClick(event) {
     proposition.dataset.isSelected = 'true';
     proposition.style.border = '5px solid blue';
 
+    const questions = JSON.parse( sessionStorage.getItem('questions') );
+    const sessionCurrentIndex = Number( sessionStorage.getItem('currentIndexQuestion') );
+
+    if ( sessionCurrentIndex === questions.length - 1 ) {
+
+        addEndQuizzButtonListener();
+
+    }
+
 };
 
-function initializeSessionData ( currentQuizzId, quizzQuestions ) {
+function initializeSessionData ( currentQuizzId, quizzQuestions, quizzCategory, quizzDifficulty ) {
 
     sessionStorage.setItem('quizzId', currentQuizzId );
+
+    sessionStorage.setItem('category', quizzCategory );
+
+    sessionStorage.setItem('difficulty', quizzDifficulty );
 
     sessionStorage.setItem('questions', JSON.stringify(quizzQuestions) );
 
