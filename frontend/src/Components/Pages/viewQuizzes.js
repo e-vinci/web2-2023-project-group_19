@@ -4,7 +4,6 @@ import getPathParameters from  "../../utils/path-href";
 import { getAllQuizzes } from "../../utils/quizzesQueries";
 import {getQuizzCategoryData} from "../../utils/quizzesData";
 
-
 async function viewQuizzes () {
 
     clearPage();

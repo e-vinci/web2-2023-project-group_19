@@ -3,7 +3,8 @@ import imageLogo from '../../img/logo-site.png';
 import { getOneQuizzContent } from '../../utils/quizzesQueries';
 import getPathParameters from '../../utils/path-href';
 import Navigate from '../Router/Navigate';
-import {getQuizzCategoryData} from "../../utils/quizzesData";
+import {getQuizzCategoryData} from '../../utils/quizzesData';
+import ResultQuizzPage from './resultQuizz';
 
 async function pageQuestionnaire () {
 
@@ -299,6 +300,8 @@ function addEndQuizzButton() {
     const button = document.querySelector('#endQuizzButton');
 
     button.addEventListener('click', () => {
+
+        ResultQuizzPage();
 
         button.style.border = '10px solid red';
 
