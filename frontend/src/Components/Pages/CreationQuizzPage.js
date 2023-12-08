@@ -1,35 +1,41 @@
 /* eslint-disable no-param-reassign */
-import { createQuizz, getLastQuizzId, getOneQuizzContent, /* createQuestion,createProposition,getLastQuestionId */ } from '../../utils/quizzesQueries';
+import { createQuizz, /* createQuestion,createProposition */ } from '../../utils/quizzesQueries';
 
-let i;
+const numberMaxSteps = 11;
+
 const creationQuizz = () => {
-    creatQuestionaire();
-    onAddQuizz();
+    let currentStepCreation = sessionStorage.getItem('currentStepCreation');
+
+    if ( currentStepCreation === null ) {
+        initializeSessionData();
+    }
+
+    currentStepCreation = Number(sessionStorage.getItem('currentStepCreation'));
+
+    // eslint-disable-next-line no-console
+    console.log( currentStepCreation );
+
+    renderForm( currentStepCreation );
+    makeReactiveForm( currentStepCreation );
 };
- // i =+1;
- function creatQuestionaire() {
-  // eslint-disable-next-line no-cond-assign
-  const main = document.querySelector('main');
-  
-  main.innerHTML = `
+
+function renderForm( currentStepCreation ) {
+
+    const main = document.querySelector('main');
+
+    if ( currentStepCreation === 1 ) {
+
+        main.innerHTML = `
         <div id="all">
             <div class="container2" id="container2">
                 <div class="form-container2 creation-quizz">
                     <form id="questionForm">
                         <h5 class="classe-titre"> Creation Quizz </h5>
-                        <span> catégorie quizz : </span>
-                        <input type="text" id="categorieQuizzId" placeholder=". . .">
-                        <span> question : </span>
-                        <input type="text" id="questionQuizzId" placeholder=". . .">
-                        <span> différentes propositions : </span>
-                        <input type="text" id="proposition1Id" placeholder="1.">
-                        <input type="text"id="proposition2Id" placeholder="2.">
-                        <input type="text" id="proposition3Id" placeholder="3.">
-                        <span> niveau de difficulté </span>
-                        <input type="text" id="niveauDifQuizzId"placeholder=". . .">
-                        <span> réponse correcte </span>
-                        <input type="text" id="reponseQuizzId" placeholder=". . .">
-                        <input type="submit" id="boutonQuizzId" class="Next-question" Next-question>
+                        <span> Catégorie de quizz : </span>
+                        <input type="text" id="categorieQuizz" placeholder="histoire/geographie/sciences">
+                        <span> Niveau de difficulté </span>
+                        <input type="number" min="1" max="3" id="niveauDifQuizz"placeholder="Niveau de difficulté">
+                        <input type="submit" id="boutonQuizz" class="Next-question" Next-question>
                     </form>
                 </div>
                 <div class="toggler-container">
@@ -38,16 +44,54 @@ const creationQuizz = () => {
                             <h4 class=" classe-titre4 ">
                                 Bienvenue sur la page de création d’un quizz
                             </h4>
-                            <h3 classe=" classe-titre3 ">${i}/10 </h3>
+                            <h3 classe=" classe-titre3 ">${currentStepCreation}/${numberMaxSteps} </h3>
                         </div>
                     </div>
                 </div>
             </div>
         </div>`;
 
+    } else {
+
+        main.innerHTML = `
+        <div id="all">
+            <div class="container2" id="container2">
+                <div class="form-container2 creation-quizz">
+                    <form id="questionForm">
+                        <h5 class="classe-titre"> Creation Quizz </h5>
+                        <span> Question : </span>
+                        <input type="text" id="questionQuizz" placeholder="Intitule de la question">
+                        <span> Propositions : </span>
+                        <input type="text" id="proposition1" placeholder="Proposition n°1">
+                        <input type="text"id="proposition2" placeholder="Proposition n°2">
+                        <input type="text" id="proposition3" placeholder="Proposition n°3">
+                        <span> Réponse correcte </span>
+                        <input type="text" id="reponseQuizz" placeholder="Réponse correcte">
+                        <input type="submit" id="boutonQuizz" class="Next-question" Next-question>
+                    </form>
+                </div>
+                <div class="toggler-container">
+                    <div class="toggle">
+                        <div class="toggle-panel toggle-left">
+                            <h4 class=" classe-titre4 ">
+                                Bienvenue sur la page de création d’un quizz
+                            </h4>
+                            <h3 classe=" classe-titre3 ">${currentStepCreation}/${numberMaxSteps} </h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>`;
+
+    }
+
+}
+ function makeReactiveForm( currentStepCreation ) {
+  // eslint-disable-next-line no-cond-assign
+
   const formulaire = document.querySelector('#questionForm');
-  const boutonFinish = document.querySelector('#boutonQuizzId');
-  if(i === 9){
+  const boutonFinish = document.querySelector('#boutonQuizz');
+  if( currentStepCreation === 11){
     boutonFinish.innerHTML = "terminer le quizz";
   }
   formulaire.addEventListener('submit', onAddQuizz );
@@ -64,41 +108,54 @@ const creationQuizz = () => {
     await createProposition(proposition1, proposition2, proposition3, reponse, idQuestion);
     // eslint-disable-next-line no-console
     console.log("after functions");
-    i+=1;
-    return i; */
+    */
   
 }
 
 async function onAddQuizz(){
-    const categorieQuizz = document.querySelector("#categorieQuizzId").value;
-    // const question = document.querySelector("#questionQuizzId").value;
-    const proposition1 = document.querySelector("#proposition1Id").value;
-    const proposition2 = document.querySelector("#proposition2Id").value;
-    const proposition3 = document.querySelector("#proposition3Id").value;
-    const difficultee = document.querySelector("#niveauDifQuizzId").value;
-    let reponse = document.querySelector("#reponseQuizzId").value;
+    const currentStepCreation = Number(sessionStorage.getItem('currentStepCreation'));
+
+    if ( currentStepCreation === 1 ) {
+
+        const categorieQuizz = document.querySelector("#categorieQuizz").value;
+        const difficultee = document.querySelector("#niveauDifQuizz").value;
+
+        // eslint-disable-next-line no-console
+        console.log(`categorieQuizz : ${categorieQuizz}`);
+        // eslint-disable-next-line no-console
+        console.log(`difficultee : ${difficultee}`);
+
+        const createdQuizz = await createQuizz(difficultee, categorieQuizz);
+
+        // eslint-disable-next-line no-console
+        console.log(`createdQuizz : ${createdQuizz}`);
+
+    } else {
+
+        const question = document.querySelector("#questionQuizz").value;
+        const proposition1 = document.querySelector("#proposition1").value;
+        const proposition2 = document.querySelector("#proposition2").value;
+        const proposition3 = document.querySelector("#proposition3").value;
+        let reponse = document.querySelector("#reponseQuizz").value;
+        
+        if (reponse === proposition1) {
+            reponse = proposition1;
+        }
+        if (reponse === proposition2) {
+            reponse = proposition2;
+        } 
+        if(reponse === proposition3){
+            reponse = proposition3;
+        }
+
+        // eslint-disable-next-line no-console
+        console.log(`question : ${question}`);
+
+    }
     
-    if (reponse === proposition1) {
-        reponse = proposition1;
-    }
-    if (reponse === proposition2) {
-        reponse = proposition2;
-    } 
-    if(reponse === proposition3){
-        reponse = proposition3;
-    }
+    sessionStorage.setItem('currentStepCreation', currentStepCreation+1);
 
-    const idQuizz = await getLastQuizzId();
-
-    const quizzFound =  await getOneQuizzContent( idQuizz );
-
-    // Le quizz n'a pas été trouvé
-
-    if ( quizzFound === undefined ) {
-
-        await createQuizz(difficultee, categorieQuizz);
-
-    };
+    creationQuizz();
 
     /**
      * {
@@ -142,5 +199,13 @@ async function onAddQuizz(){
       }; */
 
   }
+
+function initializeSessionData ( currentQuizzId ) {
+
+    sessionStorage.setItem('quizzId', currentQuizzId );
+
+    sessionStorage.setItem('currentStepCreation', 1 );
+
+};
 
 export default creationQuizz;
