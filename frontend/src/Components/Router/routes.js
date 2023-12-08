@@ -1,13 +1,13 @@
-import AboutUsPage from '../Pages/aboutUs';
+import AboutUsPage from '../Pages/AboutUsPage';
 import HomePage from '../Pages/HomePage';
 import LoginPage from '../Pages/LoginPage';
 import RegisterPage from '../Pages/RegisterPage';
-import CreationQuizzPage from '../Pages/creationQuizz';
+import CreationQuizzPage from '../Pages/CreationQuizzPage';
 import LeaderboardPage from '../Pages/ClassementPage';
-import ViewQuizzesPage from '../Pages/viewQuizzes';
-import ResultQuizzPage from '../Pages/resultQuizz';
-import QuestionnairePage from '../Pages/page_questionnaire'
-import ConfidentialityPage from '../Pages/Confidentialite'
+import ViewQuizzesPage from '../Pages/ViewQuizzesPage';
+import ResultQuizzPage from '../Pages/ResultQuizzPage';
+import QuestionnairePage from '../Pages/QuestionnairePage'
+import ConfidentialityPage from '../Pages/ConfidentialitePage'
 
 const routes = {
   "/": HomePage,

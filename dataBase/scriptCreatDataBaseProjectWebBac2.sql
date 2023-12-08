@@ -2588,3 +2588,10 @@ insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('1.6 x 
 insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('6.63 x 10^-34 Js',false,270);
 --proposition 3 question 10
 insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('9.8 m/s^2',false,270);
+
+-- insert users
+insert into QUIZZLER.users(email, mdp, username, nbr_points, isadmin) VALUES('nicolas.venturini@student.vinci.be','mpd','nicoco',222,true);
+insert into QUIZZLER.users(email, mdp, username, nbr_points, isadmin) VALUES('simon.bosseler@student.vinci.be','mpd','simon',200,true);
+insert into QUIZZLER.users(email, mdp, username, nbr_points, isadmin) VALUES('alexis.arnaud@student.vinci.be','mpd','alexis',190,true);
+insert into QUIZZLER.users(email, mdp, username, nbr_points, isadmin) VALUES('ismet.ismet@student.vinci.be','mpd','ismet',180,true);
+insert into QUIZZLER.users(email, mdp, username, nbr_points, isadmin) VALUES('keyvan.Nikazm@student.vinci.be','mpd','keyvan',170,true);
