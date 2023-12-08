@@ -1,18 +1,26 @@
 import anime from 'animejs';
-import { clearPage } from '../../utils/render';
-import getPathParameters from  '../../utils/path-href';
-import { getAllQuizzes } from '../../utils/quizzesQueries';
-import {getQuizzCategoryData} from '../../utils/quizzesData';
-import { chooseDifficultyColor, chooseDifficultyName } from '../../utils/difficultyData';
+import { clearPage } from "../../utils/render";
+import getPathParameters from  "../../utils/path-href";
+import { getAllQuizzes } from "../../utils/quizzesQueries";
+import {getQuizzCategoryData} from "../../utils/quizzesData";
+
 
 async function viewQuizzes () {
 
     clearPage();
 
+    // Prend les paramètre dans l'URL de la page (après le ?)
+    /**
+     * lien : http://localhost:8080/viewQuizzes?categorie=geographie
+     * parametersObject = {
+     *  categorie : "geographie"
+     * }
+     */
     const parametersObject = getPathParameters();
 
     const category = parametersObject.categorie;
 
+    
     const quizzData = getQuizzCategoryData(category);
     const quizzDataImages = quizzData.images;
     const quizzDataCategoryName = quizzData.name;
@@ -144,6 +152,22 @@ function createTitle (titleText, titleSize ) {
             ${titleText}
         </${titleSize}>
     `;
+
+};
+
+function chooseDifficultyColor( difficultyLevel ) {
+
+    const DIFFICULTIES_COLORS = [ "green", "orange", "red"];
+
+    return DIFFICULTIES_COLORS[difficultyLevel-1];
+
+};
+
+function chooseDifficultyName( difficultyLevel ) {
+
+    const DIFFICULTIES_NAMES = [ "Easy", "Medium", "Hard"];
+    
+    return DIFFICULTIES_NAMES[difficultyLevel-1];
 
 };
 

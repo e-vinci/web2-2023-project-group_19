@@ -3,9 +3,7 @@ import imageLogo from '../../img/logo-site.png';
 import { getOneQuizzContent } from '../../utils/quizzesQueries';
 import getPathParameters from '../../utils/path-href';
 import Navigate from '../Router/Navigate';
-import {getQuizzCategoryData} from '../../utils/quizzesData';
-import ResultQuizzPage from './resultQuizz';
-import { chooseDifficultyName } from '../../utils/difficultyData';
+import {getQuizzCategoryData} from "../../utils/quizzesData";
 
 async function pageQuestionnaire () {
 
@@ -30,26 +28,20 @@ async function pageQuestionnaire () {
 
     const sessionQuizzId = Number( sessionStorage.getItem('quizzId') );
 
-    const {
-
-        name : categoryName,
-        image : categoryImage,
-
-    } = getQuizzCategoryData(quizz.categorie);
-
     if ( sessionQuizzId !== quizzId ) {
 
-        console.log( `initialized !` );
-
         const randomQuestionsOrderArray = randomQuestionsOrder(quizz);
-        const difficultyName = chooseDifficultyName( quizz.difficultee );
-        initializeSessionData( quizzId, randomQuestionsOrderArray, categoryName, difficultyName );
+        initializeSessionData( quizzId, randomQuestionsOrderArray );
 
     };
 
     const questions = JSON.parse( sessionStorage.getItem('questions') );
     const sessionCurrentIndex = Number( sessionStorage.getItem('currentIndexQuestion') );
     const countRightAnswers = Number( sessionStorage.getItem('countRightAnswers') );
+
+    const categoryData = getQuizzCategoryData(quizz.categorie);
+    const categoryName = categoryData.name;
+    const categoryImage = categoryData.image;
 
     renderQuestionnaire(questions, sessionCurrentIndex, categoryName);
     applyBackgroundImageOnContainer(categoryImage);
@@ -90,7 +82,7 @@ function randomQuestionsOrder(quizz) {
 
         randomQuestionsOrderArray.push( randomQuestion );
 
-    };
+    }
 
     return randomQuestionsOrderArray;
 
@@ -182,10 +174,11 @@ function onNextQuestionButton() {
 
     const {propositions} = questions[sessionCurrentIndex];
 
-    let propositionSelected = getPropositionSelected();
+    const propositionSelected = checkSelectedProposition( propositions );
 
     if ( propositionSelected === null ) {
         
+        console.log( "C'est NUUULLL" );
         return false;
 
     };
@@ -194,11 +187,9 @@ function onNextQuestionButton() {
 
     checkIsReponsePropositions( propositions );
 
-    propositionSelected = checkSelectedProposition( propositionSelected );
-
-    console.log( JSON.stringify( propositionSelected ) );
-
     if ( propositionSelected.isreponse ) {
+
+        console.log( `Good answer !` );
 
         const countRightAnswers = Number( sessionStorage.getItem('countRightAnswers') );
 
@@ -208,9 +199,9 @@ function onNextQuestionButton() {
 
     const buttonNextQuestion = document.querySelector('#nextQuestionButton');
 
-    buttonNextQuestion.style.border = '5px solid red';
+    buttonNextQuestion.style.border = "5px solid red";
 
-    sessionStorage.setItem('currentIndexQuestion', sessionCurrentIndex + 1 );
+    sessionStorage.setItem('currentIndexQuestion', sessionCurrentIndex+1 );
 
     buttonNextQuestion.removeEventListener('click', onNextQuestionButton );
 
@@ -224,7 +215,7 @@ function onNextQuestionButton() {
 
 };
 
-function getPropositionSelected() {
+function checkSelectedProposition () {
 
     const propositionsElements = document.querySelectorAll('.btn-primary-question');
 
@@ -234,28 +225,16 @@ function getPropositionSelected() {
 
         if ( propositionElement.dataset.isSelected === 'true' ) {
 
+            let isReponse = false;
+
+            if ( propositionElement.dataset.isReponse === 'true' ) {
+                isReponse = true;
+            }
+
             propositionSelected = {
                 intitule : propositionElement.innerText,
-            };
-
-        };
-
-    });
-
-    return propositionSelected;
-
-};
-
-function checkSelectedProposition ( propositionSelected ) {
-
-    const propositionsElements = document.querySelectorAll('.btn-primary-question');
-
-    propositionsElements.forEach( propositionElement => {
-
-        if ( propositionSelected.intitule === propositionElement.innerText ) {
-
-            const booleanString = propositionElement.dataset.isReponse;
-            propositionSelected.isreponse = JSON.parse(booleanString);
+                isreponse : isReponse
+            }
 
         };
 
@@ -299,18 +278,11 @@ function addEndQuizzButton() {
         </button>
     `;
 
-};
-
-function addEndQuizzButtonListener() {
-
     const button = document.querySelector('#endQuizzButton');
 
-    button.addEventListener('click', () => {
+    button.addEventListener('click', (e) => {
 
-        const category = sessionStorage.getItem('category');
-        const difficulty = sessionStorage.getItem('difficulty');
-
-        ResultQuizzPage( category, difficulty );
+        e.preventDefault();
 
         button.style.border = '10px solid red';
 
@@ -318,7 +290,7 @@ function addEndQuizzButtonListener() {
 
     });
 
-}
+};
 
 function removePropositionsListeners() {
 
@@ -353,37 +325,24 @@ function onPropositionClick(event) {
         propositions[i].dataset.isSelected = 'false';
         propositions[i].style.border = 'none';
 
-    };
+    }
 
     const proposition = event.target;
 
     proposition.dataset.isSelected = 'true';
     proposition.style.border = '5px solid blue';
 
-    const questions = JSON.parse( sessionStorage.getItem('questions') );
-    const sessionCurrentIndex = Number( sessionStorage.getItem('currentIndexQuestion') );
+}
 
-    if ( sessionCurrentIndex === questions.length - 1 ) {
-
-        addEndQuizzButtonListener();
-
-    }
-
-};
-
-function initializeSessionData ( currentQuizzId, quizzQuestions, quizzCategory, quizzDifficulty ) {
+function initializeSessionData ( currentQuizzId, quizzQuestions ) {
 
     sessionStorage.setItem('quizzId', currentQuizzId );
-
-    sessionStorage.setItem('category', quizzCategory );
-
-    sessionStorage.setItem('difficulty', quizzDifficulty );
 
     sessionStorage.setItem('questions', JSON.stringify(quizzQuestions) );
 
     sessionStorage.setItem('currentIndexQuestion', 0 );
 
-    sessionStorage.setItem('countRightAnswers', 0 );
+    sessionStorage.setItem('countRightAnswers', 0 )
 
 };
 

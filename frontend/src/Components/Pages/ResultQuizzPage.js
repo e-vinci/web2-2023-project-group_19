@@ -1,6 +1,6 @@
 import { Fireworks } from 'fireworks-js';
 
-const resultQuizz = ( category = "Histoire", difficulty = "Moyenne" ) => {
+const resultQuizz = () => {
   const main = document.querySelector('main');
   main.innerHTML = `
       <div class="container">
@@ -20,10 +20,10 @@ const resultQuizz = ( category = "Histoire", difficulty = "Moyenne" ) => {
                               <h4 class="fs-5"> Point(s) gagné lors de la partie : <p class="text-success"> 14 pts </p> </h4>
                           </div>
                           <div class="card-result">
-                              <h4 class="fs-5"> Difficulté : <p class="text-success"> ${difficulty} </p> </h4>
+                              <h4 class="fs-5"> Difficulté : <p class="text-success"> Moyenne </p> </h4>
                           </div>
                           <div class="card-result">
-                              <h4 class="fs-5"> Catégorie : <p class="text-success"> ${category} </p> </h4>
+                              <h4 class="fs-5"> Catégorie : <p class="text-success"> Histoire </p> </h4>
                           </div>
                           <div class="card-result">
                               <h4 class="fs-5"> Pourcentage de réussite : <p class="text-success"> 70% </p> </h4>
