@@ -2,11 +2,16 @@ const express = require('express');
 
 const router = express.Router();
 
-const { getAllUsers } = require('../models/users');
+const bcrypt = require('bcrypt');
+const Users = require('../models/users');
+
+const saltRounds = 10;
+
+// const validator = require('validator');
 
 /* GET users listing. */
 router.get('/', async (req, res) => {
-  const USERS = await getAllUsers();
+  const USERS = await Users.getAllUsers();
   res.json(USERS);
 });
 

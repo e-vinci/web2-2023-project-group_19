@@ -385,7 +385,7 @@ h5, .btn-primary{
     align-items: start; 
 }
 
-.form-group button {
+.form-group #submitBtn {
     width: 150px;
     height: 40px;
     border-radius: 50px 50px;
@@ -402,7 +402,7 @@ h5, .btn-primary{
     margin-top: 50px;
 }
 
-.form-group button:hover {
+.form-group #submitBtn:hover {
     border: 1px solid black;
 }
 

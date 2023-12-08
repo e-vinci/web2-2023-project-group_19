@@ -10,6 +10,7 @@ const corsOptions = {
 const usersRouter = require('./routes/users');
 const quizzesRouter = require('./routes/quizzes');
 const classementRouter = require('./routes/classement');
+const authsRouter = require('./routes/auths');
 
 const app = express();
 
@@ -23,5 +24,6 @@ app.use(cors(corsOptions));
 app.use('/users', usersRouter);
 app.use('/quizzes', quizzesRouter);
 app.use('/classement', classementRouter);
+app.use('/auths', authsRouter);
 
 module.exports = app;
