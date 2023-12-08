@@ -103,9 +103,9 @@ function renderThreeDimension (){
 
 function tick (){ // une function pour avoir un nouveau rendu
   const time = clock.getElapsedTime() // compter le temps qui c'est ecouler
-  groupe.rotation.y = time * 0.1; // controle automatique 
-  groupe.rotation.x = time * 0.1; // controle automatique 
-  groupe.rotation.z = time * 0.1; // controle automatique 
+  groupe.rotation.y = time * 0.1; // controle automatique
+  groupe.rotation.x = time * 0.1; // controle automatique
+  groupe.rotation.z = time * 0.1; // controle automatique
   // const ratio = (mouseXY / window.innerWidth -0.5) * 2 // controle de l'utilisateur
   // groupe.rotation.y = ratio * Math.PI * 0.1 // vitesse de rotation de l'utilisateur
   renderer.render(scene, camera); // faire le rendu par rapport a la camera
