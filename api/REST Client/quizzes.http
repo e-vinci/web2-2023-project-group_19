@@ -1,1 +1,60 @@
+@baseUrl = http://localhost:3000
 
+### Read all quizzes
+GET {{baseUrl}}/quizzes
+
+### Read all quizzes by category
+GET {{baseUrl}}/quizzes?categorie=histoire
+
+### Read all quizzes by category
+GET {{baseUrl}}/quizzes?categorie=sciences
+
+### Read all quizzes by category
+GET {{baseUrl}}/quizzes?categorie=geographie
+
+### Get the last quizz id
+GET {{baseUrl}}/quizzes/getLastQuizzId
+
+### Get the last question id
+GET {{baseUrl}}/quizzes/getLastQuestionId
+
+### Create a quizz
+POST {{baseUrl}}/quizzes/createQuizz
+Content-Type: application/json
+
+{
+    "categorie":"histoire",
+    "difficultee":1
+}
+
+### Create a question
+POST {{baseUrl}}/quizzes/createQuestion
+Content-Type: application/json
+
+{
+    "quizzId":33,
+    "questionNumero":1,
+    "questionIntitule":"Question 0"
+}
+
+### Create a question
+POST {{baseUrl}}/quizzes/createPropositions
+Content-Type: application/json
+
+{
+    "propositions": [
+        {
+            "intitule":"Proposition 01",
+            "isReponse":false
+        },
+        {
+            "intitule":"Proposition 02",
+            "isReponse":true
+        },
+        {
+            "intitule":"Proposition 03",
+            "isReponse":false
+        }
+    ],
+    "questionId":278
+}

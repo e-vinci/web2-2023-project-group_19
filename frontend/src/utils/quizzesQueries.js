@@ -28,10 +28,22 @@ async function getAllQuizzes(category) {
   return quizzes;
 }
 
-async function createQuizz() {
+async function createQuizz( difficultee, categorie ) {
+
+  const options = {
+    method: 'POST',
+    body: JSON.stringify({
+      difficultee,
+      categorie
+    }),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  };
+
   let quizz;
   try {
-    const response = await fetch(`/api/quizzes/createQuizz`);
+    const response = await fetch(`/api/quizzes/createQuizz`, options);
 
     if (!response.ok) throw new Error(`fetch error : ${response.status} : ${response.statusText}`);
 
@@ -44,10 +56,21 @@ async function createQuizz() {
   return quizz;
 }
 
-async function createQuestion() {
+async function createQuestion( quizzId, questionNumero, questionIntitule ) {
+  const options = {
+    method: 'POST',
+    body: JSON.stringify({
+      quizzId,
+      questionNumero,
+      questionIntitule
+    }),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  };
   let quizz;
   try {
-    const response = await fetch(`/api/quizzes/createQuestion`);
+    const response = await fetch(`/api/quizzes/createQuestion`, options);
 
     if (!response.ok) throw new Error(`fetch error : ${response.status} : ${response.statusText}`);
 
@@ -60,10 +83,20 @@ async function createQuestion() {
   return quizz;
 }
 
-async function createProposition() {
+async function createPropositions( propositions, questionId ) {
+  const options = {
+    method: 'POST',
+    body: JSON.stringify({
+      propositions,
+      questionId
+    }),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  };
   let quizz;
   try {
-    const response = await fetch(`/api/quizzes/createProposition`);
+    const response = await fetch(`/api/quizzes/createProposition`, options);
 
     if (!response.ok) throw new Error(`fetch error : ${response.status} : ${response.statusText}`);
 
@@ -76,45 +109,10 @@ async function createProposition() {
   return quizz;
 }
 
-async function getLastQuizzId() {
-  let quizz;
-  try {
-    const response = await fetch(`/api/creationQuizz/getLastQuizzId/`);
-
-    if (!response.ok) throw new Error(`fetch error : ${response.status} : ${response.statusText}`);
-
-    quizz = await response.json();
-  } catch (err) {
-    // eslint-disable-next-line no-console
-    console.error('getLastQuizzId::error: ', err);
-  }
-
-  return quizz;
-}
-
-async function getLastQuestionId() {
-  let quizz;
-  try {
-    const response = await fetch(`/api/creationQuizz/getLastQuestionId/`);
-
-    if (!response.ok) throw new Error(`fetch error : ${response.status} : ${response.statusText}`);
-
-    quizz = await response.json();
-  } catch (err) {
-    // eslint-disable-next-line no-console
-    console.error('getLastQuestionId::error: ', err);
-  }
-
-  return quizz;
-}
-
-
 module.exports = {
   getOneQuizzContent,
   getAllQuizzes,
   createQuizz,
   createQuestion,
-  createProposition,
-  getLastQuizzId,
-  getLastQuestionId
+  createPropositions,
 }

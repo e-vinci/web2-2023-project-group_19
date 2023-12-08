@@ -7,6 +7,9 @@ const {
   readOneQuizzContent,
   getLastQuizzId,
   getLastQuestionId,
+  createQuizz,
+  createQuestion,
+  createPropositions,
 } = require('../models/quizzes');
 
 /* GET users listing. */
@@ -17,77 +20,46 @@ router.get('/', async (req, res) => {
 });
 
 router.get('/getLastQuizzId', async (req, res) => {
-  console.log('Aaa');
+  console.log('getLastQuizzId');
   const lastQuizzId = await getLastQuizzId();
   const response = lastQuizzId;
   res.json(response);
 });
 
 router.get('/getLastQuestionId', async (req, res) => {
+  console.log('getLastQuestionId');
   const lastQuizzId = await getLastQuestionId();
   const response = lastQuizzId;
   res.json(response);
 });
 
-router.get('/:id', async (req, res) => {
-  console.log('bbb');
-  const quizzId = Number(req.params.id);
-  const QUIZZ = await readOneQuizzContent(quizzId);
-  res.json(QUIZZ);
-});
-
 router.post('/createQuizz', async (req, res) => {
-  // const QUIZZESQuizz = await createQuizz(req, '');
-  // const QUIZZESQuestion = await createQuestion('', '', '');
-  // const QUIZZESProposition = await createProposition('', '', '', '', '');
-  // const QUIZZESLastQuizz = await lastQuizz();
-  // const QUIZZESLastQuestion = await lastQuestion();
-
-  /* const response = {
-    QUIZZESQuizz,
-    QUIZZESQuestion,
-    QUIZZESProposition,
-    QUIZZESLastQuizz,
-    QUIZZESLastQuestion,
-  }; */
-  // res.json(response);
-  res.json('OK');
+  const difficultee = req?.body?.difficultee;
+  const categorie = req?.body?.categorie;
+  const createdQuizz = await createQuizz(difficultee, categorie);
+  res.json(createdQuizz);
 });
 
 router.post('/createQuestion', async (req, res) => {
-  // const QUIZZESQuizz = await createQuizz(req, '');
-  // const QUIZZESQuestion = await createQuestion('', '', '');
-  // const QUIZZESProposition = await createProposition('', '', '', '', '');
-  // const QUIZZESLastQuizz = await lastQuizz();
-  // const QUIZZESLastQuestion = await lastQuestion();
-
-  /* const response = {
-    QUIZZESQuizz,
-    QUIZZESQuestion,
-    QUIZZESProposition,
-    QUIZZESLastQuizz,
-    QUIZZESLastQuestion,
-  }; */
-  // res.json(response);
-  res.json('OK');
+  const quizzId = req?.body?.quizzId;
+  const questionNumero = req?.body?.questionNumero;
+  const questionIntitule = req?.body?.questionIntitule;
+  const createdQuestion = await createQuestion(quizzId, questionNumero, questionIntitule);
+  res.json(createdQuestion);
 });
 
-router.post('/createProposition', async (req, res) => {
-  // const QUIZZESQuizz = await createQuizz(req, '');
-  // const QUIZZESQuestion = await createQuestion('', '', '');
-  // const QUIZZESProposition = await createProposition('', '', '', '', '');
-  // const QUIZZESLastQuizz = await lastQuizz();
-  // const QUIZZESLastQuestion = await lastQuestion();
+router.post('/createPropositions', async (req, res) => {
+  const propositions = req?.body?.propositions;
+  const questionId = req?.body?.questionId;
+  const createdProposition = await createPropositions(propositions, questionId);
+  res.json(createdProposition);
+});
 
-  /* const response = {
-    QUIZZESQuizz,
-    QUIZZESQuestion,
-    QUIZZESProposition,
-    QUIZZESLastQuizz,
-    QUIZZESLastQuestion,
-  }; */
-  // res.json(response);
-  res.json('OK');
+router.get('/:id', async (req, res) => {
+  console.log('id');
+  const quizzId = Number(req.params.id);
+  const QUIZZ = await readOneQuizzContent(quizzId);
+  res.json(QUIZZ);
 });
 
 module.exports = router;
