@@ -147,18 +147,14 @@ h5, .btn-primary{
     object-fit: cover;
   }
 
-
 /*   css pour le création Quizz    */
 
-#all{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+#creationQuizzContainer {
     display: flex;
     justify-content: center;
 }
 
-.container2{
+#creationQuizzContainer2 {
     background-color: #f4f4f4;
     border-radius: 30px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.35);
@@ -171,25 +167,29 @@ h5, .btn-primary{
     margin-bottom: 7%;
 }
 
-.container2 button{
-    background-color: #a5bdfd;
-    color: #fff;
+#creationQuizzContainer2 input[type=submit] {
+    background-color: #6495ED;
+    color: #e6e6e6;
     font-size: 12px;
     padding: 10px 45px;
     border: 1px solid transparent;
     border-radius: 8px;
-    font-weight: 600;
     letter-spacing: 0.5px;
     text-transform: uppercase;
     margin-top: 10px;
-    cursor: pointer;
     text-align: center;
     justify-content: center;
     display: flex;
     width: 75%;
+    transition: background-color 0.6s ease-in, color 0.6s ease-out;
 }
 
-.container2 form{
+#creationQuizzContainer2 input[type=submit]:hover{
+    background-color: #256df3;
+    transition: background-color 0.4s ease-out, color 0.4s ease-in;
+}
+
+#creationQuizzContainer2 form{
     margin-top: 20px;
     display: flex;
     align-items: center;
@@ -198,7 +198,7 @@ h5, .btn-primary{
     padding: 0 40px;
     height: 100;
 }
-.container2 .regularInput {
+#creationQuizzContainer2 .regularInput {
 
     background-color: #eee;
     border: none;
@@ -211,7 +211,7 @@ h5, .btn-primary{
     margin-left: 20%;
 }
 
-.container2 .propositionsInput {
+#creationQuizzContainer2 .propositionsInput {
     background-color: #eee;
     border: none;
     margin: 8px 0;
@@ -234,15 +234,6 @@ h5, .btn-primary{
     transition: all 0.6s ease-in-out;
 }
 
-.Next-question{
-    left: 0;
-    width: 50%;
-    z-index: 2;
-}
-
-.container2.active .Next-question{
-    transform: translateX(100%);
-}
 .Finish-the-quizz{
     left: 0;
     width: 50%;
@@ -250,7 +241,7 @@ h5, .btn-primary{
     z-index: 1;
 }
 
-.container2.active .Finish-the-quizz{
+#creationQuizzContainer2.active .Finish-the-quizz{
     transform: translateX(100%);
     opacity: 1;
     z-index: 5;
@@ -280,7 +271,7 @@ h5, .btn-primary{
     z-index: 1000;
 }
 
-.container2.active .toggler-container{
+#creationQuizzContainer2.active .toggler-container{
     transform: translateX(-100%);
     border-radius: 0 150px 100px 0;
 }
@@ -297,7 +288,7 @@ h5, .btn-primary{
     transition: all 0.6s ease-in-out;
 }
 
-.container2 .toggle{
+#creationQuizzContainer2 .toggle{
     transform:translateX(50%);
 }
 
@@ -321,7 +312,7 @@ h5, .btn-primary{
     transform: translateX(-200%);
 }
 
-.container2 .toggle-left{
+#creationQuizzContainer2 .toggle-left{
     transform: translateX(0);
 }
 
@@ -330,11 +321,7 @@ h5, .btn-primary{
     font-size: 32px;
 }
 
-.Next-question{
-   margin-left: 50%;
-}
-
-.container2 span {
+#creationQuizzContainer2 span {
     color: rgb(0, 0, 0);
     margin-right: auto;
 }
