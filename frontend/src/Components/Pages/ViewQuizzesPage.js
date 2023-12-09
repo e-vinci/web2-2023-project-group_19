@@ -78,8 +78,6 @@ function generateQuizzesButtons ( quizzesArray, quizzDataImages, quizzCategoryNa
 
     main.innerHTML += categoryTitle;
 
-    let indexImg = 0;
-
     quizzesArray.map( (quizzesDifficulty) => {
 
         const difficultyLevel = quizzesDifficulty.difficulty;
@@ -100,8 +98,9 @@ function generateQuizzesButtons ( quizzesArray, quizzDataImages, quizzCategoryNa
 
             const buttonSrc = `http://localhost:8080/questionnaire?quizzId=${quizzId}`;
 
-            const image = createCard(quizzDataImages[indexImg], buttonSrc, difficultyColor, difficultyName );
-            indexImg+=1;
+            const indexDifficultyImg = difficultyLevel - 1;
+
+            const image = createCard(quizzDataImages[indexDifficultyImg], buttonSrc, difficultyColor, difficultyName );
 
             box.innerHTML += image;
 
