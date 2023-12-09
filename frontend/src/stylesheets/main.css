@@ -198,17 +198,33 @@ h5, .btn-primary{
     padding: 0 40px;
     height: 100;
 }
+.container2 .regularInput {
 
-.container2 input{
     background-color: #eee;
     border: none;
     margin: 8px 0;
     padding: 10px 15px;
     font-size: 13px;
     border-radius: 8px;
-    width: 180%;
+    width: 120%;
     outline: none;
-    margin-left: 55%;
+    margin-left: 20%;
+}
+
+.container2 .propositionsInput {
+    background-color: #eee;
+    border: none;
+    margin: 8px 0;
+    padding: 10px 15px;
+    font-size: 13px;
+    border-radius: 8px;
+    width: 200%;
+    outline: none;
+}
+
+#questionForm {
+
+    width: 400px;
 }
 
 .form-container2{
