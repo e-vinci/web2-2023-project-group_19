@@ -50,7 +50,7 @@ CREATE TABLE QUIZZLER.propositions (
 -- remplisage de la base de donnée
 
 -- Quizz 1 :
-insert into QUIZZLER.quizzes(difficultee, categorie) VALUES (1,'histoire');
+insert into QUIZZLER.quizzes(difficultee, categorie, points_rapportes) VALUES (1,'histoire', 1);
 -- question 1 quizz 1:
 insert into QUIZZLER.questions(quizz, numero, intitule) VALUES (1,1,'Qui était le premier président des États-Unis ?');
 -- question 2 quizz 1:
@@ -145,7 +145,7 @@ insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('La ré
 
 
 -- Quizz 2 :
-insert into QUIZZLER.quizzes(difficultee, categorie) VALUES (1,'histoire');
+insert into QUIZZLER.quizzes(difficultee, categorie, points_rapportes) VALUES (1,'histoire', 1);
 -- question 1 quizz 2:
 insert into QUIZZLER.questions(quizz, numero, intitule) VALUES (2,1,'Quel dirigeant politique a dirigé l Union soviétique pendant la majeure partie de la guerre froide ?');
 -- question 2 quizz 2:
@@ -239,7 +239,7 @@ insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('Ulysse
 insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('Robert E. Lee',false,20);
 
 -- Quizz 3 :
-insert into QUIZZLER.quizzes(difficultee, categorie) VALUES (1,'histoire');
+insert into QUIZZLER.quizzes(difficultee, categorie, points_rapportes) VALUES (1,'histoire', 1);
 -- question 1 quizz 3:
 insert into QUIZZLER.questions(quizz, numero, intitule) VALUES (3,1,'Quelle civilisation ancienne a construit la cité de Machu Picchu au Pérou ?');
 -- question 2 quizz 3:
@@ -333,7 +333,7 @@ insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('Aristo
 insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('Platon',false,30);
 
 -- Quizz 4 :
-insert into QUIZZLER.quizzes(difficultee, categorie) VALUES (2,'histoire');
+insert into QUIZZLER.quizzes(difficultee, categorie, points_rapportes) VALUES (2,'histoire',2);
 -- question 1 quizz 4:
 insert into QUIZZLER.questions(quizz, numero, intitule) VALUES (4,1,'Quel événement a marqué le début de la Guerre de Cent Ans en 1337 ?');
 -- question 2 quizz 4:
@@ -427,7 +427,7 @@ insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('La bat
 insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('La bataille de Bunker Hill',false,40);
 
 -- Quizz 5 :
-insert into QUIZZLER.quizzes(difficultee, categorie) VALUES (2,'histoire');
+insert into QUIZZLER.quizzes(difficultee, categorie, points_rapportes) VALUES (2,'histoire',2);
 -- question 1 quizz 4:
 insert into QUIZZLER.questions(quizz, numero, intitule) VALUES (5,1,'Qui était le pharaon égyptien connu pour ses réformes religieuses et son culte d Aton ?');
 -- question 2 quizz 4:
@@ -521,7 +521,7 @@ insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('La gue
 insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('La Seconde Guerre mondiale',true,50);
 
 -- Quizz 6 :
-insert into QUIZZLER.quizzes(difficultee, categorie) VALUES (2,'histoire');
+insert into QUIZZLER.quizzes(difficultee, categorie, points_rapportes) VALUES (2,'histoire',2);
 -- question 1 quizz 2:
 insert into QUIZZLER.questions(quizz, numero, intitule) VALUES (6,1,'Quelle était la principale cause de la Révolution industrielle en Angleterre au XVIIIe siècle ?');
 -- question 2 quizz 2:
@@ -615,7 +615,7 @@ insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('Akbar'
 insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('Shah Jahan',true,60);
 
 -- Quizz 7 :
-insert into QUIZZLER.quizzes(difficultee, categorie) VALUES (3,'histoire');
+insert into QUIZZLER.quizzes(difficultee, categorie, points_rapportes) VALUES (3,'histoire',3);
 -- question 1 quizz 7:
 insert into QUIZZLER.questions(quizz, numero, intitule) VALUES (7,1,'Quel empereur romain a tenté de réformer le système politique et économique, mais a été assassiné en 180 après J.-C. ?');
 -- question 2 quizz 7:
@@ -709,7 +709,7 @@ insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('Hannib
 insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('Hasdrubal',false,70);
 
 -- Quizz 8 :
-insert into QUIZZLER.quizzes(difficultee, categorie) VALUES (3,'histoire');
+insert into QUIZZLER.quizzes(difficultee, categorie, points_rapportes) VALUES (3,'histoire',3);
 -- question 1 quizz 8:
 insert into QUIZZLER.questions(quizz, numero, intitule) VALUES (8,1,'Quel était le nom du traité qui a mis fin à la Première Guerre mondiale en 1919 ?');
 -- question 2 quizz 8:
@@ -804,7 +804,7 @@ insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('La Ren
 
 
 -- Quizz 9 :
-insert into QUIZZLER.quizzes(difficultee, categorie) VALUES (3,'histoire');
+insert into QUIZZLER.quizzes(difficultee, categorie, points_rapportes) VALUES (3,'histoire',3);
 -- question 1 quizz 9:
 insert into QUIZZLER.questions(quizz, numero, intitule) VALUES (9,1,'Quelle bataille a été le tournant de la guerre civile américaine en faveur de l Union ?');
 -- question 2 quizz 9:
@@ -898,7 +898,7 @@ insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('Consta
 insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('Trajan',false,90);
 
 -- Quizz 10 :
-insert into QUIZZLER.quizzes(difficultee, categorie) VALUES (1,'geographie');
+insert into QUIZZLER.quizzes(difficultee, categorie, points_rapportes) VALUES (1,'geographie',3);
 -- question 1 quizz 2:
 insert into QUIZZLER.questions(quizz, numero, intitule) VALUES (10,1,'Quel est le plus grand océan de la planète ?');
 -- question 2 quizz 2:
@@ -992,7 +992,7 @@ insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('Chine'
 insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('États-Unis',false,100);
 
 -- Quizz 11 :
-insert into QUIZZLER.quizzes(difficultee, categorie) VALUES (1,'geographie');
+insert into QUIZZLER.quizzes(difficultee, categorie, points_rapportes) VALUES (1,'geographie',1);
 -- question 1 quizz 2:
 insert into QUIZZLER.questions(quizz, numero, intitule) VALUES (11,1,'Quelle est la capitale de l Australie ?');
 -- question 2 quizz 2:
@@ -1086,7 +1086,7 @@ insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('Argent
 insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('Le Pérou',false,110);
 
 -- Quizz 12 :
-insert into QUIZZLER.quizzes(difficultee, categorie) VALUES (1,'geographie');
+insert into QUIZZLER.quizzes(difficultee, categorie, points_rapportes) VALUES (1,'geographie',1);
 -- question 1 quizz 2:
 insert into QUIZZLER.questions(quizz, numero, intitule) VALUES (12,1,'Dans quel océan se trouve l île de Bornéo ?');
 -- question 2 quizz 2:
@@ -1180,7 +1180,7 @@ insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('La mer
 insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('La mer Rouge',false,120);
 
 -- Quizz 13 :
-insert into QUIZZLER.quizzes(difficultee, categorie) VALUES (2,'geographie');
+insert into QUIZZLER.quizzes(difficultee, categorie, points_rapportes) VALUES (2,'geographie',2);
 -- question 1 quizz 13:
 insert into QUIZZLER.questions(quizz, numero, intitule) VALUES (13,1,'Quel pays est situé à la pointe sud de l Afrique ?');
 -- question 2 quizz 13:
@@ -1274,7 +1274,7 @@ insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('Ankara
 insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('Izmir',false,130);
 
 -- Quizz 14 :
-insert into QUIZZLER.quizzes(difficultee, categorie) VALUES (2,'geographie');
+insert into QUIZZLER.quizzes(difficultee, categorie, points_rapportes) VALUES (2,'geographie',2);
 -- question 1 quizz 14:
 insert into QUIZZLER.questions(quizz, numero, intitule) VALUES (14,1,'Quel est le plus grand pays insulaire du monde ?');
 -- question 2 quizz 14:
@@ -1368,7 +1368,7 @@ insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('Auckla
 insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('Wellington',true,140);
 
 -- Quizz 15 :
-insert into QUIZZLER.quizzes(difficultee, categorie) VALUES (2,'geographie');
+insert into QUIZZLER.quizzes(difficultee, categorie, points_rapportes) VALUES (2,'geographie',2);
 -- question 1 quizz 15:
 insert into QUIZZLER.questions(quizz, numero, intitule) VALUES (15,1,'Quel est le plus grand glacier du monde ?');
 -- question 2 quizz 15:
@@ -1462,7 +1462,7 @@ insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('Mer d 
 insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('Mer Caspienne',false,150);
 
 -- Quizz 16 :
-insert into QUIZZLER.quizzes(difficultee, categorie) VALUES (3,'geographie');
+insert into QUIZZLER.quizzes(difficultee, categorie, points_rapportes) VALUES (3,'geographie',3);
 -- question 1 quizz 16:
 insert into QUIZZLER.questions(quizz, numero, intitule) VALUES (16,1,'Quel est le point le plus élevé de l Himalaya ?');
 -- question 2 quizz 16:
@@ -1556,7 +1556,7 @@ insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('Oman',
 insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('Yémen',true,160);
 
 -- Quizz 17 :
-insert into QUIZZLER.quizzes(difficultee, categorie) VALUES (3,'geographie');
+insert into QUIZZLER.quizzes(difficultee, categorie, points_rapportes) VALUES (3,'geographie',3);
 -- question 1 quizz 17:
 insert into QUIZZLER.questions(quizz, numero, intitule) VALUES (17,1,'Dans quel pays se trouve le mont Elbrouz, la plus haute montagne d Europe ?');
 -- question 2 quizz 17:
@@ -1650,7 +1650,7 @@ insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('Mexiqu
 insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('Australie',false,170);
 
 -- Quizz 18 :
-insert into QUIZZLER.quizzes(difficultee, categorie) VALUES (3,'geographie');
+insert into QUIZZLER.quizzes(difficultee, categorie, points_rapportes) VALUES (3,'geographie',3);
 -- question 1 quizz 18:
 insert into QUIZZLER.questions(quizz, numero, intitule) VALUES (18,1,'Quel est le plus grand lac d eau douce d Amérique du Sud ?');
 -- question 2 quizz 18:
@@ -1744,7 +1744,7 @@ insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('Milfor
 insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('Scoresby Sund',true,180);
 
 --Quizz 19 :
-insert into QUIZZLER.quizzes(difficultee, categorie) VALUES (1,'sciences');
+insert into QUIZZLER.quizzes(difficultee, categorie, points_rapportes) VALUES (1,'sciences',1);
 -- question 1 quizz 19:
 insert into QUIZZLER.questions(quizz, numero, intitule) VALUES (19,1,'Quel est le symbole chimique de l eau ?');
 -- question 2 quizz 19:
@@ -1838,7 +1838,7 @@ insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('Photos
 insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('Transpiration',false,190);
 
 --Quizz 20 :
-insert into QUIZZLER.quizzes(difficultee, categorie) VALUES (1,'sciences');
+insert into QUIZZLER.quizzes(difficultee, categorie, points_rapportes) VALUES (1,'sciences',1);
 -- question 1 quizz 20:
 insert into QUIZZLER.questions(quizz, numero, intitule) VALUES (20,1,'Quel est l organe responsable de la production d insuline dans le corps humain ?');
 -- question 2 quizz 20:
@@ -1932,7 +1932,7 @@ insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('La for
 insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('La gravité',true,200);
 
 -- Quizz 21 :
-insert into QUIZZLER.quizzes(difficultee, categorie) VALUES (1,'sciences');
+insert into QUIZZLER.quizzes(difficultee, categorie, points_rapportes) VALUES (1,'sciences',1);
 -- question 1 quizz 21:
 insert into QUIZZLER.questions(quizz, numero, intitule) VALUES (21,1,'Quel est le plus grand organe du corps humain ?');
 -- question 2 quizz 21:
@@ -2026,7 +2026,7 @@ insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('Photos
 insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('Fermentation',false,210);
 
 -- Quizz 22 :
-insert into QUIZZLER.quizzes(difficultee, categorie) VALUES (2,'sciences');
+insert into QUIZZLER.quizzes(difficultee, categorie, points_rapportes) VALUES (2,'sciences',2);
 -- question 1 quizz 22:
 insert into QUIZZLER.questions(quizz, numero, intitule) VALUES (22,1,'Quel est le processus par lequel une substance passe directement de l état solide à l état gazeux sans passer par l état liquide ?');
 -- question 2 quizz 22:
@@ -2120,7 +2120,7 @@ insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('C6H12O
 insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('C55H72MgN4O5',true,220);
 
 -- Quizz 23 :
-insert into QUIZZLER.quizzes(difficultee, categorie) VALUES (2,'sciences');
+insert into QUIZZLER.quizzes(difficultee, categorie, points_rapportes) VALUES (2,'sciences',2);
 -- question 1 quizz 23:
 insert into QUIZZLER.questions(quizz, numero, intitule) VALUES (23,1,'Quel est le gaz responsable de l effet de serre sur la Terre ?');
 -- question 2 quizz 23:
@@ -2214,7 +2214,7 @@ insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('Traduc
 insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('Réplication',false,230);
 
 -- Quizz 24 :
-insert into QUIZZLER.quizzes(difficultee, categorie) VALUES (2,'sciences');
+insert into QUIZZLER.quizzes(difficultee, categorie, points_rapportes) VALUES (2,'sciences',2);
 -- question 1 quizz 24:
 insert into QUIZZLER.questions(quizz, numero, intitule) VALUES (24,1,'Quel est l organe sensoriel responsable de l audition ?');
 -- question 2 quizz 24:
@@ -2308,7 +2308,7 @@ insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('Photos
 insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('Fermentation',true,240);
 
 -- Quizz 25 :
-insert into QUIZZLER.quizzes(difficultee, categorie) VALUES (3,'sciences');
+insert into QUIZZLER.quizzes(difficultee, categorie, points_rapportes) VALUES (3,'sciences',3);
 -- question 1 quizz 25:
 insert into QUIZZLER.questions(quizz, numero, intitule) VALUES (25,1,'Quelle est la particule subatomique qui a une charge positive égale en magnitude à celle de l électron ?');
 -- question 2 quizz 25:
@@ -2402,7 +2402,7 @@ insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('Moment
 insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('Moment dipolaire',false,250);
 
 -- Quizz 26 :
-insert into QUIZZLER.quizzes(difficultee, categorie) VALUES (3,'sciences');
+insert into QUIZZLER.quizzes(difficultee, categorie, points_rapportes) VALUES (3,'sciences',3);
 -- question 1 quizz 26:
 insert into QUIZZLER.questions(quizz, numero, intitule) VALUES (26,1,'Quelle est la loi de la physique qui décrit comment la lumière est déviée lorsqu elle passe à travers un prisme ou un milieu transparent ?');
 -- question 2 quizz 26:
@@ -2496,7 +2496,7 @@ insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('Azote 
 insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('Oxygène (O2)',false,260);
 
 -- Quizz 27 :
-insert into QUIZZLER.quizzes(difficultee, categorie) VALUES (3,'sciences');
+insert into QUIZZLER.quizzes(difficultee, categorie, points_rapportes) VALUES (3,'sciences',3);
 -- question 1 quizz 27:
 insert into QUIZZLER.questions(quizz, numero, intitule) VALUES (27,1,'Quelle est la particule élémentaire responsable de la médiation de la force électromagnétique ?');
 -- question 2 quizz 27:
@@ -2590,8 +2590,8 @@ insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('6.63 x
 insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('9.8 m/s^2',false,270);
 
 -- insert users
-insert into QUIZZLER.users(email, mdp, username, nbr_points, isadmin) VALUES('nicolas.venturini@student.vinci.be','mpd','nicoco',222,true);
-insert into QUIZZLER.users(email, mdp, username, nbr_points, isadmin) VALUES('simon.bosseler@student.vinci.be','mpd','simon',200,true);
-insert into QUIZZLER.users(email, mdp, username, nbr_points, isadmin) VALUES('alexis.arnaud@student.vinci.be','mpd','alexis',190,true);
-insert into QUIZZLER.users(email, mdp, username, nbr_points, isadmin) VALUES('ismet.ismet@student.vinci.be','mpd','ismet',180,true);
-insert into QUIZZLER.users(email, mdp, username, nbr_points, isadmin) VALUES('keyvan.Nikazm@student.vinci.be','mpd','keyvan',170,true);
+insert into QUIZZLER.users(email, mdp, username, nbr_points, isadmin) VALUES('nicolas.venturini@student.vinci.be','$2y$10$AowrDKtvBw/4QfiL7O/qC.LhF0ITfPUQRGC5cDOPL5TLVOis65Hjm','nicoco',222,true);
+insert into QUIZZLER.users(email, mdp, username, nbr_points, isadmin) VALUES('simon.bosseler@student.vinci.be','$2y$10$AowrDKtvBw/4QfiL7O/qC.LhF0ITfPUQRGC5cDOPL5TLVOis65Hjm','simon',200,true);
+insert into QUIZZLER.users(email, mdp, username, nbr_points, isadmin) VALUES('alexis.arnaud@student.vinci.be','$2y$10$AowrDKtvBw/4QfiL7O/qC.LhF0ITfPUQRGC5cDOPL5TLVOis65Hjm','alexis',190,true);
+insert into QUIZZLER.users(email, mdp, username, nbr_points, isadmin) VALUES('ismet.ismet@student.vinci.be','$2y$10$AowrDKtvBw/4QfiL7O/qC.LhF0ITfPUQRGC5cDOPL5TLVOis65Hjm','ismet',180,true);
+insert into QUIZZLER.users(email, mdp, username, nbr_points, isadmin) VALUES('keyvan.Nikazm@student.vinci.be','$2y$10$AowrDKtvBw/4QfiL7O/qC.LhF0ITfPUQRGC5cDOPL5TLVOis65Hjm','keyvan',170,true);
