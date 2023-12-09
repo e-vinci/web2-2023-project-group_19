@@ -126,6 +126,8 @@ async function onAddQuestionQuizz(e) {
     // const proposition2 = document.querySelector("#proposition2");
     // const proposition3 = document.querySelector("#proposition3");
 
+    // TODO : créer la question et les propositions
+
     // eslint-disable-next-line no-console
     console.log(`question : ${question}`);
   }
@@ -134,6 +136,8 @@ async function onAddQuestionQuizz(e) {
 
   if ( currentStepCreation === 11 ) {
 
+    // TODO : rediriger vers une page ou bien montrer les infos du quizz
+    
     console.log( "END" );
     
   } else {
@@ -152,7 +156,7 @@ function checkPropisitionsNotEquals() {
   const proposition2 = document.getElementById('proposition2').value;
   const proposition3 = document.getElementById('proposition3').value;
 
-  // const propositionsEquals = [];
+  // TODO : afficher un message d'erreur / montrer les inputs égaux
 
   if (
     proposition1 === proposition2 ||
