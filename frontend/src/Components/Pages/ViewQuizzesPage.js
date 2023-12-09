@@ -5,6 +5,8 @@ import { getAllQuizzes } from '../../utils/quizzesQueries';
 import {getQuizzCategoryData} from '../../utils/quizzesData';
 import { chooseDifficultyColor, chooseDifficultyName } from '../../utils/difficultyData';
 
+const quizzUri = 'http://localhost:8080/quizz';
+
 async function viewQuizzes ( categorieName ) {
 
     console.log( categorieName );
@@ -96,7 +98,7 @@ function generateQuizzesButtons ( quizzesArray, quizzDataImages, quizzCategoryNa
 
             const quizzId = quizzesDifficulty.quizzes[i].id_quizz;
 
-            const buttonSrc = `http://localhost:8080/questionnaire?quizzId=${quizzId}`;
+            const buttonSrc = `${quizzUri}?quizzId=${quizzId}`;
 
             const indexDifficultyImg = difficultyLevel - 1;
 
