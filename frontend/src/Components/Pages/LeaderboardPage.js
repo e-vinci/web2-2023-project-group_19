@@ -2,12 +2,12 @@ import throphyImg from '../../img/throphyImg.png';
 import medailleBronz from '../../img/medaille_bronze.png';
 import medailleOr from '../../img/medaille_or.png';
 import medailleArgent from '../../img/medaille_argent.png';
-import getClassement from '../../utils/classementQueries';
+import getLeaderboard from '../../utils/usersQueries';
 
 const main = document.querySelector('main');
 const ClassementPage = async() => {
  
-  const quizzClassement = await getClassement();
+  const quizzClassement = await getLeaderboard();
 
   const defaultObject = {
     username : "inconnu",

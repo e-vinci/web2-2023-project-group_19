@@ -1,7 +1,7 @@
-async function getClassement() {
+async function getLeaderboard() {
     let quizz;
     try {
-      const response = await fetch(`/api/classement/`);
+      const response = await fetch(`/api/users/leaderboard`);
   
       if (!response.ok) throw new Error(`fetch error : ${response.status} : ${response.statusText}`);
   
@@ -14,4 +14,4 @@ async function getClassement() {
     return quizz;
   }
 
-export default getClassement; 
+export default getLeaderboard; 
