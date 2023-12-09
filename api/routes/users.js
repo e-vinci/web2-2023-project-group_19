@@ -2,17 +2,13 @@ const express = require('express');
 
 const router = express.Router();
 
-const bcrypt = require('bcrypt');
-const Users = require('../models/users');
+const {
+  getLeaderboard,
+} = require('../models/users');
 
-const saltRounds = 10;
-
-// const validator = require('validator');
-
-/* GET users listing. */
-router.get('/', async (req, res) => {
-  const USERS = await Users.getAllUsers();
-  res.json(USERS);
+router.get('/leaderboard', async (req, res) => {
+  const leaderboard = await getLeaderboard();
+  res.json(leaderboard);
 });
 
 module.exports = router;
