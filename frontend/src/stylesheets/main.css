@@ -728,15 +728,9 @@ h5, .btn-primary{
     font-family: 'Times New Roman', Times, serif;
 }
 
-/* Style pour le conteneur principal des colonnes */
-.wp-block-columns {
-    display: flex;
-    flex-wrap: wrap;
-}
-
 /* Style pour chaque colonne */
 .wp-block-column {
-    width: 50%; /* Ajustez la largeur des colonnes selon vos besoins */
+    width: 100%; /* Ajustez la largeur des colonnes selon vos besoins */
     box-sizing: border-box;
     padding: 0 15px; /* Espacement interne des colonnes */
 }
