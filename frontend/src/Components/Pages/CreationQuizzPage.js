@@ -60,24 +60,24 @@ function renderForm( currentStepCreation ) {
                     <form id="questionForm">
                         <h5 class="classe-titre"> Creation Quizz </h5>
                         <span> Question : </span>
-                        <input type="text" id="questionQuizz" class="regularInput" placeholder="Intitule de la question">
+                        <input type="text" id="questionQuizz" class="regularInput" placeholder="Intitule de la question" required>
                         <span> Propositions : </span>
 
                         <div style="display:inline-flex;width:100%;">
-                        <input type="text" id="proposition1" class="propositionsInput" placeholder="Proposition n°1">
+                        <input type="text" id="proposition1" class="propositionsInput" placeholder="Proposition n°1" required>
+                        <input type="radio" name="proposition" required>
+                        </div>
+                        <div style="display:flex;width:100%;">
+                        <input type="text"id="proposition2" class="propositionsInput" placeholder="Proposition n°2" required>
                         <input type="radio" name="proposition">
                         </div>
                         <div style="display:flex;width:100%;">
-                        <input type="text"id="proposition2" class="propositionsInput" placeholder="Proposition n°2">
-                        <input type="radio" name="proposition">
-                        </div>
-                        <div style="display:flex;width:100%;">
-                        <input type="text" id="proposition3" class="propositionsInput" placeholder="Proposition n°3">
+                        <input type="text" id="proposition3" class="propositionsInput" placeholder="Proposition n°3" required>
                         <input type="radio" name="proposition">
                         </div>
                         
                         <span> Réponse correcte </span>
-                        <input type="text" id="reponseQuizz" class="regularInput" placeholder="Réponse correcte">
+                        <input type="text" id="reponseQuizz" style="cursor:default;" class="regularInput" placeholder="Réponse correcte" readonly>
                         <input type="submit" id="boutonQuizz" class="Next-question regularInput" Next-question>
                     </form>
                 </div>
