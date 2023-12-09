@@ -29,16 +29,13 @@ const Navbar = () => {
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-              <a class="nav-link" href="#" data-uri="/confidentiality">(Confidentiality)</a>
-            </li> 
-          <li class="nav-item">
               <a class="nav-link" href="#" data-uri="/resultQuizz">(ResultQuizz)</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#" data-uri="/creationQuizz">(Creation)</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#" data-uri="/leaderboard">Leaderboard</a>
+              <a class="nav-link" href="#" data-uri="/leaderboard">(Leaderboard)</a>
             </li>  
             <li class="nav-item">
               <a class="nav-link" href="#" data-uri="/aboutUs">About</a>

@@ -40,10 +40,16 @@ const RegisterPage = () => {
                         <input type="password" name="password" id="registerConfPassword">
                     </div>
                     <div class="form-group">
+                        <p>
+                            En vous inscrivant, vous acceptez<br>
+                            nos <a href="/confidentiality">conditions générales d'utilisation</a>
+                        </p>
+                    </div>
+                    <div class="form-group">
                         <input type="submit" id="submitBtn">
                     </div>
                 </form>
-                <a href="/login">You have an account?</a>
+                <a href="/login">Vous possédez un compte ?</a>
             </div>
         </div>
     </div>

@@ -32,7 +32,7 @@ const LoginPage = () => {
                         <input type="submit" id="submitBtn">
                     </div>
                 </form>
-                <a href="/register">Don’t have an account?</a>
+                <a href="/register">Vous n'avez pas de compte ?</a>
             </div>
         </div>
     </div>
