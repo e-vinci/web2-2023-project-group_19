@@ -331,19 +331,18 @@ h5, .btn-primary{
 }
 
 /* LOGIN PAGE CSS */
+
 .container-register,
 .container-login {
     display: flex;
     justify-content: center;
-    align-items: center;
-    height: 100vh;
+    height: 100%;
     margin: 0;
 }
 
 .left-container {
     background: linear-gradient(90deg, #cdffd8, #94b9ff);
     padding: 65px 10px;
-    height: 50%;
     width: 25%;
     display: flex;
     flex-direction: column;
@@ -352,16 +351,15 @@ h5, .btn-primary{
 }
 
 .left-container img {
-    width: 120px;
-    height: auto; /* Automatically adjust the height to maintain aspect ratio */
-    max-width: 100%; /* Make the image responsive */
+    width: 25%;
+    height: auto;
+    max-width: 100%;
 }
 
 .container-login .right-container,
 .container-register .right-container {
     background-color: #d9d9d9;
     padding: 20px;
-    height: 50%;
     width: 25%;
     display: flex;
     flex-direction: column;
@@ -422,7 +420,7 @@ h5, .btn-primary{
     font-weight: 700;
     line-height: 18px;
     margin-top: 10px;
-    align-self: center; /* Center the button horizontally */
+    align-self: center;
 }
 
 .form-group #submitBtn:hover {
@@ -470,8 +468,8 @@ h5, .btn-primary{
     }
 
     .form-group #submitBtn {
-        height: 20px;
-        font-size: 4vw;
+        height: 38px;
+        font-size: 3vw;
         line-height: 5vw;
     }
 }
