@@ -7,6 +7,7 @@ async function getOneQuizzContent(quizzId) {
 
     quizz = await response.json();
   } catch (err) {
+    // eslint-disable-next-line no-console
     console.error('HomePage::error: ', err);
   }
 
@@ -22,6 +23,7 @@ async function getAllQuizzes(category) {
 
     quizzes = await response.json();
   } catch (err) {
+    // eslint-disable-next-line no-console
     console.error('HomePage::error: ', err);
   }
 

@@ -21,7 +21,7 @@ const resultQuizz = ( category = "Histoire", difficulty = "Moyenne", pointsTotau
 
   } else {
 
-    textContent = 'Dommage, vous n\'avez réussi pas le quizz..';
+    textContent = 'Dommage, vous n\'avez pas réussi le quizz..';
     textClassName = 'text-danger';
 
   }
@@ -47,7 +47,7 @@ function renderResults( category, difficulty, pointsTotauxRapportes, percentageQ
     main.innerHTML = `
         <div class="container">
                 <div id="resultQuizz-fireworks"></div>
-                <div class="glass-container" id="resultQuizz-glass-container">
+                <div id="resultQuizz-glass-container">
                     <div class="main">
                         <h1> Résultat du Quizz </h1>
 
