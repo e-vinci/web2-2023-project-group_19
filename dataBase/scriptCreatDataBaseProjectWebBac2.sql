@@ -1748,7 +1748,7 @@ insert into QUIZZLER.quizzes(difficultee, categorie, points_rapportes) VALUES (1
 -- question 1 quizz 19:
 insert into QUIZZLER.questions(quizz, numero, intitule) VALUES (19,1,'Quel est le symbole chimique de l eau ?');
 -- question 2 quizz 19:
-insert into QUIZZLER.questions(quizz, numero, intitule) VALUES (19,2,'uelle est la planète la plus proche du soleil ?');
+insert into QUIZZLER.questions(quizz, numero, intitule) VALUES (19,2,'Quelle est la planète la plus proche du soleil ?');
 -- question 3 quizz 19:
 insert into QUIZZLER.questions(quizz, numero, intitule) VALUES (19,3,'Quel est l organe principal du système respiratoire humain ?');
 -- question 4 quizz 19:
@@ -1805,7 +1805,7 @@ insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('La for
 --proposition 1 question 6
 insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('C6H12O6',true,186);
 --proposition 2 question 6
-insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES (' CO2',false,186);
+insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('CO2',false,186);
 --proposition 3 question 6
 insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('NaCl',false,186);
 -- proposition question 7
