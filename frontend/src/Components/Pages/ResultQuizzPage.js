@@ -21,7 +21,7 @@ const resultQuizz = ( category = "Histoire", difficulty = "Moyenne", pointsTotau
 
   } else {
 
-    textContent = 'Dommage, vous n\'avez réussi pas le quizz..';
+    textContent = 'Dommage, vous n\'avez pas réussi le quizz..';
     textClassName = 'text-danger';
 
   }
