@@ -43,7 +43,9 @@ async function QuestionnairePage () {
 
         const randomQuestionsOrderArray = randomQuestionsOrder(quizz);
         const difficultyName = chooseDifficultyName( quizz.difficultee );
-        initializeSessionData( quizzId, randomQuestionsOrderArray, categoryName, difficultyName );
+        const pointsRapportes = quizz.points_rapportes;
+        const numberOfQuestions = randomQuestionsOrderArray.length;
+        initializeSessionData( quizzId, randomQuestionsOrderArray, categoryName, difficultyName, pointsRapportes, numberOfQuestions );
 
     };
 
@@ -113,7 +115,7 @@ function renderQuestionnaire (questions, indexQuestion, categoryName) {
                     ${intituleQuestion}
                 </span>
                 <div class="card-body propositions">
-                    ${propositionsQuestion.map( proposition => `<a class="btn btn-primary-question" data-is-selected="false">${proposition.intitule}</a>` ).join("")}
+                    ${propositionsQuestion.map( proposition => `<a class="btn proposition-element" data-is-selected="false">${proposition.intitule}</a>` ).join("")}
                 </div>
                 <div id="endQuizzButtonWrapper"></div>
                 <div id="nextQuestionButtonWrapper"></div>
@@ -218,7 +220,7 @@ function onNextQuestionButton() {
 
         QuestionnairePage();
 
-    }, 1250);
+    }, 900);
 
     return true;
 
@@ -226,7 +228,7 @@ function onNextQuestionButton() {
 
 function getPropositionSelected() {
 
-    const propositionsElements = document.querySelectorAll('.btn-primary-question');
+    const propositionsElements = document.querySelectorAll('.proposition-element');
 
     let propositionSelected = null;
 
@@ -248,7 +250,7 @@ function getPropositionSelected() {
 
 function checkSelectedProposition ( propositionSelected ) {
 
-    const propositionsElements = document.querySelectorAll('.btn-primary-question');
+    const propositionsElements = document.querySelectorAll('.proposition-element');
 
     propositionsElements.forEach( propositionElement => {
 
@@ -267,7 +269,7 @@ function checkSelectedProposition ( propositionSelected ) {
 
 function checkIsReponsePropositions ( propositions ) {
 
-    const propositionsElements = document.querySelectorAll('.btn-primary-question');
+    const propositionsElements = document.querySelectorAll('.proposition-element');
 
     propositionsElements.forEach( propositionElement => {
 
@@ -307,10 +309,19 @@ function addEndQuizzButtonListener() {
 
     button.addEventListener('click', () => {
 
+        // Enregistrer participation
+
         const category = sessionStorage.getItem('category');
         const difficulty = sessionStorage.getItem('difficulty');
+        const pointsRapportes = Number( sessionStorage.getItem('pointsRapportes') );
+        const countRightAnswers = Number( sessionStorage.getItem('countRightAnswers') );
+        const numberOfQuestions = Number( sessionStorage.getItem('numberOfQuestions') );
 
-        ResultQuizzPage( category, difficulty );
+        const pointsTotauxRapportes = pointsRapportes * countRightAnswers;
+
+        const percentageQuestionsSucceeded = (countRightAnswers / numberOfQuestions) * 100;
+
+        ResultQuizzPage( category, difficulty, pointsTotauxRapportes, percentageQuestionsSucceeded );
 
         button.style.border = '10px solid red';
 
@@ -322,7 +333,7 @@ function addEndQuizzButtonListener() {
 
 function removePropositionsListeners() {
 
-    const propositions = document.querySelectorAll('.btn-primary-question');
+    const propositions = document.querySelectorAll('.proposition-element');
 
     propositions.forEach( proposition => {
 
@@ -334,7 +345,7 @@ function removePropositionsListeners() {
 
 function addPropositionsListeners () {
 
-    const propositions = document.querySelectorAll('.btn-primary-question');
+    const propositions = document.querySelectorAll('.proposition-element');
 
     propositions.forEach( proposition => {
 
@@ -346,7 +357,7 @@ function addPropositionsListeners () {
 
 function onPropositionClick(event) {
 
-    const propositions = document.querySelectorAll('.btn-primary-question');
+    const propositions = document.querySelectorAll('.proposition-element');
 
     for ( let i=0; i<propositions.length; i+=1 ) {
 
@@ -371,7 +382,7 @@ function onPropositionClick(event) {
 
 };
 
-function initializeSessionData ( currentQuizzId, quizzQuestions, quizzCategory, quizzDifficulty ) {
+function initializeSessionData ( currentQuizzId, quizzQuestions, quizzCategory, quizzDifficulty, pointsRapportes, numberOfQuestions ) {
 
     sessionStorage.setItem('quizzId', currentQuizzId );
 
@@ -384,6 +395,10 @@ function initializeSessionData ( currentQuizzId, quizzQuestions, quizzCategory, 
     sessionStorage.setItem('currentIndexQuestion', 0 );
 
     sessionStorage.setItem('countRightAnswers', 0 );
+
+    sessionStorage.setItem('pointsRapportes', pointsRapportes );
+
+    sessionStorage.setItem('numberOfQuestions', numberOfQuestions );
 
 };
 
