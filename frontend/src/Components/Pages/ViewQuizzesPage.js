@@ -80,6 +80,8 @@ function generateQuizzesButtons ( quizzesArray, quizzDataImages, quizzCategoryNa
 
     main.innerHTML += categoryTitle;
 
+    let quizzNumber = 1;
+
     quizzesArray.map( (quizzesDifficulty) => {
 
         const difficultyLevel = quizzesDifficulty.difficulty;
@@ -94,15 +96,15 @@ function generateQuizzesButtons ( quizzesArray, quizzDataImages, quizzCategoryNa
 
         for ( let i=0; i<quizzesDifficulty.quizzes.length; i+=1 ) {
 
-            console.log(JSON.stringify(quizzesDifficulty.quizzes))
-
             const quizzId = quizzesDifficulty.quizzes[i].id_quizz;
 
             const buttonSrc = `${quizzUri}?quizzId=${quizzId}`;
 
             const indexDifficultyImg = difficultyLevel - 1;
 
-            const image = createCard(quizzDataImages[indexDifficultyImg], buttonSrc, difficultyColor, difficultyName );
+            const image = createCard(quizzDataImages[indexDifficultyImg], buttonSrc, difficultyColor, quizzNumber );
+
+            quizzNumber += 1;
 
             box.innerHTML += image;
 
@@ -126,17 +128,35 @@ function createBox () {
 
 };
 
-function createCard (quizzImage, buttonSrc, difficultyColor, title) {
+function createCard (quizzImage, buttonSrc, difficultyColor, quizzNumber) {
+
+    const countMaxAttemps = 3;
+
+    let text;
+    const number = 5;
+
+    const countAttemps = 1;
+    const countPoints = 20;
+
+    if ( number === 4 ) {
+
+        text = `Quizz non effectué`;
+
+    } else {
+
+        text = `Effectué ${countAttemps}/${countMaxAttemps} fois<br>${countPoints} points gagnés`;
+
+    }
 
     return `
-        <div class="card viewQuizzes-cards" style="width: 80%; margin : auto;">
-            <a class="viewQuizzes-button" href="${buttonSrc}">
-                <img class="card-img-top" src="${quizzImage}" alt="Card image cap">
-            </a>
-            <div class="card-body-viewQuizz">
-                <h5 class="card-title viewQuizzes-title-${difficultyColor}">${title}</h5>
-                <p class="card-text-viewQuizz">Quizz non effectué</p>
-            </div>
+    <div class="card viewQuizzes-cards" style="width:80%;margin:auto;">
+        <a class="viewQuizzes-button" href="${buttonSrc}">
+            <img class="card-img-top" src="${quizzImage}" alt="Card image cap">
+        </a>
+        <div class="card-body-viewQuizz">
+            <h3 class="card-title viewQuizzes-title-${difficultyColor}">Quizz n°${quizzNumber}</h5>
+            <p class="card-text-viewQuizz">${text}</p>
+        </div>
     </div>`;
 }
 
