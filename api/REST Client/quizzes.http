@@ -58,3 +58,34 @@ Content-Type: application/json
     ],
     "questionId":278
 }
+
+### Create a participation to a quizz for a user
+
+POST {{baseUrl}}/quizzes/createParticipation
+Content-Type: application/json
+
+{
+    "userId": 1,
+    "quizzId":1,
+    "countQuestionsSucceeded":6
+}
+
+### Get a participation from quizz and user
+
+POST {{baseUrl}}/quizzes/getParticipation
+Content-Type: application/json
+
+{
+    "userId": 1,
+    "quizzId":1
+}
+
+### Update a participation from quizz and user
+
+POST {{baseUrl}}/quizzes/updateParticipation
+Content-Type: application/json
+
+{
+    "participationId": 3,
+    "countQuestionsSucceeded":8
+}

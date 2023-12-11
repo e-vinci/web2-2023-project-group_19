@@ -10,6 +10,9 @@ const {
   createQuizz,
   createQuestion,
   createPropositions,
+  createParticipation,
+  getParticipation,
+  updateParticipation,
 } = require('../models/quizzes');
 
 /* GET users listing. */
@@ -53,6 +56,31 @@ router.post('/createPropositions', async (req, res) => {
   const questionId = req?.body?.questionId;
   const createdProposition = await createPropositions(propositions, questionId);
   res.json(createdProposition);
+});
+
+router.post('/createParticipation', async (req, res) => {
+  const userId = req?.body?.userId;
+  const quizzId = req?.body?.quizzId;
+  const countQuestionsSucceeded = req?.body?.countQuestionsSucceeded;
+  const createdParticipation = await createParticipation(quizzId, userId, countQuestionsSucceeded);
+  res.json(createdParticipation);
+});
+
+router.post('/getParticipation', async (req, res) => {
+  const userId = req?.body?.userId;
+  const quizzId = req?.body?.quizzId;
+  const participation = await getParticipation(quizzId, userId);
+  res.json(participation);
+});
+
+router.post('/updateParticipation', async (req, res) => {
+  const participationId = req?.body?.participationId;
+  const countQuestionsSucceeded = req?.body?.countQuestionsSucceeded;
+  const updatedParticipation = await updateParticipation(
+    participationId,
+    countQuestionsSucceeded,
+  );
+  res.json(updatedParticipation);
 });
 
 router.get('/:id', async (req, res) => {

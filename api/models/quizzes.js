@@ -132,11 +132,48 @@ async function createProposition(propositions, question) {
     const propositionId = await client.query(requestString);
     propositionsId.propositionsId.push(propositionId.rows[0].id_proposition);
   }
+  return propositionsId.rows[0];
+}
 
-  for (let i = 0; i < propositionsId.length; i += 1) {
-    console.log(`propositionId : ${propositionsId[i]}`);
-  }
-  return propositionsId;
+async function createParticipation(quizzId, userId, countQuestionsSucceeded) {
+  const defaultAttemptsCount = 1;
+
+  const requestString = `
+  insert into QUIZZLER.participations(quizz, utilisateur, nbr_tentatives, nbr_questions_reussies)
+  VALUES ( ${quizzId}, ${userId}, ${defaultAttemptsCount}, ${countQuestionsSucceeded} )
+  RETURNING id_participation;
+  `;
+
+  const participationId = await client.query(requestString);
+
+  return participationId.rows[0];
+}
+
+async function getParticipation(quizzId, userId) {
+  const requestString = `
+  SELECT id_participation, nbr_tentatives, nbr_questions_reussies
+  FROM QUIZZLER.participations
+  WHERE quizz = ${quizzId}
+    AND utilisateur = ${userId}
+  `;
+
+  const participation = await client.query(requestString);
+
+  return participation.rows[0];
+}
+
+async function updateParticipation(participationId, countQuestionsSucceeded) {
+  const requestString = `
+    UPDATE QUIZZLER.participations
+    SET nbr_tentatives = nbr_tentatives + 1,
+    nbr_questions_reussies = ${countQuestionsSucceeded}
+    WHERE id_participation = ${participationId}
+    RETURNING nbr_tentatives, nbr_questions_reussies;
+  `;
+
+  const participation = await client.query(requestString);
+
+  return participation.rows[0];
 }
 
 module.exports = {
@@ -147,4 +184,7 @@ module.exports = {
   createQuizz,
   createQuestion,
   createProposition,
+  createParticipation,
+  getParticipation,
+  updateParticipation,
 };
