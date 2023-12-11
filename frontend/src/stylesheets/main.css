@@ -576,23 +576,36 @@ h5, .btn-primary{
 }
 /*  css pour la page avec les questions  */
 
-.div-counter-questions-pageQuestion, .div-count-right-answers-pageQuestion {
-    padding-top: 15px;
-    margin-top: 3%;
-    margin-left: 37.5%;
-    width: 25%;
-    height: 50px;
+.counterQuestionsWrapper,
+.countRightAnswersWrapper {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Ajout de cette propriété */
+}
+
+.div-counter-questions-pageQuestion,
+.div-count-right-answers-pageQuestion {
+    height: 40px;
     background-color: #fff;
     border-radius: 10px;
-    border:none;
+    border: none;
     font-size: 16px;
     text-align: center;
     color: #2d2f31;
     font-family: 'Tilt Warp', sans-serif;
+    padding: 10px;
+}
+
+.div-counter-questions-pageQuestion {
+    margin-left: auto;
+}
+
+.div-count-right-answers-pageQuestion {
+    margin-right: auto;
 }
 
 .glass-container-pageQuestion {
-    display: block;
     max-width: 60vw;
     margin: auto;
     padding: 40px;
@@ -606,7 +619,6 @@ h5, .btn-primary{
     margin-top: 15px;
     margin-bottom: 15px;
 }
-
 
 .card-img-top-pageQuestion{
     display: flex;
@@ -635,20 +647,20 @@ h5, .btn-primary{
     box-sizing: border-box;
 }
 
-.card-title-pageQuestion{
-  color: #2d2f31;
-  font-size: 24px;
-  font-family: 'Tilt Warp', sans-serif;
-  font-weight: bold;
-  letter-spacing: 1px;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 1.5px);
-  background-color: #FAF9F6;
-  width: 28%;
-  margin: auto;
-  border-radius: 10px;
+.card-title-pageQuestion {
+    color: #2d2f31;
+    font-size: 24px;
+    font-family: 'Tilt Warp', sans-serif;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 1.5px);
+    background-color: #FAF9F6;
+    border-radius: 10px;
+    text-align: center;
+    padding: 10px;
 }
 
-.card-title-question{
+.card-title-question {
     justify-content: center;
     display: flex;
     align-items: center;
@@ -660,38 +672,77 @@ h5, .btn-primary{
     margin-bottom: 1%;
     color: #333;
     background-color: #FAF9F6;
-
 }
 
-.btn-primary-question-final {
-    display: inline-block;
-    margin: auto;
-    width: 200px;
+.card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Ajout de cette propriété */
+    margin-bottom: 10px;
+}
+
+.Next-question-pageQuestion {
+    width: 25%;
     height: 50px;
-    background-color: #3498db;
-    color: #fff;
-    border: 1px solid #2980b9;
-    border-radius: 5px;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-.Next-question-pageQuestion{
     margin-top: 3%;
     margin-left: 37.5%;
-    width: 25%;
-    z-index: 2;
-    height: 50px;
+    border: none;
+    outline: none;
+    color: black;
     background-color: #fff;
-    color: #ffffff;
-    border-radius: 5px;
+    cursor: pointer;
+    position: relative;
+    border-radius: 10px;
     border:none;
     font-size: 16px;
     font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.3s, color 0.3s;
-    color: black;
+}
+
+.Next-question-pageQuestion:before {
+    content: '';
+    background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+    position: absolute;
+    top: -2px;
+    left:-2px;
+    background-size: 400%;
+    z-index: -1;
+    filter: blur(5px);
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    animation: glowing 20s linear infinite;
+    opacity: 0;
+    transition: opacity .3s ease-in-out;
+    border-radius: 10px;
+}
+
+.Next-question-pageQuestion:active {
+    color: #000
+}
+
+.Next-question-pageQuestion:active:after {
+    background: transparent;
+}
+
+.Next-question-pageQuestion:hover:before {
+    opacity: 1;
+}
+
+.Next-question-pageQuestion:after {
+    z-index: -1;
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #111;
+    left: 0;
+    top: 0;
+    border-radius: 10px;
+}
+
+@keyframes glowing {
+    0% { background-position: 0 0; }
+    50% { background-position: 400% 0; }
+    100% { background-position: 0 0; }
 }
 
 /* CSS PAGE VIEWQUIZZES */

@@ -109,7 +109,11 @@ function renderQuestionnaire (questions, indexQuestion, categoryName) {
     main.innerHTML = `
         <div class="glass-container-pageQuestion">
             <div class="card-pageQuestion">
+            <div class="card-header">
+                <div id="counterQuestionsWrapper"></div>
                 <h5 class="card-title-pageQuestion"> ${categoryName} </h5>
+                <div id="countRightAnswersWrapper"></div>
+            </div>
                 <img src="${imageLogo}" class="card-img-top-pageQuestion" alt="...">
                 <span class = "card-title-question">
                     ${intituleQuestion}
@@ -119,8 +123,6 @@ function renderQuestionnaire (questions, indexQuestion, categoryName) {
                 </div>
                 <div id="endQuizzButtonWrapper"></div>
                 <div id="nextQuestionButtonWrapper"></div>
-                <div id="counterQuestionsWrapper"></div>
-                <div id="countRightAnswersWrapper"></div>
             </div>
         </div>
     `;
