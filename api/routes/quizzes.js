@@ -74,10 +74,12 @@ router.post('/getParticipation', async (req, res) => {
 });
 
 router.post('/updateParticipation', async (req, res) => {
-  const participationId = req?.body?.participationId;
+  const userId = req?.body?.userId;
+  const quizzId = req?.body?.quizzId;
   const countQuestionsSucceeded = req?.body?.countQuestionsSucceeded;
   const updatedParticipation = await updateParticipation(
-    participationId,
+    userId,
+    quizzId,
     countQuestionsSucceeded,
   );
   res.json(updatedParticipation);

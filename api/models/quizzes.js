@@ -162,12 +162,13 @@ async function getParticipation(quizzId, userId) {
   return participation.rows[0];
 }
 
-async function updateParticipation(participationId, countQuestionsSucceeded) {
+async function updateParticipation(userId, quizzId, countQuestionsSucceeded) {
   const requestString = `
     UPDATE QUIZZLER.participations
     SET nbr_tentatives = nbr_tentatives + 1,
     nbr_questions_reussies = ${countQuestionsSucceeded}
-    WHERE id_participation = ${participationId}
+    WHERE quizz = ${quizzId}
+      AND utilisateur = ${userId}
     RETURNING nbr_tentatives, nbr_questions_reussies;
   `;
 

@@ -86,6 +86,7 @@ POST {{baseUrl}}/quizzes/updateParticipation
 Content-Type: application/json
 
 {
-    "participationId": 3,
-    "countQuestionsSucceeded":8
+    "userId": 1,
+    "quizzId":1,
+    "countQuestionsSucceeded":10
 }
