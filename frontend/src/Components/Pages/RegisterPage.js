@@ -82,11 +82,7 @@ const RegisterPage = () => {
             'Content-Type': 'application/json',
         },
     }
-
-
-
-   
-  
+    
     console.log(options.body);
     const response = await fetch('/api/auths/register', options);
     console.log(response.status);
