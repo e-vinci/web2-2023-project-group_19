@@ -179,34 +179,10 @@ function addNextQuestionButton() {
 
 function onNextQuestionButton() {
 
-    const questions = JSON.parse( sessionStorage.getItem('questions') );
     const sessionCurrentIndex = Number( sessionStorage.getItem('currentIndexQuestion') );
 
-    const {propositions} = questions[sessionCurrentIndex];
-
-    let propositionSelected = getPropositionSelected();
-
-    if ( propositionSelected === null ) {
-        
-        return false;
-
-    };
-
-    removePropositionsListeners();
-
-    checkIsReponsePropositions( propositions );
-
-    propositionSelected = checkSelectedProposition( propositionSelected );
-
-    console.log( JSON.stringify( propositionSelected ) );
-
-    if ( propositionSelected.isreponse ) {
-
-        const countRightAnswers = Number( sessionStorage.getItem('countRightAnswers') );
-
-        sessionStorage.setItem('countRightAnswers', countRightAnswers+1);
-
-    };
+    console.log( `sessionCurrentIndex ${sessionCurrentIndex}` );
+    checkAnswer( sessionCurrentIndex);
 
     const buttonNextQuestion = document.querySelector('#nextQuestionButton');
 
@@ -222,9 +198,33 @@ function onNextQuestionButton() {
 
     }, 900);
 
-    return true;
-
 };
+
+function checkAnswer( sessionCurrentIndex ) {
+
+    const questions = JSON.parse( sessionStorage.getItem('questions') );
+
+    const {propositions} = questions[sessionCurrentIndex];
+
+    removePropositionsListeners();
+
+    checkIsReponsePropositions( propositions );
+
+    let propositionSelected = getPropositionSelected();
+
+    propositionSelected = checkSelectedProposition( propositionSelected );
+
+    console.log( JSON.stringify( propositionSelected ) );
+
+    if ( propositionSelected.isreponse ) {
+
+        const countRightAnswers = Number( sessionStorage.getItem('countRightAnswers') );
+
+        sessionStorage.setItem('countRightAnswers', countRightAnswers+1);
+
+    };
+
+}
 
 function getPropositionSelected() {
 
@@ -311,6 +311,10 @@ function addEndQuizzButtonListener() {
 
         // Enregistrer participation
 
+        const sessionCurrentIndex = Number( sessionStorage.getItem('currentIndexQuestion') );
+
+        checkAnswer( sessionCurrentIndex );
+
         const category = sessionStorage.getItem('category');
         const difficulty = sessionStorage.getItem('difficulty');
         const pointsRapportes = Number( sessionStorage.getItem('pointsRapportes') );
@@ -378,7 +382,7 @@ function onPropositionClick(event) {
 
         addEndQuizzButtonListener();
 
-    }
+    };
 
 };
 

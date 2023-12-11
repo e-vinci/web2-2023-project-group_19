@@ -1,7 +1,7 @@
  import { PerspectiveCamera, Scene, WebGLRenderer, Points, PointsMaterial, BufferGeometry, Float32BufferAttribute, MathUtils, TextureLoader, Group, Clock} from "three";
  // import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls' // import de l'objet
 
-import circle from '../../img/PYlN8.png'
+import circle from '../../img/circle.png'
 
 import {getAllQuizzesCategoriesData} from "../../utils/quizzesData";
 
