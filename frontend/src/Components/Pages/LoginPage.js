@@ -22,7 +22,7 @@ const LoginPage = () => {
                 <form id="loginForm">
                     <div class="form-group">
                         <label for="username">Username</label>
-                        <input type="text"  name="userName" id="username">
+                        <input type="text"  name="username" id="username">
                     </div>
                     <div class="form-group">
                         <label for="password">Password</label>
@@ -45,8 +45,8 @@ const LoginPage = () => {
   async function onLogin(e) {
     e.preventDefault();
   
-    const username = document.querySelector('.username').value;
-    const password = document.querySelector('.password').value;
+    const username = document.querySelector('#username').value;
+    const password = document.querySelector('#password').value;
   
     const options = {
       method: 'POST',

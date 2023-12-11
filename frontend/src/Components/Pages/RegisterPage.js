@@ -36,8 +36,8 @@ const RegisterPage = () => {
                         <input type="password" name="password" id="registerPassword">
                     </div>
                     <div class="form-group">
-                        <label for="password">Confirm password</label>
-                        <input type="password" name="password" id="registerConfPassword">
+                        <label for="confirmPassword">Confirm passwor</label>
+                        <input type="password" name="confpassword" id="registerConfPassword">
                     </div>
                     <div class="form-group">
                         <p>
@@ -64,22 +64,28 @@ const RegisterPage = () => {
     e.preventDefault();
   
     const email = document.querySelector('#registerEmail').value;
-    const registerPassword = document.querySelector('#registerPassword').value;
-    const registerConfPassword = document.querySelector('#registerConfPassword').value;
+    const password = document.querySelector('#registerPassword').value;
+    const confPassword = document.querySelector('#registerConfPassword').value;
     const username = document.querySelector('#registerUsername').value;
-  
+
+    if (password !== confPassword) {
+        throw new Error ("Passwords do not match");
+    }
     const options = {
-      method: 'POST',
-      body: JSON.stringify({
-        email,
-        username,
-        registerPassword,
-        registerConfPassword
-      }),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    };
+        method: 'POST',
+        body: JSON.stringify({
+            email,
+            username,
+            password
+        }),
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    }
+
+
+
+   
   
     console.log(options.body);
     const response = await fetch('/api/auths/register', options);
@@ -87,8 +93,8 @@ const RegisterPage = () => {
     const authenticatedUser = await response.json();
   
     try{
+
         if (!response.ok) throw new Error(`fetch error : ${response.status} : ${response.statusText}`);
-  
         
         console.log('Newly registered & authenticated user : ', authenticatedUser);
       
@@ -100,6 +106,6 @@ const RegisterPage = () => {
     }catch(error){
         alert(authenticatedUser);
     } 
-  }
-  
+}
+
   export default RegisterPage;

@@ -1,14 +1,23 @@
 // eslint-disable-next-line no-unused-vars
 import logoQuizzLer from '../../img/logo-site.png';
-/**
- * Render the Navbar which is styled by using Bootstrap
- * Each item in the Navbar is tightly coupled with the Router configuration :
- * - the URI associated to a page shall be given in the attribute "data-uri" of the Navbar
- * - the router will show the Page associated to this URI when the user click on a nav-link
- */
+import { isAuthenticated } from '../../utils/auths';
 
 const Navbar = () => {
   const navbarWrapper = document.querySelector('#navbarWrapper');
+
+  const renderAuthLinks = () => {
+    if (isAuthenticated()) {
+      // Si l'utilisateur est authentifié, affiche "Logout"
+      return '<li class="nav-item"><a class="nav-link" href="#" data-uri="/logout">Logout</a></li>';
+    } 
+      // Si l'utilisateur n'est pas authentifié, affiche "Login" et "Register"
+      return `
+        <li class="nav-item"><a class="nav-link" href="#" data-uri="/login">Login</a></li>
+        <li class="nav-item"><a class="nav-link" href="#" data-uri="/register">Register</a></li>
+      `;
+    
+  };
+
   const navbar = `
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container-fluid">
@@ -28,7 +37,7 @@ const Navbar = () => {
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
+            <li class="nav-item">
               <a class="nav-link" href="#" data-uri="/resultQuizz">(ResultQuizz)</a>
             </li>
             <li class="nav-item">
@@ -40,19 +49,15 @@ const Navbar = () => {
             <li class="nav-item">
               <a class="nav-link" href="#" data-uri="/aboutUs">About</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#" data-uri="/login">Login</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#" data-uri="/register">Register</a>
-            </li>
+            
+            ${renderAuthLinks()}
           </ul>
         </div>
       </div>
     </nav>
   `;
+
   navbarWrapper.innerHTML = navbar;
 };
 
 export default Navbar;
-

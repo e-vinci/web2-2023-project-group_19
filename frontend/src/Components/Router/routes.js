@@ -14,6 +14,7 @@ const routes = {
   '/aboutUs': AboutUsPage,
   '/login': LoginPage,
   '/register' : RegisterPage,
+  // '/logout' : LogoutPage,
   '/creationQuizz' : CreationQuizzPage,
   '/leaderboard' : LeaderboardPage,
   '/confidentiality' : ConfidentialityPage,
