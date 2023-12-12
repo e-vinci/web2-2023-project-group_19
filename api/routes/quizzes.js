@@ -18,78 +18,79 @@ const {
 /* GET users listing. */
 router.get('/', async (req, res) => {
   const category = req?.query?.categorie;
+  if (!category) return res.sendStatus(400);
   const QUIZZES = await readAllQuizzes(category);
-  res.json(QUIZZES);
+  return res.json(QUIZZES);
 });
 
 router.get('/getLastQuizzId', async (req, res) => {
-  console.log('getLastQuizzId');
   const lastQuizzId = await getLastQuizzId();
   const response = lastQuizzId;
-  res.json(response);
+  return res.json(response);
 });
 
 router.get('/getLastQuestionId', async (req, res) => {
-  console.log('getLastQuestionId');
   const lastQuizzId = await getLastQuestionId();
   const response = lastQuizzId;
-  res.json(response);
+  return res.json(response);
 });
 
 router.post('/createQuizz', async (req, res) => {
   const difficultee = req?.body?.difficultee;
   const categorie = req?.body?.categorie;
+  if (!difficultee || !categorie) return res.sendStatus(400);
   const createdQuizz = await createQuizz(difficultee, categorie);
-  res.json(createdQuizz);
+  return res.json(createdQuizz);
 });
 
 router.post('/createQuestion', async (req, res) => {
   const quizzId = req?.body?.quizzId;
   const questionNumero = req?.body?.questionNumero;
   const questionIntitule = req?.body?.questionIntitule;
+  if (!quizzId || !questionNumero || !questionIntitule) return res.sendStatus(400);
   const createdQuestion = await createQuestion(quizzId, questionNumero, questionIntitule);
-  res.json(createdQuestion);
+  return res.json(createdQuestion);
 });
 
 router.post('/createPropositions', async (req, res) => {
   const propositions = req?.body?.propositions;
   const questionId = req?.body?.questionId;
+  if (!propositions || !questionId) return res.sendStatus(400);
   const createdProposition = await createPropositions(propositions, questionId);
-  res.json(createdProposition);
+  return res.json(createdProposition);
 });
 
 router.post('/createParticipation', async (req, res) => {
   const userId = req?.body?.userId;
   const quizzId = req?.body?.quizzId;
   const countQuestionsSucceeded = req?.body?.countQuestionsSucceeded;
+  if (!userId || !quizzId || !countQuestionsSucceeded) return res.sendStatus(400);
   const createdParticipation = await createParticipation(quizzId, userId, countQuestionsSucceeded);
-  res.json(createdParticipation);
+  return res.json(createdParticipation);
 });
 
 router.post('/getParticipation', async (req, res) => {
   const userId = req?.body?.userId;
   const quizzId = req?.body?.quizzId;
+  if (!userId || !quizzId) return res.sendStatus(400);
   const participation = await getParticipation(quizzId, userId);
-  res.json(participation);
+  return res.json(participation);
 });
 
 router.post('/updateParticipation', async (req, res) => {
   const userId = req?.body?.userId;
   const quizzId = req?.body?.quizzId;
   const countQuestionsSucceeded = req?.body?.countQuestionsSucceeded;
-  const updatedParticipation = await updateParticipation(
-    userId,
-    quizzId,
-    countQuestionsSucceeded,
-  );
-  res.json(updatedParticipation);
+  if (!userId || !quizzId || !countQuestionsSucceeded) return res.sendStatus(400);
+  const updatedParticipation = await updateParticipation(userId, quizzId, countQuestionsSucceeded);
+  return res.json(updatedParticipation);
 });
 
 router.get('/:id', async (req, res) => {
-  console.log('id');
-  const quizzId = Number(req.params.id);
-  const QUIZZ = await readOneQuizzContent(quizzId);
-  res.json(QUIZZ);
+  const quizzId = req?.params?.id;
+  if (!quizzId) return res.sendStatus(400);
+  const QUIZZ = await readOneQuizzContent(Number(quizzId));
+  return res.json(QUIZZ);
 });
 
 module.exports = router;
