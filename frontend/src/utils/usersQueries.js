@@ -31,7 +31,36 @@ async function getUserFromUsername( username ) {
   return userFound;
 }
 
+async function updateUserPoints( userId, points ) {
+
+  const options = {
+    method: 'POST',
+    body: JSON.stringify({
+    userId,
+    points,
+    }),
+    headers: {
+    'Content-Type': 'application/json',
+    },
+};
+
+  let updateCountPoints;
+  try {
+      const response = await fetch(`/api/users/updateUserPoints`, options);
+
+      if (!response.ok) throw new Error(`fetch error : ${response.status} : ${response.statusText}`);
+
+      updateCountPoints = await response.json();
+  } catch (err) {
+      // eslint-disable-next-line no-console
+      console.error('updateParticipation::error: ', err);
+  }
+
+  return updateCountPoints;
+}
+
 module.exports = {
   getLeaderboard,
   getUserFromUsername,
+  updateUserPoints,
 }; 

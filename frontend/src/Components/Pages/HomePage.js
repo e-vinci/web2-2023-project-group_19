@@ -171,14 +171,11 @@ function generateCards() {
 
     const categoryButton = box.querySelector(`#${category.id}`);
 
-    console.log(`categoryButton id : ${JSON.stringify(categoryButton.id)}`)
-
     categoryButton.addEventListener('click', (e) => {
 
       e.preventDefault();
 
       Navigate(category.link);
-      console.log(`click ${category.id}`);
 
     });
 
