@@ -85,11 +85,12 @@ async function createQuestion( quizzId, questionNumero, questionIntitule ) {
   return quizz;
 }
 
-async function createPropositions( propositions, questionId ) {
+async function createProposition( proposition, reponse ,questionId ) {
   const options = {
     method: 'POST',
     body: JSON.stringify({
-      propositions,
+      proposition,
+      reponse,
       questionId
     }),
     headers: {
@@ -111,10 +112,44 @@ async function createPropositions( propositions, questionId ) {
   return quizz;
 }
 
+async function getLastQuestionId() {
+  let lastQuestionId;
+  try {
+    const response = await fetch(`/api/quizzes/getLastQuestionId`);
+
+    if (!response.ok) throw new Error(`fetch error : ${response.status} : ${response.statusText}`);
+
+    lastQuestionId = await response.json();
+  } catch (err) {
+    // eslint-disable-next-line no-console
+    console.error('getLastQuestionId::error: ', err);
+  }
+
+  return lastQuestionId;
+}
+
+async function getLastQuizzId() {
+  let lastQuizzId;
+  try {
+    const response = await fetch(`/api/quizzes/getLastQuizzId`);
+
+    if (!response.ok) throw new Error(`fetch error : ${response.status} : ${response.statusText}`);
+
+    lastQuizzId = await response.json();
+  } catch (err) {
+    // eslint-disable-next-line no-console
+    console.error('getLastQuizzId::error: ', err);
+  }
+
+  return lastQuizzId;
+}
+
 module.exports = {
   getOneQuizzContent,
   getAllQuizzes,
   createQuizz,
   createQuestion,
-  createPropositions,
+  createProposition,
+  getLastQuestionId,
+  getLastQuizzId,
 }
