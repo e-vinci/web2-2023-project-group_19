@@ -12,10 +12,10 @@ const aboutUs = () => {
   <img src="${imageNico}" class="card-img-top" alt="...">
   <div class="card-body">
     <h5 class="card-title">Nicolas Venturini</h5>
-    <button id="showStory">Show a dialog</button>
+    <button id="showStory">about Nicolas</button>
         <dialog id="Story">
           <form method="dialog">
-            <p>Pudor in debeo sum nostro illum orationi fortius quidem fortius postulabat aetas fortius datam Neque robustioribus tuli patiebatur meum versari aliquis Atratino hunc accusationis accusationis erga dicendi et Vellem debeo enim Atratino dicendi tueri et accusationis patiebatur tuli parentemque istam tuus quidem et vobis accusationis accusationis moderatur beneficium in magis.
+            <p>Nicolas est le responsable de la base de donnée. Il a conceptualisé la base de donnée, la remplit et la déployer avec Simon.
             </p>
               <button id="confirmBtn">Close</button>
           </form>
@@ -26,7 +26,7 @@ const aboutUs = () => {
   <img src="${imageAlexis}" class="card-img-top" alt="...">
   <div class="card-body">
     <h5 class="card-title">Alexis Arnaud</h5>
-    <button id="showStory">Show a dialog</button>
+    <button id="showStory">About Alexis</button>
     <dialog id="Story">
       <form method="dialog">
         <p>Pudor in debeo sum nostro illum orationi fortius quidem fortius postulabat aetas fortius datam Neque robustioribus tuli patiebatur meum versari aliquis Atratino hunc accusationis accusationis erga dicendi et Vellem debeo enim Atratino dicendi tueri et accusationis patiebatur tuli parentemque istam tuus quidem et vobis accusationis accusationis moderatur beneficium in magis.
@@ -40,7 +40,7 @@ const aboutUs = () => {
   <img src="${imageKeyvan}" class="card-img-top" alt="...">
   <div class="card-body">
     <h5 class="card-title">Keyvan Nikazm</h5>
-    <button id="showStory">Show a dialog</button>
+    <button id="showStory">About Keyvan</button>
         <dialog id="Story">
           <form method="dialog">
             <p>Pudor in debeo sum nostro illum orationi fortius quidem fortius postulabat aetas fortius datam Neque robustioribus tuli patiebatur meum versari aliquis Atratino hunc accusationis accusationis erga dicendi et Vellem debeo enim Atratino dicendi tueri et accusationis patiebatur tuli parentemque istam tuus quidem et vobis accusationis accusationis moderatur beneficium in magis.</p>
@@ -53,7 +53,7 @@ const aboutUs = () => {
   <img src="${imageSimon}" class="card-img-top" alt="...">
   <div class="card-body">
     <h5 class="card-title">Simon Bosseler</h5>
-      <button id="showStory">Show a dialog</button>
+      <button id="showStory">About Simon</button>
         <dialog id="Story">
           <form method="dialog">
             <p>Pudor in debeo sum nostro illum orationi fortius quidem fortius postulabat aetas fortius datam Neque robustioribus tuli patiebatur meum versari aliquis Atratino hunc accusationis accusationis erga dicendi et Vellem debeo enim Atratino dicendi tueri et accusationis patiebatur tuli parentemque istam tuus quidem et vobis accusationis accusationis moderatur beneficium in magis.
@@ -68,7 +68,7 @@ const aboutUs = () => {
   <img src="${imageIsmet}" class="card-img-top" alt="...">
   <div class="card-body-AboutUs">
     <h5 class="card-title">Ismet Ismet</h5>
-    <button id="showStory">Show a dialog</button>
+    <button id="showStory">About Ismet</button>
     <dialog id="Story">
       <form method="dialog">
         <p>Pudor in debeo sum nostro illum orationi fortius quidem fortius postulabat aetas fortius datam Neque robustioribus tuli patiebatur meum versari aliquis Atratino hunc accusationis accusationis erga dicendi et Vellem debeo enim Atratino dicendi tueri et accusationis patiebatur tuli parentemque istam tuus quidem et vobis accusationis accusationis moderatur beneficium in magis.
