@@ -113,10 +113,10 @@ async function createQuestion(quizz, numero, intitule) {
   return result.rows[0];
 }
 
-async function createProposition(propositions, reponse, question) {
+async function createProposition(proposition, reponse, question) {
   const requestString = `
     insert into QUIZZLER.propositions(intitule, isreponse, question) 
-    VALUES ('${propositions}',${reponse},${question})
+    VALUES ('${proposition}',${reponse},${question})
     RETURNING propositions.id_proposition;
     `;
   const result = await client.query(requestString);

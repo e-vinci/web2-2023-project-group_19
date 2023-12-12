@@ -1,15 +1,21 @@
 /* eslint-disable no-param-reassign */
 import { createQuizz, createQuestion, createProposition, getLastQuestionId, getLastQuizzId } from '../../utils/quizzesQueries';
-
+import Navigate from '../Router/Navigate';
 import { isAdmin } from '../../utils/auths';
 
 const numberMaxSteps = 11;
 
-const creationQuizz = () => {
 
-  if (!isAdmin()) {
+const creationQuizz = () => {
+  let compteurQuestion = sessionStorage.getItem('compteurQuestion');
+  if (compteurQuestion === null) {
+    initializeSessionData();
+    compteurQuestion = sessionStorage.getItem('compteurQuestion');
+  }
+
+   if (!isAdmin()) {
     window.location.href = '/';
-  } 
+  }  
 
   let currentStepCreation = sessionStorage.getItem('currentStepCreation');
 
@@ -121,6 +127,10 @@ async function onAddQuestionQuizz(e) {
 
   if (currentStepCreation === 1) {
     const categorieQuizz = document.querySelector('#categorieQuizz').value;
+    if(categorieQuizz !== "histoire" || categorieQuizz !== "sciences"  || categorieQuizz !== "géographie"){
+      console.error('la catégorie n est pas correct !');
+     throw new Error('la categorie n est pas correct !');
+    }
     const difficultee = document.querySelector('#niveauDifQuizz').value;
 
 
@@ -134,37 +144,36 @@ async function onAddQuestionQuizz(e) {
     const proposition2 = document.querySelector('#proposition2').value;
     const proposition3 = document.querySelector('#proposition3').value;
     const reponseQuestion = document.querySelector('#reponseQuizz').value;
-
-    // insert proposition 1
-    if(reponseQuestion === proposition1){
-      const creatProposition1T = await createProposition(proposition1,true,getLastQuestionId());
-      console.log(`creatProposition : ${creatProposition1T}`);
-    }else{
-      const creatProposition1F = await createProposition(proposition1,getLastQuestionId());
-      console.log(`creatProposition : ${creatProposition1F}`);
+// add question
+  const compteurQuestion = Number (sessionStorage.getItem('compteurQuestion'));
+  const lastQuizzId = await getLastQuizzId();
+    console.log(JSON.stringify(lastQuizzId));
+    const createdQuestion = await createQuestion(lastQuizzId.lastquizzid,compteurQuestion,question);
+    console.log(`createdQuestion : ${createdQuestion}`);
+    sessionStorage.setItem('compteurQuestion',compteurQuestion+1);
+    if(compteurQuestion === 10){
+      sessionStorage.setItem('compteurQuestion',1);
     }
-
-     // insert proposition 2
-     if(reponseQuestion === proposition2){
-      const creatProposition1T = await createProposition(proposition2,true,getLastQuestionId());
-      console.log(`creatProposition : ${creatProposition1T}`);
-    }else{
-      const creatProposition1F = await createProposition(proposition2,getLastQuestionId());
-      console.log(`creatProposition : ${creatProposition1F}`);
-    }
-
-    // insert proposition 3
-    if(reponseQuestion === proposition3){
-      const creatProposition1T = await createProposition(proposition3,true,getLastQuestionId());
-      console.log(`creatProposition : ${creatProposition1T}`);
-    }else{
-      const creatProposition1F = await createProposition(proposition3,getLastQuestionId());
-      console.log(`creatProposition : ${creatProposition1F}`);
-    }
-
-
-     
     
+      const lastIdQuestion = await getLastQuestionId();
+      console.log(`lastIdQuestion : ${JSON.stringify(lastIdQuestion)}`);
+    // add proposition 1
+    const proposition1IsReponse = proposition1 === reponseQuestion;
+    const proposition2IsReponse = proposition2 === reponseQuestion;
+    const proposition3IsReponse = proposition3 === reponseQuestion;
+
+    console.log(`proposition1IsReponse : ${proposition1IsReponse}`);
+    console.log(`proposition2IsReponse : ${proposition2IsReponse}`);
+    console.log(`proposition3IsReponse : ${proposition3IsReponse}`);
+
+    const createdProposition1 = await createProposition(proposition1, proposition1IsReponse ,lastIdQuestion.lastquestionid);
+    console.log(`createdProposition : ${createdProposition1}`);
+
+    const createdProposition2 = await createProposition(proposition2, proposition2IsReponse,lastIdQuestion.lastquestionid);
+    console.log(`createdProposition : ${createdProposition2}`);
+
+    const createdProposition3 = await createProposition(proposition3,proposition3IsReponse,lastIdQuestion.lastquestionid);
+    console.log(`createdProposition : ${createdProposition3}`);
   
     // TODO : créer la question et les propositions
 
@@ -177,9 +186,10 @@ async function onAddQuestionQuizz(e) {
 
   if ( currentStepCreation === 11 ) {
 
-    // TODO : rediriger vers une page ou bien montrer les infos du quizz
+    Navigate('/');
     
     console.log( "END" );
+    
     
   } else {
 
@@ -224,8 +234,11 @@ function setAnswerProposition(propositionId, radioId) {
 
 function initializeSessionData(currentQuizzId) {
   sessionStorage.setItem('quizzId', currentQuizzId);
+  sessionStorage.setItem('compteurQuestion', 1);
+  
 
   sessionStorage.setItem('currentStepCreation', 1);
 }
+
 
 export default creationQuizz;

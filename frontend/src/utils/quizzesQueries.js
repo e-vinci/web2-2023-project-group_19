@@ -85,11 +85,12 @@ async function createQuestion( quizzId, questionNumero, questionIntitule ) {
   return quizz;
 }
 
-async function createPropositions( propositions, questionId ) {
+async function createProposition( proposition, reponse ,questionId ) {
   const options = {
     method: 'POST',
     body: JSON.stringify({
-      propositions,
+      proposition,
+      reponse,
       questionId
     }),
     headers: {
@@ -148,7 +149,7 @@ module.exports = {
   getAllQuizzes,
   createQuizz,
   createQuestion,
-  createPropositions,
+  createProposition,
   getLastQuestionId,
   getLastQuizzId,
 }

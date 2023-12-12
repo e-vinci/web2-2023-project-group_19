@@ -9,7 +9,7 @@ const {
   getLastQuestionId,
   createQuizz,
   createQuestion,
-  createPropositions,
+  createProposition,
   createParticipation,
   getParticipation,
   updateParticipation,
@@ -53,11 +53,12 @@ router.post('/createQuestion', async (req, res) => {
   return res.json(createdQuestion);
 });
 
-router.post('/createPropositions', async (req, res) => {
-  const propositions = req?.body?.propositions;
+router.post('/createProposition', async (req, res) => {
+  const proposition = req?.body?.proposition;
   const questionId = req?.body?.questionId;
-  if (!propositions || !questionId) return res.sendStatus(400);
-  const createdProposition = await createPropositions(propositions, questionId);
+  const reponse = req?.body?.reponse;
+  if (!proposition || !questionId) return res.sendStatus(400);
+  const createdProposition = await createProposition(proposition, reponse, questionId);
   return res.json(createdProposition);
 });
 
