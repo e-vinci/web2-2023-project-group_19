@@ -57,8 +57,9 @@ const aboutUs = () => {
         <dialog id="Story">
           <form method="dialog">
             <p> Simon est l'un des deux conceptualisateurs de la base de données avec son acolyte Nicolas. Ils ont fourni une base de données structurées afin de déployer une application fonctionnelle et dans le cadre d'une expérience utilisateur à la hauteur des attentes.
-            <br> Il a participé à l'insertion de toutes les données dans la base de données ainsi qu'au déploiement de celle-ci.</p>
-            <br> Il a également participer au backend de la création des quizzs.
+            <br> Il a participé à l'insertion de toutes les données dans la base de données ainsi qu'au déploiement de celle-ci.
+             <br> Il a également participer au backend de la création des quizzs.
+            </p>
               <button id="confirmBtn">Close</button>
           </form>
         </dialog>
