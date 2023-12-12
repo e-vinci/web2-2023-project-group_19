@@ -76,6 +76,7 @@ function renderResults( category, difficulty, pointsTotauxRapportes, percentageQ
     `;
     
 };
+};
 
 
 function createFireworks() {
