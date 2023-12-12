@@ -5,3 +5,12 @@ GET {{baseUrl}}/users/leaderboard
 
 ### Read one user from username
 GET {{baseUrl}}/users?username=alexis
+
+### Read one user from username
+POST {{baseUrl}}/users/updateUserPoints
+Content-Type: application/json
+
+{
+    "userId":7,
+    "countPointsToAdd":50
+}
