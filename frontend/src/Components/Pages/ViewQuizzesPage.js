@@ -157,7 +157,7 @@ async function loadQuizzes( category, userId ) {
             participationFound = null;
     
         } else {
-            
+
             // eslint-disable-next-line no-await-in-loop
             participationFound = await getParticipation( userId, quizzId );
     
@@ -187,15 +187,13 @@ function createCard (quizzImage, buttonSrc, difficultyColor, quizzNumber, partic
 
     let text;
 
-    console.log(`participationFound : ${participationFound}`);
+    console.log(JSON.stringify(participationFound));
 
     if ( participationFound === null ) {
 
         text = `Quizz non effectué`;
 
     } else {
-
-        console.log(JSON.stringify(participationFound));
 
         const countMaxAttemps = 3;
         const countAttemps = participationFound.nbr_tentatives;
