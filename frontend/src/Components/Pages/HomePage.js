@@ -5,6 +5,8 @@ import circle from '../../img/circle.png'
 
 import {getAllQuizzesCategoriesData} from "../../utils/quizzesData";
 
+import Navigate from '../Router/Navigate';
+
 const HomePage = () => {
   generateStructure();
   generateCards();
@@ -159,11 +161,28 @@ function generateCards() {
         <img src="${category.image}" class="card-img-top" alt="image">
         <div class="card-body ">
           <h5 class="card-title"> ${category.name} </h5>
-          <a href="${category.link}" class="btn-primary"> jouer </a>
+          <a id="${category.id}" class="btn-primary" data-is-category="true"> jouer </a>
         </div>
-      </div>`
+      </div>`;
+
   });
 
+  quizzesCategories.forEach( category => {
+
+    const categoryButton = box.querySelector(`#${category.id}`);
+
+    console.log(`categoryButton id : ${JSON.stringify(categoryButton.id)}`)
+
+    categoryButton.addEventListener('click', (e) => {
+
+      e.preventDefault();
+
+      Navigate(category.link);
+      console.log(`click ${category.id}`);
+
+    });
+
+  });
 }
 
 export default HomePage;

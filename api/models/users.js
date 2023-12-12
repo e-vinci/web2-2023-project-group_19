@@ -39,9 +39,20 @@ async function getLeaderboard() {
   return result.rows;
 }
 
+async function updateUserPoints(userId, points) {
+  const requestString = `
+  UPDATE QUIZZLER.users
+  SET nbr_points = nbr_points + ${points}
+  WHERE id_user = ${userId}
+  RETURNING nbr_points;`;
+  const result = await client.query(requestString);
+  return result.rows[0];
+}
+
 module.exports = {
   createOneUser,
   readOneUserFromUsername,
   readOneUserFromEmail,
   getLeaderboard,
+  updateUserPoints,
 };

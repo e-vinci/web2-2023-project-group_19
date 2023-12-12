@@ -12,19 +12,19 @@ async function createParticipation( userId, quizzId, countQuestionsSucceeded ) {
         },
     };
 
-    let quizz;
+    let participationCreated;
     try {
         const response = await fetch(`/api/quizzes/createParticipation`, options);
 
         if (!response.ok) throw new Error(`fetch error : ${response.status} : ${response.statusText}`);
 
-        quizz = await response.json();
+        participationCreated = await response.json();
     } catch (err) {
         // eslint-disable-next-line no-console
         console.error('createParticipation::error: ', err);
     }
 
-    return quizz;
+    return participationCreated;
 }
 
 async function getParticipation( userId, quizzId ) {
@@ -40,19 +40,19 @@ async function getParticipation( userId, quizzId ) {
         },
     };
 
-    let quizz;
+    let participationFound;
     try {
         const response = await fetch(`/api/quizzes/getParticipation`, options);
 
         if (!response.ok) throw new Error(`fetch error : ${response.status} : ${response.statusText}`);
 
-        quizz = await response.json();
+        participationFound = await response.json();
     } catch (err) {
         // eslint-disable-next-line no-console
         console.error('getParticipation::error: ', err);
     }
 
-    return quizz;
+    return participationFound;
 }
 
 async function updateParticipation( userId, quizzId, countQuestionsSucceeded ) {
@@ -69,19 +69,19 @@ async function updateParticipation( userId, quizzId, countQuestionsSucceeded ) {
         },
     };
 
-    let quizz;
+    let participationUpdated;
     try {
         const response = await fetch(`/api/quizzes/updateParticipation`, options);
 
         if (!response.ok) throw new Error(`fetch error : ${response.status} : ${response.statusText}`);
 
-        quizz = await response.json();
+        participationUpdated = await response.json();
     } catch (err) {
         // eslint-disable-next-line no-console
         console.error('updateParticipation::error: ', err);
     }
 
-    return quizz;
+    return participationUpdated;
 }
 
 module.exports = {
