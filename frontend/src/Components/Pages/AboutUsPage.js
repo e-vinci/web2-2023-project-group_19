@@ -56,8 +56,9 @@ const aboutUs = () => {
       <button id="showStory">Show a dialog</button>
         <dialog id="Story">
           <form method="dialog">
-            <p>Pudor in debeo sum nostro illum orationi fortius quidem fortius postulabat aetas fortius datam Neque robustioribus tuli patiebatur meum versari aliquis Atratino hunc accusationis accusationis erga dicendi et Vellem debeo enim Atratino dicendi tueri et accusationis patiebatur tuli parentemque istam tuus quidem et vobis accusationis accusationis moderatur beneficium in magis.
-            </p>
+            <p> Simon est l'un des deux conceptualisateurs de la base de données avec son acolyte Nicolas. Ils ont fourni une base de données structurées afin de déployer une application fonctionnelle et dans le cadre d'une expérience utilisateur à la hauteur des attentes.
+            <br> Il a participé à l'insertion de toutes les données dans la base de données ainsi qu'au déploiement de celle-ci.</p>
+            <br> Il a également participer au backend de la création des quizzs.
               <button id="confirmBtn">Close</button>
           </form>
         </dialog>
