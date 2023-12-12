@@ -5,7 +5,6 @@ import { isAdmin } from '../../utils/auths';
 
 const numberMaxSteps = 11;
 
-
 const creationQuizz = () => {
   let compteurQuestion = sessionStorage.getItem('compteurQuestion');
   if (compteurQuestion === null) {
@@ -14,7 +13,8 @@ const creationQuizz = () => {
   }
 
    if (!isAdmin()) {
-    window.location.href = '/';
+    Navigate('/');
+    return;
   }  
 
   let currentStepCreation = sessionStorage.getItem('currentStepCreation');

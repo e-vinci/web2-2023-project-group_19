@@ -31,13 +31,13 @@ async function getUserFromUsername( username ) {
   return userFound;
 }
 
-async function updateUserPoints( userId, points ) {
+async function updateUserPoints( userId, countPointsToAdd ) {
 
   const options = {
     method: 'POST',
     body: JSON.stringify({
     userId,
-    points,
+    countPointsToAdd,
     }),
     headers: {
     'Content-Type': 'application/json',

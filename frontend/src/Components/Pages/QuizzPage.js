@@ -6,9 +6,11 @@ import Navigate from '../Router/Navigate';
 import {getQuizzCategoryData} from '../../utils/quizzesData';
 import { ResultQuizzPage } from './ResultQuizzPage';
 import { chooseDifficultyName } from '../../utils/difficultyData';  
-import { getParticipation } from '../../utils/participationsQueries';
+import { createParticipation, getParticipation, updateParticipation } from '../../utils/participationsQueries';
 import { getAuthenticatedUser } from '../../utils/auths';
-import { getUserFromUsername } from '../../utils/usersQueries';
+import { getUserFromUsername, updateUserPoints } from '../../utils/usersQueries';
+
+const countMaxAttempts = 3;
 
 async function QuestionnairePage () {
 
@@ -31,23 +33,42 @@ async function QuestionnairePage () {
         return false;
     };
 
-    const authenticatedUser = getAuthenticatedUser();
+    const sessionUserId = sessionStorage.getItem('userId');
 
-    const isAuthenticated = authenticatedUser !== undefined;
+    let participationFound = null;
+    let userId = -1;
 
-    let participationFound;
+    if ( sessionUserId === null || Number(sessionUserId) === -1 ) {
 
-    if ( isAuthenticated ) {
+        const authenticatedUser = getAuthenticatedUser();
 
-        console.log( "authentifié!" );
+        const isAuthenticated = authenticatedUser !== undefined;
 
-        const {username} = authenticatedUser;
-        const userFound = await getUserFromUsername(username);
-        const userId = userFound.id_user;
+        if ( isAuthenticated ) {
 
-        participationFound = await getParticipation( userId, quizzId );
+            const {username} = authenticatedUser;
+            const userFound = await getUserFromUsername(username);
+            userId = userFound.id_user;
 
-        console.log(`participationFound : ${participationFound}`);
+            participationFound = await getParticipation( userId, quizzId );
+
+        };
+
+    }
+
+    console.log(`participationFound : ${JSON.stringify(participationFound)}`);
+
+    if ( participationFound !== null ) {
+
+        const countAttempts = participationFound.nbr_tentatives;
+
+        console.log(`countAttempts : ${countAttempts}`);
+
+        if ( countAttempts === countMaxAttempts ) {
+
+            return Navigate('/');
+
+        };
 
     };
 
@@ -69,7 +90,8 @@ async function QuestionnairePage () {
         const difficultyName = chooseDifficultyName( quizz.difficultee );
         const pointsRapportes = quizz.points_rapportes;
         const numberOfQuestions = randomQuestionsOrderArray.length;
-        initializeSessionData( quizzId, randomQuestionsOrderArray, categoryName, difficultyName, pointsRapportes, numberOfQuestions );
+
+        initializeSessionData( quizzId, randomQuestionsOrderArray, categoryName, difficultyName, pointsRapportes, numberOfQuestions, participationFound, userId );
 
     };
 
@@ -77,8 +99,7 @@ async function QuestionnairePage () {
     const sessionCurrentIndex = Number( sessionStorage.getItem('currentIndexQuestion') );
     const countRightAnswers = Number( sessionStorage.getItem('countRightAnswers') );
 
-    renderQuestionnaire(questions, sessionCurrentIndex, categoryName);
-    applyBackgroundImageOnContainer(categoryImage);
+    renderQuestionnaire(questions, sessionCurrentIndex, categoryName, categoryImage);
 
     if ( sessionCurrentIndex === questions.length - 1 ) {
 
@@ -122,7 +143,7 @@ function randomQuestionsOrder(quizz) {
 
 };
 
-function renderQuestionnaire (questions, indexQuestion, categoryName) {
+function renderQuestionnaire (questions, indexQuestion, categoryName, categoryImage) {
 
     const question = questions[indexQuestion];
     const intituleQuestion = question.intitule;
@@ -131,7 +152,7 @@ function renderQuestionnaire (questions, indexQuestion, categoryName) {
 
     const main = document.querySelector('main');
     main.innerHTML = `
-        <div class="glass-container-pageQuestion">
+        <div class="glass-container-pageQuestion" style="url(${categoryImage})">
             <div class="card-pageQuestion">
             <div class="card-header">
                 <div id="counterQuestionsWrapper"></div>
@@ -150,14 +171,6 @@ function renderQuestionnaire (questions, indexQuestion, categoryName) {
             </div>
         </div>
     `;
-
-};
-
-function applyBackgroundImageOnContainer (categoryImage) {
-
-    const container = document.querySelector('.glass-container-pageQuestion');
-
-    container.style.backgroundImage = `url(${categoryImage})`;
 
 };
 
@@ -195,31 +208,19 @@ function addNextQuestionButton() {
         </button>
     `;
 
-    const button = document.querySelector('#nextQuestionButton');
-
-    button.addEventListener('click', onNextQuestionButton );
-
 };
 
 function onNextQuestionButton() {
 
     const sessionCurrentIndex = Number( sessionStorage.getItem('currentIndexQuestion') );
 
-    checkAnswer( sessionCurrentIndex );
-
     const buttonNextQuestion = document.querySelector('#nextQuestionButton');
-
-    buttonNextQuestion.style.border = '5px solid red';
 
     sessionStorage.setItem('currentIndexQuestion', sessionCurrentIndex + 1 );
 
     buttonNextQuestion.removeEventListener('click', onNextQuestionButton );
 
-    setTimeout(() => {
-
-        QuestionnairePage();
-
-    }, 900);
+    QuestionnairePage();
 
 };
 
@@ -244,6 +245,14 @@ function checkAnswer( sessionCurrentIndex ) {
         sessionStorage.setItem('countRightAnswers', countRightAnswers+1);
 
     };
+
+    if ( sessionCurrentIndex < 9 ) {
+
+        const button = document.querySelector('#nextQuestionButton');
+
+        button.addEventListener('click', onNextQuestionButton );
+
+    }
 
 }
 
@@ -299,12 +308,12 @@ function checkIsReponsePropositions ( propositions ) {
         if ( isReponse ) {
 
             propositionElement.dataset.isReponse = 'true';
-            propositionElement.style.backgroundColor = 'green';
+            propositionElement.style.backgroundColor = '#4CBB17';
 
         } else {
 
             propositionElement.dataset.isReponse = 'false';
-            propositionElement.style.backgroundColor = 'red';
+            propositionElement.style.backgroundColor = '#D2042D';
 
         };
 
@@ -328,13 +337,7 @@ function addEndQuizzButtonListener() {
 
     const button = document.querySelector('#endQuizzButton');
 
-    button.addEventListener('click', () => {
-
-        // Enregistrer participation
-
-        const sessionCurrentIndex = Number( sessionStorage.getItem('currentIndexQuestion') );
-
-        checkAnswer( sessionCurrentIndex );
+    button.addEventListener('click', async () => {
 
         const category = sessionStorage.getItem('category');
         const difficulty = sessionStorage.getItem('difficulty');
@@ -346,15 +349,66 @@ function addEndQuizzButtonListener() {
 
         const percentageQuestionsSucceeded = (countRightAnswers / numberOfQuestions) * 100;
 
-        // saveParticipationForQuizz();
+        const userId = Number( sessionStorage.getItem('userId') );
+        const quizzId = Number( sessionStorage.getItem('quizzId') );
+
+        await saveParticipationForQuizz( userId, quizzId );
 
         ResultQuizzPage( category, difficulty, pointsTotauxRapportes, percentageQuestionsSucceeded );
-
-        button.style.border = '10px solid red';
 
         return true;
 
     });
+
+};
+
+async function saveParticipationForQuizz( userId, quizzId ) {
+
+    // Pas connecté
+    if ( userId === -1 ) return;
+
+    const participation = await getParticipation( userId, quizzId );
+
+    const countRightAnswers = Number( sessionStorage.getItem('countRightAnswers') );
+    const pointsRapportes = Number( sessionStorage.getItem('pointsRapportes') );
+
+    const nouveauNombrePointsRapportes = countRightAnswers * pointsRapportes;
+
+    // Pas de participation
+
+    if ( participation === null ) {
+
+        console.log( "Pas de participation : participation créée" );
+
+        await createParticipation( userId, quizzId, countRightAnswers );
+        await updateUserPoints(userId, nouveauNombrePointsRapportes );
+
+    } 
+    // Déjà une participation
+    else {
+
+        console.log( "Participation : participation mise à jour" );
+
+        const oldCountRightAnswers = participation.nbr_questions_reussies;
+        
+        const ancienNombrePointsRapportes = oldCountRightAnswers * pointsRapportes;
+
+        if ( ancienNombrePointsRapportes < nouveauNombrePointsRapportes ) {
+
+            console.log( "Meilleur score !" );
+
+            await updateParticipation( userId, quizzId, countRightAnswers );
+            await updateUserPoints(userId, (nouveauNombrePointsRapportes-ancienNombrePointsRapportes));
+
+        } else {
+
+            console.log( "Moins bon ou même score !" );
+
+            await updateParticipation( userId, quizzId, oldCountRightAnswers );
+
+        }
+
+    }
 
 }
 
@@ -382,7 +436,7 @@ function addPropositionsListeners () {
 
 };
 
-function onPropositionClick(event) {
+async function onPropositionClick(event) {
 
     const propositions = document.querySelectorAll('.proposition-element');
 
@@ -396,10 +450,13 @@ function onPropositionClick(event) {
     const proposition = event.target;
 
     proposition.dataset.isSelected = 'true';
-    proposition.style.border = '5px solid blue';
+    proposition.style.border = '2px solid #FAF9F6';
+    proposition.style.boxShadow = '2px 2px 10px #FAF9F6';
 
     const questions = JSON.parse( sessionStorage.getItem('questions') );
     const sessionCurrentIndex = Number( sessionStorage.getItem('currentIndexQuestion') );
+
+    checkAnswer( sessionCurrentIndex );
 
     if ( sessionCurrentIndex === questions.length - 1 ) {
 
@@ -409,7 +466,7 @@ function onPropositionClick(event) {
 
 };
 
-function initializeSessionData ( currentQuizzId, quizzQuestions, quizzCategory, quizzDifficulty, pointsRapportes, numberOfQuestions ) {
+function initializeSessionData ( currentQuizzId, quizzQuestions, quizzCategory, quizzDifficulty, pointsRapportes, numberOfQuestions, participation, userId ) {
 
     sessionStorage.setItem('quizzId', currentQuizzId );
 
@@ -426,6 +483,10 @@ function initializeSessionData ( currentQuizzId, quizzQuestions, quizzCategory, 
     sessionStorage.setItem('pointsRapportes', pointsRapportes );
 
     sessionStorage.setItem('numberOfQuestions', numberOfQuestions );
+
+    sessionStorage.setItem('participation', JSON.stringify(participation) );
+
+    sessionStorage.setItem('userId', userId );
 
 };
 
