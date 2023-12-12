@@ -7,11 +7,13 @@ import { chooseDifficultyColor, chooseDifficultyName } from '../../utils/difficu
 import { getParticipation } from '../../utils/participationsQueries';
 import { getAuthenticatedUser } from '../../utils/auths';
 import { getUserFromUsername } from '../../utils/usersQueries';
+import Navigate from '../Router/Navigate';
 
 const quizzUri = 'http://localhost:8080/quizz';
 
 async function viewQuizzes ( categorieName ) {
 
+    // eslint-disable-next-line no-console
     console.log( categorieName );
     
     clearPage();
@@ -71,7 +73,7 @@ function animateGridElements() {
       });
 }
 
-async function generateQuizzesButtons ( quizzesParticipationsArray, quizzDataImages, quizzCategoryName ) {
+function generateQuizzesButtons ( quizzesParticipationsArray, quizzDataImages, quizzCategoryName ) {
 
     const main = document.querySelector('main');
 
@@ -81,7 +83,9 @@ async function generateQuizzesButtons ( quizzesParticipationsArray, quizzDataIma
 
     let quizzNumber = 1;
 
-    quizzesParticipationsArray.map( async (quizzesParticipations) => {
+    // Ajouter les éléments html
+
+    quizzesParticipationsArray.map( quizzesParticipations => {
 
         const difficultyLevel = quizzesParticipations.difficulty;
 
@@ -99,27 +103,49 @@ async function generateQuizzesButtons ( quizzesParticipationsArray, quizzDataIma
             const {quizz,participation} = quizzParticipation;
             const quizzId = quizz.id_quizz;
 
-            const buttonSrc = `${quizzUri}?quizzId=${quizzId}`;
-
             const indexDifficultyImg = difficultyLevel - 1;
 
             const quizzPointsRate = quizz.points_rapportes;
 
+            const cardId = `quizz-${quizzId}-card-${i}`;
+
             const image = createCard(
-                quizzDataImages[indexDifficultyImg], 
-                buttonSrc, 
+                quizzDataImages[indexDifficultyImg],
                 difficultyColor, 
                 quizzNumber, 
                 participation,
-                quizzPointsRate );
-
-            quizzNumber += 1;
+                quizzPointsRate,
+                cardId );
 
             box.innerHTML += image;
+
+            quizzNumber += 1;
 
         };
 
         main.appendChild( box );
+
+        return true;
+
+    });
+
+    // Ajouter les listeners aux éléments html
+
+    quizzesParticipationsArray.map( quizzesParticipations => {
+
+        for ( let i=0; i<quizzesParticipations.quizzes.length; i+=1 ) {
+
+            const quizzParticipation = quizzesParticipations.quizzes[i];
+            const {quizz} = quizzParticipation;
+            const quizzId = quizz.id_quizz;
+
+            const cardId = `quizz-${quizzId}-card-${i}`;
+
+            const buttonSrc = `${quizzUri}?quizzId=${quizzId}`;
+
+            addListenerToCard( cardId, buttonSrc );
+
+        };
 
         return true;
 
@@ -183,11 +209,9 @@ function createBox () {
 
 };
 
-function createCard (quizzImage, buttonSrc, difficultyColor, quizzNumber, participationFound, quizzPointsRate ) {
+function createCard (quizzImage, difficultyColor, quizzNumber, participationFound, quizzPointsRate, cardId ) {
 
     let text;
-
-    console.log(JSON.stringify(participationFound));
 
     if ( participationFound === null ) {
 
@@ -206,7 +230,7 @@ function createCard (quizzImage, buttonSrc, difficultyColor, quizzNumber, partic
 
     return `
     <div class="card viewQuizzes-cards" style="width:80%;margin:auto;">
-        <a class="viewQuizzes-button" href="${buttonSrc}">
+        <a class="viewQuizzes-button" id="${cardId}" style="cursor:pointer;">
             <img class="card-img-top" src="${quizzImage}" alt="Card image cap">
         </a>
         <div class="card-body-viewQuizz">
@@ -215,6 +239,19 @@ function createCard (quizzImage, buttonSrc, difficultyColor, quizzNumber, partic
         </div>
     </div>`;
 }
+
+function addListenerToCard( cardId, buttonSrc ) {
+
+    const card = document.querySelector(`#${cardId}`);
+
+    card.addEventListener('click', (e) => {
+        e.preventDefault();
+        console.log(`ok : ${cardId}` );
+        Navigate(buttonSrc);
+        return true;
+    });
+
+};
 
 function createTitle (titleText, titleSize ) {
     

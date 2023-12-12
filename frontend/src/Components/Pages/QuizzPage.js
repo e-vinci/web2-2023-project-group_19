@@ -6,6 +6,9 @@ import Navigate from '../Router/Navigate';
 import {getQuizzCategoryData} from '../../utils/quizzesData';
 import { ResultQuizzPage } from './ResultQuizzPage';
 import { chooseDifficultyName } from '../../utils/difficultyData';  
+import { getParticipation } from '../../utils/participationsQueries';
+import { getAuthenticatedUser } from '../../utils/auths';
+import { getUserFromUsername } from '../../utils/usersQueries';
 
 async function QuestionnairePage () {
 
@@ -28,6 +31,26 @@ async function QuestionnairePage () {
         return false;
     };
 
+    const authenticatedUser = getAuthenticatedUser();
+
+    const isAuthenticated = authenticatedUser !== undefined;
+
+    let participationFound;
+
+    if ( isAuthenticated ) {
+
+        console.log( "authentifié!" );
+
+        const {username} = authenticatedUser;
+        const userFound = await getUserFromUsername(username);
+        const userId = userFound.id_user;
+
+        participationFound = await getParticipation( userId, quizzId );
+
+        console.log(`participationFound : ${participationFound}`);
+
+    };
+
     const sessionQuizzId = Number( sessionStorage.getItem('quizzId') );
 
     const {
@@ -39,6 +62,7 @@ async function QuestionnairePage () {
 
     if ( sessionQuizzId !== quizzId ) {
 
+        // eslint-disable-next-line no-console
         console.log( `initialized !` );
 
         const randomQuestionsOrderArray = randomQuestionsOrder(quizz);
@@ -150,8 +174,6 @@ function addCounterQuestions ( currentIndexQuestion, maxCountQuestions ) {
 };
 
 function addCounterRightAnswers ( countRightAnswers ) {
-
-    console.log( `countRightAnswers : ${countRightAnswers}` );
     
     const countRightAnswersWrapper = document.querySelector('#countRightAnswersWrapper');
 
@@ -183,8 +205,7 @@ function onNextQuestionButton() {
 
     const sessionCurrentIndex = Number( sessionStorage.getItem('currentIndexQuestion') );
 
-    console.log( `sessionCurrentIndex ${sessionCurrentIndex}` );
-    checkAnswer( sessionCurrentIndex);
+    checkAnswer( sessionCurrentIndex );
 
     const buttonNextQuestion = document.querySelector('#nextQuestionButton');
 
@@ -215,8 +236,6 @@ function checkAnswer( sessionCurrentIndex ) {
     let propositionSelected = getPropositionSelected();
 
     propositionSelected = checkSelectedProposition( propositionSelected );
-
-    console.log( JSON.stringify( propositionSelected ) );
 
     if ( propositionSelected.isreponse ) {
 
@@ -326,6 +345,8 @@ function addEndQuizzButtonListener() {
         const pointsTotauxRapportes = pointsRapportes * countRightAnswers;
 
         const percentageQuestionsSucceeded = (countRightAnswers / numberOfQuestions) * 100;
+
+        // saveParticipationForQuizz();
 
         ResultQuizzPage( category, difficulty, pointsTotauxRapportes, percentageQuestionsSucceeded );
 
