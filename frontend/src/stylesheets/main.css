@@ -843,27 +843,11 @@ h5, .btn-primary{
     height : 100%;
 }
 
-<<<<<<< HEAD
-.glass-container-resultQuizz{
-=======
 #resultQuizz-glass-container{
->>>>>>> e35f4f551edcea61d528ca42f98c98ef02d151e3
     display: block;
     max-width: 72vw;
     margin-top: 10vh;
     margin-bottom: 30px;
-<<<<<<< HEAD
-    background: rgba(244, 244, 244, 0.55);
-    padding: 70px;
-    border-radius: 16px;
-    width: 20000px;
-}
-
-.testButton{
-    position: absolute;
-    z-index: 2;
-    margin-left: 54vh;
-=======
     background: rgba(244, 244, 244, 1);
     padding: 50px;
     border-radius: 16px;
@@ -871,7 +855,6 @@ h5, .btn-primary{
     backdrop-filter: blur(11.6px);
     -webkit-backdrop-filter: blur(11.6px);
     width: 9500px;
->>>>>>> e35f4f551edcea61d528ca42f98c98ef02d151e3
 }
 
 /* about us */
