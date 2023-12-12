@@ -1,7 +1,7 @@
 import { Fireworks } from 'fireworks-js';
 import Navigate from '../Router/Navigate';
 
-const resultQuizz = ( category = "Histoire", difficulty = "Moyenne", pointsTotauxRapportes = 0, percentageQuestionsSucceeded = 0 ) => {
+const ResultQuizzPage = ( category = "Histoire", difficulty = "Moyenne", pointsTotauxRapportes = 0, percentageQuestionsSucceeded = 0 ) => {
 
   if ( category === undefined ) {
 
@@ -76,7 +76,6 @@ function renderResults( category, difficulty, pointsTotauxRapportes, percentageQ
     `;
     
 };
-};
 
 
 function createFireworks() {
@@ -129,4 +128,7 @@ function endFireworks(fireworks) {
 
 }
 
-export default resultQuizz;
+export { 
+    // eslint-disable-next-line import/prefer-default-export
+    ResultQuizzPage,
+};
