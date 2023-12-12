@@ -12,7 +12,6 @@ const quizzUri = 'http://localhost:8080/quizz';
 
 async function viewQuizzes ( categorieName ) {
 
-
     console.log( categorieName );
     
     clearPage();
@@ -45,33 +44,9 @@ async function viewQuizzes ( categorieName ) {
     const quizzDataImages = quizzData.images;
     const quizzDataCategoryName = quizzData.name;
 
-    const quizzes = await getAllQuizzes(category);
+    const quizzesParticipations = await loadQuizzes( category, userId );
 
-    const QUIZZES = [
-        {
-            difficulty : 1,
-            quizzes : []
-        },
-        {
-            difficulty : 2,
-            quizzes : []
-        },
-        {
-            difficulty : 3,
-            quizzes : []
-        }
-    ];
-
-    for ( let i=0; i<quizzes.length; i+=1 ) {
-
-        const {difficultee} = quizzes[i];
-        const arrayToPush = QUIZZES.find( x => x.difficulty === difficultee ).quizzes;
-
-        arrayToPush.push( quizzes[i] );
-
-    };
-
-    generateQuizzesButtons( QUIZZES, quizzDataImages, quizzDataCategoryName, userId );
+    generateQuizzesButtons( quizzesParticipations, quizzDataImages, quizzDataCategoryName, userId );
 
     for ( let i=0; i<3; i+=1 ) {
 
@@ -96,7 +71,7 @@ function animateGridElements() {
       });
 }
 
-async function generateQuizzesButtons ( quizzesArray, quizzDataImages, quizzCategoryName, userId ) {
+async function generateQuizzesButtons ( quizzesParticipationsArray, quizzDataImages, quizzCategoryName ) {
 
     const main = document.querySelector('main');
 
@@ -106,9 +81,9 @@ async function generateQuizzesButtons ( quizzesArray, quizzDataImages, quizzCate
 
     let quizzNumber = 1;
 
-    quizzesArray.map( (quizzesDifficulty) => {
+    quizzesParticipationsArray.map( async (quizzesParticipations) => {
 
-        const difficultyLevel = quizzesDifficulty.difficulty;
+        const difficultyLevel = quizzesParticipations.difficulty;
 
         const difficultyColor = chooseDifficultyColor( difficultyLevel );
         const difficultyName = chooseDifficultyName( difficultyLevel );
@@ -118,29 +93,25 @@ async function generateQuizzesButtons ( quizzesArray, quizzDataImages, quizzCate
 
         const box = createBox();
 
-        for ( let i=0; i<quizzesDifficulty.quizzes.length; i+=1 ) {
+        for ( let i=0; i<quizzesParticipations.quizzes.length; i+=1 ) {
 
-            const quizzId = quizzesDifficulty.quizzes[i].id_quizz;
-
-            let participationFound;
-
-            if ( userId === -1 ) {
-
-                participationFound = null;
-
-            } else {
-
-                participationFound = getParticipation( userId, quizzId );
-
-            }
-
-            console.log(`participationFound : ${participationFound}`);
+            const quizzParticipation = quizzesParticipations.quizzes[i];
+            const {quizz,participation} = quizzParticipation;
+            const quizzId = quizz.id_quizz;
 
             const buttonSrc = `${quizzUri}?quizzId=${quizzId}`;
 
             const indexDifficultyImg = difficultyLevel - 1;
 
-            const image = createCard(quizzDataImages[indexDifficultyImg], buttonSrc, difficultyColor, quizzNumber, participationFound );
+            const quizzPointsRate = quizz.points_rapportes;
+
+            const image = createCard(
+                quizzDataImages[indexDifficultyImg], 
+                buttonSrc, 
+                difficultyColor, 
+                quizzNumber, 
+                participation,
+                quizzPointsRate );
 
             quizzNumber += 1;
 
@@ -156,6 +127,52 @@ async function generateQuizzesButtons ( quizzesArray, quizzDataImages, quizzCate
 
 };
 
+async function loadQuizzes( category, userId ) {
+
+    const quizzes = await getAllQuizzes(category);
+
+    const QUIZZES = [
+        {
+            difficulty : 1,
+            quizzes : []
+        },
+        {
+            difficulty : 2,
+            quizzes : []
+        },
+        {
+            difficulty : 3,
+            quizzes : []
+        }
+    ];
+
+    for ( let i=0; i<quizzes.length; i+=1 ) {
+
+        const {difficultee, id_quizz : quizzId} = quizzes[i];
+
+        let participationFound;
+
+        if ( userId === -1 ) {
+
+            participationFound = null;
+    
+        } else {
+
+            // eslint-disable-next-line no-await-in-loop
+            participationFound = await getParticipation( userId, quizzId );
+    
+        }
+
+        const arrayToPush = QUIZZES.find( x => x.difficulty === difficultee ).quizzes;
+
+        arrayToPush.push( { quizz : quizzes[i], participation : participationFound } );
+
+    };
+
+    return QUIZZES;
+
+}
+
 function createBox () {
 
     const box = document.createElement('div');
@@ -166,11 +183,11 @@ function createBox () {
 
 };
 
-function createCard (quizzImage, buttonSrc, difficultyColor, quizzNumber, participationFound ) {
+function createCard (quizzImage, buttonSrc, difficultyColor, quizzNumber, participationFound, quizzPointsRate ) {
 
     let text;
 
-    console.log(`participationFound : ${participationFound}`);
+    console.log(JSON.stringify(participationFound));
 
     if ( participationFound === null ) {
 
@@ -179,8 +196,9 @@ function createCard (quizzImage, buttonSrc, difficultyColor, quizzNumber, partic
     } else {
 
         const countMaxAttemps = 3;
-        const countAttemps = 1;
-        const countPoints = 20;
+        const countAttemps = participationFound.nbr_tentatives;
+        const countAnswersSucceeded = participationFound.nbr_questions_reussies;
+        const countPoints = countAnswersSucceeded * quizzPointsRate;
 
         text = `Effectué ${countAttemps}/${countMaxAttemps} fois<br>${countPoints} points gagnés`;
 

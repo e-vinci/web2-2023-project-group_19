@@ -147,6 +147,8 @@ async function getParticipation(quizzId, userId) {
 
   const participation = await client.query(requestString);
 
+  if (participation.rows.length === 0) return null;
+
   return participation.rows[0];
 }
 

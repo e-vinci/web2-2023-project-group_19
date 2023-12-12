@@ -76,8 +76,8 @@ POST {{baseUrl}}/quizzes/getParticipation
 Content-Type: application/json
 
 {
-    "userId": 1,
-    "quizzId":1
+    "userId": 7,
+    "quizzId":15
 }
 
 ### Update a participation from quizz and user

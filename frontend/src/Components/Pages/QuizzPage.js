@@ -4,8 +4,8 @@ import { getOneQuizzContent } from '../../utils/quizzesQueries';
 import getPathParameters from '../../utils/path-href';
 import Navigate from '../Router/Navigate';
 import {getQuizzCategoryData} from '../../utils/quizzesData';
-import ResultQuizzPage from './ResultQuizzPage';
-import { chooseDifficultyName } from '../../utils/difficultyData';
+import { ResultQuizzPage } from './ResultQuizzPage';
+import { chooseDifficultyName } from '../../utils/difficultyData';  
 
 async function QuestionnairePage () {
 
