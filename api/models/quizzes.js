@@ -113,22 +113,14 @@ async function createQuestion(quizz, numero, intitule) {
   return result.rows[0];
 }
 
-async function createProposition(propositions, question) {
-  const propositionsId = { propositionsId: [] };
-
-  for (let i = 0; i < propositions.length; i += 1) {
-    const { intitule, isReponse } = propositions[i];
-    const requestString = `
+async function createProposition(propositions, reponse, question) {
+  const requestString = `
     insert into QUIZZLER.propositions(intitule, isreponse, question) 
-    VALUES ('${intitule}',${isReponse},${question})
+    VALUES ('${propositions}',${reponse},${question})
     RETURNING propositions.id_proposition;
     `;
-
-    // eslint-disable-next-line no-await-in-loop
-    const propositionId = await client.query(requestString);
-    propositionsId.propositionsId.push(propositionId.rows[0].id_proposition);
-  }
-  return propositionsId.rows[0];
+  const result = await client.query(requestString);
+  return result.rows[0];
 }
 
 async function createParticipation(quizzId, userId, countQuestionsSucceeded) {
