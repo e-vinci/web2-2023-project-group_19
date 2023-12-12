@@ -1,5 +1,5 @@
 /* eslint-disable no-param-reassign */
-import { createQuizz /* createQuestion,createProposition */ } from '../../utils/quizzesQueries';
+import { createQuizz, createQuestion, createProposition, getLastQuestionId, getLastQuizzId } from '../../utils/quizzesQueries';
 
 const numberMaxSteps = 11;
 
@@ -116,17 +116,51 @@ async function onAddQuestionQuizz(e) {
     const categorieQuizz = document.querySelector('#categorieQuizz').value;
     const difficultee = document.querySelector('#niveauDifQuizz').value;
 
+
     const createdQuizz = await createQuizz(difficultee, categorieQuizz);
 
     // eslint-disable-next-line no-console
     console.log(`createdQuizz : ${createdQuizz}`);
   } else {
     const question = document.querySelector('#questionQuizz').value;
-    // const proposition1 = document.querySelector("#proposition1");
-    // const proposition2 = document.querySelector("#proposition2");
-    // const proposition3 = document.querySelector("#proposition3");
+    const proposition1 = document.querySelector('#proposition1').value;
+    const proposition2 = document.querySelector('#proposition2').value;
+    const proposition3 = document.querySelector('#proposition3').value;
+    const reponseQuestion = document.querySelector('#reponseQuizz').value;
 
+    // insert proposition 1
+    if(reponseQuestion === proposition1){
+      const creatProposition1T = await createProposition(proposition1,true,getLastQuestionId());
+      console.log(`creatProposition : ${creatProposition1T}`);
+    }else{
+      const creatProposition1F = await createProposition(proposition1,getLastQuestionId());
+      console.log(`creatProposition : ${creatProposition1F}`);
+    }
+
+     // insert proposition 2
+     if(reponseQuestion === proposition2){
+      const creatProposition1T = await createProposition(proposition2,true,getLastQuestionId());
+      console.log(`creatProposition : ${creatProposition1T}`);
+    }else{
+      const creatProposition1F = await createProposition(proposition2,getLastQuestionId());
+      console.log(`creatProposition : ${creatProposition1F}`);
+    }
+
+    // insert proposition 3
+    if(reponseQuestion === proposition3){
+      const creatProposition1T = await createProposition(proposition3,true,getLastQuestionId());
+      console.log(`creatProposition : ${creatProposition1T}`);
+    }else{
+      const creatProposition1F = await createProposition(proposition3,getLastQuestionId());
+      console.log(`creatProposition : ${creatProposition1F}`);
+    }
+
+
+     
+    
+  
     // TODO : créer la question et les propositions
+
 
     // eslint-disable-next-line no-console
     console.log(`question : ${question}`);
