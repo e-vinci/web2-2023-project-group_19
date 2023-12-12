@@ -1,10 +1,6 @@
- import { PerspectiveCamera, Scene, WebGLRenderer, Points, PointsMaterial, BufferGeometry, Float32BufferAttribute, MathUtils, TextureLoader, Group, Clock} from "three";
- // import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls' // import de l'objet
-
+import { PerspectiveCamera, Scene, WebGLRenderer, Points, PointsMaterial, BufferGeometry, Float32BufferAttribute, MathUtils, TextureLoader, Group, Clock} from "three";
 import circle from '../../img/circle.png'
-
 import {getAllQuizzesCategoriesData} from "../../utils/quizzesData";
-
 import Navigate from '../Router/Navigate';
 
 const HomePage = () => {
@@ -40,8 +36,6 @@ function renderThreeDimension (){
  const count = 750 // nombre de point presents
  const distance = 2; // qui va permettre de specifier la distance entre le point le plus proche et le point le plus loin
 
- // scene.add(new AxesHelper()); // permet de voir les axes
-
  const camera = new PerspectiveCamera(
   75,
   window.innerWidth / window.innerHeight,
@@ -52,7 +46,7 @@ function renderThreeDimension (){
  camera.position.x = 0.5;
  scene.add(camera); // ajout de la camera a la scene
 
-  const { points, colors } = generateRandomPointsDistanceColor( count, distance );
+ const { points, colors } = generateRandomPointsDistanceColor( count, distance );
 
  const Geometrie = new BufferGeometry() // cette ligne permet de créer des geometrie plus complexe par exemple des faces
 
@@ -71,19 +65,6 @@ function renderThreeDimension (){
  const groupe = new Group();
  groupe.add(pointsObject);
 
-//  const LineMaterial = new LineBasicMaterial({
-//   color : 0xfff5f5f5,
-//   opacity : 0.001,
-//  })
-
-//  const LineObject = new Line(Geometrie, LineMaterial);
-
-//  LineObject.computeLineDistances();
-//  LineObject.scale.x = 0.5 // probleme
-//  LineObject.scale.y = 0.5 // probleme
-//  LineObject.scale.z = 0.09 //  probleme
-//  groupe.add(LineObject);
-
  scene.add(groupe);
  const renderer = new WebGLRenderer({
   antialias: true,
@@ -93,25 +74,17 @@ function renderThreeDimension (){
  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))// definir le ratio et mettre 2 pour economiser des ressources sur des ecrans qui on une densite de pixel important
  const particlesContainer = document.querySelector('#homepage-particles-container');
  particlesContainer.appendChild(renderer.domElement) // rendre l'element sur le body
- // const controls = new OrbitControls(camera, renderer.domElement) // Les commandes d'orbite permettent à la caméra d'orbiter autour d'une cible.
 
  const clock = new Clock();
-
-//   let mouseXY = 0; 
-//   window.addEventListener('mousemove', e => { // cette fonction va recuperer la position de la souris
-//   mouseXY = e.clientX
-//   mouseXY = e.clientY
-//  })
 
 function tick (){ // une function pour avoir un nouveau rendu
   const time = clock.getElapsedTime() // compter le temps qui c'est ecouler
   groupe.rotation.y = time * 0.1; // controle automatique
   groupe.rotation.x = time * 0.1; // controle automatique
   groupe.rotation.z = time * 0.1; // controle automatique
-  // const ratio = (mouseXY / window.innerWidth -0.5) * 2 // controle de l'utilisateur
-  // groupe.rotation.y = ratio * Math.PI * 0.1 // vitesse de rotation de l'utilisateur
+
   renderer.render(scene, camera); // faire le rendu par rapport a la camera
-  // controls.update(); // permet a notre cube de pouvoir bouger
+
   requestAnimationFrame(tick); // permet de rappeler la fonction pour avoir des rendu en permanence
 
 }

@@ -83,16 +83,12 @@ const RegisterPage = () => {
         },
     }
     
-    console.log(options.body);
     const response = await fetch('/api/auths/register', options);
-    console.log(response.status);
     const authenticatedUser = await response.json();
   
     try{
 
         if (!response.ok) throw new Error(`fetch error : ${response.status} : ${response.statusText}`);
-        
-        console.log('Newly registered & authenticated user : ', authenticatedUser);
       
         setAuthenticatedUser(authenticatedUser);
       
@@ -100,6 +96,7 @@ const RegisterPage = () => {
       
         Navigate('/');
     }catch(error){
+        // eslint-disable-next-line no-alert
         alert(authenticatedUser);
     } 
 }

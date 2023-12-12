@@ -56,13 +56,9 @@ async function QuestionnairePage () {
 
     }
 
-    console.log(`participationFound : ${JSON.stringify(participationFound)}`);
-
     if ( participationFound !== null ) {
 
         const countAttempts = participationFound.nbr_tentatives;
-
-        console.log(`countAttempts : ${countAttempts}`);
 
         if ( countAttempts === countMaxAttempts ) {
 
@@ -378,8 +374,6 @@ async function saveParticipationForQuizz( userId, quizzId ) {
 
     if ( participation === null ) {
 
-        console.log( "Pas de participation : participation créée" );
-
         await createParticipation( userId, quizzId, countRightAnswers );
         await updateUserPoints(userId, nouveauNombrePointsRapportes );
 
@@ -387,22 +381,19 @@ async function saveParticipationForQuizz( userId, quizzId ) {
     // Déjà une participation
     else {
 
-        console.log( "Participation : participation mise à jour" );
-
         const oldCountRightAnswers = participation.nbr_questions_reussies;
         
         const ancienNombrePointsRapportes = oldCountRightAnswers * pointsRapportes;
 
+        // Meilleur score
         if ( ancienNombrePointsRapportes < nouveauNombrePointsRapportes ) {
-
-            console.log( "Meilleur score !" );
 
             await updateParticipation( userId, quizzId, countRightAnswers );
             await updateUserPoints(userId, (nouveauNombrePointsRapportes-ancienNombrePointsRapportes));
 
         } else {
 
-            console.log( "Moins bon ou même score !" );
+            // Moins bon ou même score
 
             await updateParticipation( userId, quizzId, oldCountRightAnswers );
 

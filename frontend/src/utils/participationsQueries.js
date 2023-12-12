@@ -1,11 +1,5 @@
 async function createParticipation( userId, quizzId, countQuestionsSucceeded ) {
 
-    console.log(`model userId : ${userId}`);
-    console.log(`model userId type : ${typeof userId}`);
-    console.log(`model quizzId : ${quizzId}`);
-    console.log(`model quizzId type : ${typeof quizzId}`);
-    console.log(`model countQuestionsSucceeded : ${countQuestionsSucceeded}`);
-    console.log(`model countQuestionsSucceeded type : ${typeof countQuestionsSucceeded}`);
     const options = {
         method: 'POST',
         body: JSON.stringify({

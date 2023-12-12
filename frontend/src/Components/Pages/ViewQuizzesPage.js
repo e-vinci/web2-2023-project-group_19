@@ -25,15 +25,11 @@ async function viewQuizzes ( categorieName ) {
 
     if ( authenticatedUser !== undefined ) {
 
-        console.log( "authentifié!" );
-
         const {username} = authenticatedUser;
         const userFound = await getUserFromUsername(username);
         userId = userFound.id_user;
 
     } else {
-
-        console.log( "pas authentifié!" );
 
         userId = defaultUserId;
 
@@ -260,7 +256,6 @@ function addListenerToCard( cardId, buttonSrc ) {
 
         card.addEventListener('click', (e) => {
             e.preventDefault();
-            console.log(`ok : ${cardId}` );
             Navigate(buttonSrc);
             return true;
         });
