@@ -77,6 +77,7 @@ function renderResults( category, difficulty, pointsTotauxRapportes, percentageQ
     
 };
 
+
 function createFireworks() {
 
     const container = document.querySelector('#resultQuizz-fireworks')

@@ -4,14 +4,38 @@ import getPathParameters from  '../../utils/path-href';
 import { getAllQuizzes } from '../../utils/quizzesQueries';
 import {getQuizzCategoryData} from '../../utils/quizzesData';
 import { chooseDifficultyColor, chooseDifficultyName } from '../../utils/difficultyData';
+import { getParticipation } from '../../utils/participationsQueries';
+import { getAuthenticatedUser } from '../../utils/auths';
+import { getUserFromUsername } from '../../utils/usersQueries';
 
 const quizzUri = 'http://localhost:8080/quizz';
 
 async function viewQuizzes ( categorieName ) {
 
+
     console.log( categorieName );
     
     clearPage();
+
+    const authenticatedUser = getAuthenticatedUser();
+    const defaultUserId = -1;
+    let userId;
+
+    if ( authenticatedUser !== undefined ) {
+
+        console.log( "authentifié!" );
+
+        const {username} = authenticatedUser;
+        const userFound = await getUserFromUsername(username);
+        userId = userFound.id_user;
+
+    } else {
+
+        console.log( "pas authentifié!" );
+
+        userId = defaultUserId;
+
+    };
 
     const parametersObject = getPathParameters();
 
@@ -47,7 +71,7 @@ async function viewQuizzes ( categorieName ) {
 
     };
 
-    generateQuizzesButtons( QUIZZES, quizzDataImages, quizzDataCategoryName );
+    generateQuizzesButtons( QUIZZES, quizzDataImages, quizzDataCategoryName, userId );
 
     for ( let i=0; i<3; i+=1 ) {
 
@@ -72,7 +96,7 @@ function animateGridElements() {
       });
 }
 
-function generateQuizzesButtons ( quizzesArray, quizzDataImages, quizzCategoryName ) {
+async function generateQuizzesButtons ( quizzesArray, quizzDataImages, quizzCategoryName, userId ) {
 
     const main = document.querySelector('main');
 
@@ -98,11 +122,25 @@ function generateQuizzesButtons ( quizzesArray, quizzDataImages, quizzCategoryNa
 
             const quizzId = quizzesDifficulty.quizzes[i].id_quizz;
 
+            let participationFound;
+
+            if ( userId === -1 ) {
+
+                participationFound = null;
+
+            } else {
+
+                participationFound = getParticipation( userId, quizzId );
+
+            }
+
+            console.log(`participationFound : ${participationFound}`);
+
             const buttonSrc = `${quizzUri}?quizzId=${quizzId}`;
 
             const indexDifficultyImg = difficultyLevel - 1;
 
-            const image = createCard(quizzDataImages[indexDifficultyImg], buttonSrc, difficultyColor, quizzNumber );
+            const image = createCard(quizzDataImages[indexDifficultyImg], buttonSrc, difficultyColor, quizzNumber, participationFound );
 
             quizzNumber += 1;
 
@@ -128,21 +166,21 @@ function createBox () {
 
 };
 
-function createCard (quizzImage, buttonSrc, difficultyColor, quizzNumber) {
-
-    const countMaxAttemps = 3;
+function createCard (quizzImage, buttonSrc, difficultyColor, quizzNumber, participationFound ) {
 
     let text;
-    const number = 5;
 
-    const countAttemps = 1;
-    const countPoints = 20;
+    console.log(`participationFound : ${participationFound}`);
 
-    if ( number === 4 ) {
+    if ( participationFound === null ) {
 
         text = `Quizz non effectué`;
 
     } else {
+
+        const countMaxAttemps = 3;
+        const countAttemps = 1;
+        const countPoints = 20;
 
         text = `Effectué ${countAttemps}/${countMaxAttemps} fois<br>${countPoints} points gagnés`;
 

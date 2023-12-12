@@ -2,10 +2,16 @@ import throphyImg from '../../img/throphyImg.png';
 import medailleBronz from '../../img/medaille_bronze.png';
 import medailleOr from '../../img/medaille_or.png';
 import medailleArgent from '../../img/medaille_argent.png';
-import getLeaderboard from '../../utils/usersQueries';
+import {getLeaderboard} from '../../utils/usersQueries';
+
+import { isAuthenticated } from '../../utils/auths';
 
 const main = document.querySelector('main');
 const ClassementPage = async() => {
+
+    if(!isAuthenticated()){
+        window.location.href = '/'
+    }
  
   const quizzClassement = await getLeaderboard();
 
