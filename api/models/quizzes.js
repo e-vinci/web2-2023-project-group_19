@@ -94,15 +94,11 @@ async function getLastQuestionId() {
 }
 
 async function createQuizz(difficultee, categorie) {
-  // eslint-disable-next-line no-console
-  console.log(difficultee, categorie);
   const requestString = `
       insert into QUIZZLER.quizzes(difficultee,categorie)
       VALUES (${difficultee},'${categorie}')
       RETURNING quizzes.id_quizz;
       `;
-  // eslint-disable-next-line no-console
-  console.log(requestString);
   const result = await client.query(requestString);
   return result.rows[0];
 }

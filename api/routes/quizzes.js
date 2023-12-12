@@ -17,7 +17,7 @@ const {
 
 /* GET users listing. */
 router.get('/', async (req, res) => {
-  const category = req?.query?.categorie;
+  const category = req?.query?.categorie?.length !== 0 ? req.query.categorie : undefined;
   if (!category) return res.sendStatus(400);
   const QUIZZES = await readAllQuizzes(category);
   return res.json(QUIZZES);
@@ -37,7 +37,7 @@ router.get('/getLastQuestionId', async (req, res) => {
 
 router.post('/createQuizz', async (req, res) => {
   const difficultee = req?.body?.difficultee;
-  const categorie = req?.body?.categorie;
+  const categorie = req?.body?.categorie?.length !== 0 ? req.body.categorie : undefined;
   if (!difficultee || !categorie) return res.sendStatus(400);
   const createdQuizz = await createQuizz(difficultee, categorie);
   return res.json(createdQuizz);
@@ -46,7 +46,8 @@ router.post('/createQuizz', async (req, res) => {
 router.post('/createQuestion', async (req, res) => {
   const quizzId = req?.body?.quizzId;
   const questionNumero = req?.body?.questionNumero;
-  const questionIntitule = req?.body?.questionIntitule;
+  // eslint-disable-next-line max-len
+  const questionIntitule = req?.body?.questionIntitule?.length !== 0 ? req.body.questionIntitule : undefined;
   if (!quizzId || !questionNumero || !questionIntitule) return res.sendStatus(400);
   const createdQuestion = await createQuestion(quizzId, questionNumero, questionIntitule);
   return res.json(createdQuestion);

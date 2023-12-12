@@ -13,7 +13,8 @@ router.get('/leaderboard', async (req, res) => {
 });
 
 router.get('/', async (req, res) => {
-  const username = req?.query?.username;
+  const username = req?.query?.username?.length !== 0 ? req.query.username : undefined;
+  if (!username) return res.sendStatus(400);
   const userFound = await readOneUserFromUsername(username);
   if (!userFound) return undefined;
   return res.json(userFound);
