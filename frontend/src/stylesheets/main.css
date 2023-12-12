@@ -854,17 +854,8 @@ h5, .btn-primary{
     width: 20000px;
 }
 
-.testButton{
-    position: absolute;
-    z-index: 2;
-    margin-left: 54vh;
-    background: rgba(244, 244, 244, 1);
-    padding: 50px;
-    border-radius: 16px;
-    box-shadow: 0 4px 30px rgba(0,0,0,0.1);
-    backdrop-filter: blur(11.6px);
-    -webkit-backdrop-filter: blur(11.6px);
-    width: 9500px;
+.btn-outline-primary{
+    margin-left: 53vh;
 }
 
 /* about us */
