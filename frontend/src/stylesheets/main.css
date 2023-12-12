@@ -2,6 +2,7 @@
 @import url('https://fonts.googleapis.com/css?family=Abril+Fatface');
 @import url('https://fonts.cdnfonts.com/css/horizon');
 @import url('https://fonts.cdnfonts.com/css/tilt-warp');
+@import url('https://fonts.googleapis.com/css2?family=Blaka+Hollow&family=Playfair+Display&family=Quicksand:wght@300;400;500&display=swap');
 
 /*  css pour la HomePage    */
 btn-primary{
@@ -754,9 +755,26 @@ h5, .btn-primary{
 
 #resultQuizz-fireworks {
     position: absolute;
-    z-index : 1; 
+    z-index : -1; 
     width : 100%;
     height : 100%;
+}
+
+.glass-container-resultQuizz{
+    display: block;
+    max-width: 72vw;
+    margin-top: 10vh;
+    margin-bottom: 30px;
+    background: rgba(244, 244, 244, 0.55);
+    padding: 70px;
+    border-radius: 16px;
+    width: 20000px;
+}
+
+.testButton{
+    position: absolute;
+    z-index: 2;
+    margin-left: 54vh;
 }
 
 /* about us */
@@ -772,7 +790,8 @@ h5, .btn-primary{
     margin-left: 30%;
     background-color: #fff;
     color: rgb(0, 0, 0);
-    border: 1px solid rgb(0, 0, 0);
+    border: none;
+    letter-spacing: 1px;
 }
 
 #showStory:hover{
@@ -790,11 +809,12 @@ dialog::backdrop{
 
 dialog form {
     font-weight: 700;
-    color: #2980b9;
+    color: rgb(0, 0, 0);
     text-align: center;
-    align-items: center;
-    justify-content: center;
-    margin-left: 30px;
+    margin-left: 25px;
+    font-family: 'Playfair Display', sans-serif;
+    letter-spacing: 1px;
+    padding: 2% 0 10% 0;
 }
 
 dialog{
@@ -802,23 +822,21 @@ dialog{
     width: 55%;
     height: 45%;
     border: none;
-    background-color:rgb(179,205,224);
+    background-color:#fff;
 }
 
 dialog button{
-    border-radius: 16px;
-    margin: 5% 5% 5% 1%;
-    width: 25%;
-    padding: 15px 25px;
-    font-size: 24px;
-    cursor: pointer;
-    text-align: center;
-    text-decoration: none;
-    outline: none;
-    color: #fff;
-    background-color: #3498db;
+    padding: 2% 5% 2% 5%;
+    background-color: rgba(158, 231, 253, 0.366);
     border: none;
-    border-radius: 15px;
-    box-shadow: 0 9px #999;
+    border-radius: 16px;
+    letter-spacing: 1px;
+    font-weight: 700;
+    font-family: sans-serif;
+    margin-top: 50px;
+}
+
+dialog button:hover{
+    background-color: #badbf1;
 }
 

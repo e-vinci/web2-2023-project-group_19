@@ -1,11 +1,12 @@
 import { Fireworks } from 'fireworks-js';
+import classement from './ClassementPage';
 
 const resultQuizz = () => {
   const main = document.querySelector('main');
   main.innerHTML = `
       <div class="container">
             <div id="resultQuizz-fireworks"></div>
-            <div class="glass-container" id="resultQuizz-glass-container">
+            <div class="glass-container-resultQuizz" id="resultQuizz-glass-container">
                   <div class="main">
                       <h1> Résultat du Quizz </h1>
 
@@ -28,17 +29,32 @@ const resultQuizz = () => {
                           <div class="card-result">
                               <h4 class="fs-5"> Pourcentage de réussite : <p class="text-success"> 70% </p> </h4>
                           </div>
-    
-                          <button type="button" class="btn btn-outline-primary" id="button-result">Consulter le classement </button>
                           </div>
+                    <button class="btn btn-outline-primary testButton" id="buttonResult"> Consulter le classement </button>
                   </div>
             </div>
             </div>
       </div>
-  `;
+  `
+  ;
+  const button = document.querySelector('button');
+
+  console.log( button.className);
+  const buttonResultClik = document.querySelector(".testButton");
+  buttonResultClik.addEventListener('click', boutonClassement );
   const fireworks = createFireworks();
   endFireworks(fireworks);
 };
+
+function boutonClassement() {
+
+    const buttonResultClik = document.querySelector(".testButton");
+
+    buttonResultClik.style.border = "5px solid red"
+
+    classement();
+}
+
 
 function createFireworks() {
 
