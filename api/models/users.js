@@ -22,7 +22,7 @@ async function readOneUserFromEmail(email) {
 
 async function readOneUserFromUsername(username) {
   const requestString = `
-    SELECT id_user, username, nbr_points
+    SELECT id_user, username, nbr_points, mdp
     FROM QUIZZLER.users
     WHERE username = '${username}'
   `;
