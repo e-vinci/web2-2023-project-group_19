@@ -1,9 +1,16 @@
 /* eslint-disable no-param-reassign */
 import { createQuizz, createQuestion, createProposition, getLastQuestionId, getLastQuizzId } from '../../utils/quizzesQueries';
+import { createQuizz /* createQuestion,createProposition */ } from '../../utils/quizzesQueries';
+import { isAdmin } from '../../utils/auths';
 
 const numberMaxSteps = 11;
 
 const creationQuizz = () => {
+
+  if (!isAdmin()) {
+    window.location.href = '/';
+  } 
+
   let currentStepCreation = sessionStorage.getItem('currentStepCreation');
 
   if (currentStepCreation === null) {
