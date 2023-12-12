@@ -70,7 +70,7 @@ const aboutUs = () => {
   <img src="${imageIsmet}" class="card-img-top" alt="...">
   <div class="card-body-AboutUs">
     <h5 class="card-title">Ismet Ismet</h5>
-    <button id="showStory"> dexcription </button>
+    <button id="showStory"> description </button>
     <dialog id="Story">
       <form method="dialog">
         <p>Pudor in debeo sum nostro illum orationi fortius quidem fortius postulabat aetas fortius datam Neque robustioribus tuli patiebatur meum versari aliquis Atratino hunc accusationis accusationis erga dicendi et Vellem debeo enim Atratino dicendi tueri et accusationis patiebatur tuli parentemque istam tuus quidem et vobis accusationis accusationis moderatur beneficium in magis.
