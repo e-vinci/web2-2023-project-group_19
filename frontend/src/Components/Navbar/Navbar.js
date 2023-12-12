@@ -1,6 +1,6 @@
 // eslint-disable-next-line no-unused-vars
 import logoQuizzLer from '../../img/logo-site.png';
-import { isAuthenticated } from '../../utils/auths';
+import { isAuthenticated, isAdmin  } from '../../utils/auths';
 
 const Navbar = () => {
   const navbarWrapper = document.querySelector('#navbarWrapper');
@@ -8,13 +8,26 @@ const Navbar = () => {
   const renderAuthLinks = () => {
     if (isAuthenticated()) {
       // Si l'utilisateur est authentifié, affiche "Logout"
-      return '<li class="nav-item"><a class="nav-link" href="#" data-uri="/logout">Logout</a></li>';
+      return `
+      
+      <li class="nav-item"><a class="nav-link" href="#" data-uri="/leaderboard">Classement</a></li>
+      <li class="nav-item"><a class="nav-link" href="#" data-uri="/logout">Logout</a></li>
+      `;
     } 
       // Si l'utilisateur n'est pas authentifié, affiche "Login" et "Register"
       return `
         <li class="nav-item"><a class="nav-link" href="#" data-uri="/login">Login</a></li>
         <li class="nav-item"><a class="nav-link" href="#" data-uri="/register">Register</a></li>
       `;
+    
+  };
+
+  // eslint-disable-next-line consistent-return
+  const renderAdminLinks = () => {
+    if(isAdmin()){
+      return `<li class="nav-item"> <a class="nav-link" href="#" data-uri="/creationQuizz">(Creation)</a> </li>`;
+    }
+      return ``;
     
   };
 
@@ -38,18 +51,9 @@ const Navbar = () => {
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link" href="#" data-uri="/resultQuizz">(ResultQuizz)</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#" data-uri="/creationQuizz">(Creation)</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#" data-uri="/leaderboard">(Leaderboard)</a>
-            </li>  
-            <li class="nav-item">
               <a class="nav-link" href="#" data-uri="/aboutUs">About</a>
             </li>
-            
+            ${renderAdminLinks()}
             ${renderAuthLinks()}
           </ul>
         </div>

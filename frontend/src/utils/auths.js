@@ -3,6 +3,7 @@ let currentUser;
 const getAuthenticatedUser = () => currentUser;
 
 const setAuthenticatedUser = (authenticatedUser) => {
+  console.log(authenticatedUser);
   currentUser = authenticatedUser;
 };
 
@@ -12,5 +13,12 @@ const clearAuthenticatedUser = () => {
   currentUser = undefined;
 };
 
+const isAdmin = () => {
+  if(currentUser === undefined){
+    return false;
+  }
+  return currentUser.isAdmin;
+};
+
 // eslint-disable-next-line object-curly-newline
-export { getAuthenticatedUser, setAuthenticatedUser, isAuthenticated, clearAuthenticatedUser };
+export { getAuthenticatedUser, setAuthenticatedUser, isAuthenticated, clearAuthenticatedUser, isAdmin };

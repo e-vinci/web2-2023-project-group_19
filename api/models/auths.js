@@ -18,6 +18,7 @@ async function loginUser(username, password) {
 
   const authenticatedUser = {
     username,
+    isAdmin: userFound.isadmin,
     token,
   };
 
@@ -42,6 +43,7 @@ async function registerUser(email, username, password) {
 
   const authenticatedUser = {
     username,
+    isAdmin: createdUser.isadmin,
     token,
   };
 

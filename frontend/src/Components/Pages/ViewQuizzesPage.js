@@ -12,6 +12,7 @@ const quizzUri = 'http://localhost:8080/quizz';
 
 async function viewQuizzes ( categorieName ) {
 
+
     console.log( categorieName );
     
     clearPage();
