@@ -1,26 +1,22 @@
 import anime from 'animejs';
-import { clearPage } from "../../utils/render";
-import getPathParameters from  "../../utils/path-href";
-import { getAllQuizzes } from "../../utils/quizzesQueries";
-import {getQuizzCategoryData} from "../../utils/quizzesData";
+import { clearPage } from '../../utils/render';
+import getPathParameters from  '../../utils/path-href';
+import { getAllQuizzes } from '../../utils/quizzesQueries';
+import {getQuizzCategoryData} from '../../utils/quizzesData';
+import { chooseDifficultyColor, chooseDifficultyName } from '../../utils/difficultyData';
 
+const quizzUri = 'http://localhost:8080/quizz';
 
-async function viewQuizzes () {
+async function viewQuizzes ( categorieName ) {
 
+    console.log( categorieName );
+    
     clearPage();
 
-    // Prend les paramètre dans l'URL de la page (après le ?)
-    /**
-     * lien : http://localhost:8080/viewQuizzes?categorie=geographie
-     * parametersObject = {
-     *  categorie : "geographie"
-     * }
-     */
     const parametersObject = getPathParameters();
 
     const category = parametersObject.categorie;
 
-    
     const quizzData = getQuizzCategoryData(category);
     const quizzDataImages = quizzData.images;
     const quizzDataCategoryName = quizzData.name;
@@ -84,7 +80,7 @@ function generateQuizzesButtons ( quizzesArray, quizzDataImages, quizzCategoryNa
 
     main.innerHTML += categoryTitle;
 
-    let indexImg = 0;
+    let quizzNumber = 1;
 
     quizzesArray.map( (quizzesDifficulty) => {
 
@@ -100,14 +96,15 @@ function generateQuizzesButtons ( quizzesArray, quizzDataImages, quizzCategoryNa
 
         for ( let i=0; i<quizzesDifficulty.quizzes.length; i+=1 ) {
 
-            console.log(JSON.stringify(quizzesDifficulty.quizzes))
-
             const quizzId = quizzesDifficulty.quizzes[i].id_quizz;
 
-            const buttonSrc = `http://localhost:8080/questionnaire?quizzId=${quizzId}`;
+            const buttonSrc = `${quizzUri}?quizzId=${quizzId}`;
 
-            const image = createCard(quizzDataImages[indexImg], buttonSrc, difficultyColor, difficultyName );
-            indexImg+=1;
+            const indexDifficultyImg = difficultyLevel - 1;
+
+            const image = createCard(quizzDataImages[indexDifficultyImg], buttonSrc, difficultyColor, quizzNumber );
+
+            quizzNumber += 1;
 
             box.innerHTML += image;
 
@@ -131,17 +128,35 @@ function createBox () {
 
 };
 
-function createCard (quizzImage, buttonSrc, difficultyColor, title) {
+function createCard (quizzImage, buttonSrc, difficultyColor, quizzNumber) {
+
+    const countMaxAttemps = 3;
+
+    let text;
+    const number = 5;
+
+    const countAttemps = 1;
+    const countPoints = 20;
+
+    if ( number === 4 ) {
+
+        text = `Quizz non effectué`;
+
+    } else {
+
+        text = `Effectué ${countAttemps}/${countMaxAttemps} fois<br>${countPoints} points gagnés`;
+
+    }
 
     return `
-        <div class="card viewQuizzes-cards" style="width: 80%; margin : auto;">
-            <a class="viewQuizzes-button" href="${buttonSrc}">
-                <img class="card-img-top" src="${quizzImage}" alt="Card image cap">
-            </a>
-            <div class="card-body-viewQuizz">
-                <h5 class="card-title viewQuizzes-title-${difficultyColor}">${title}</h5>
-                <p class="card-text-viewQuizz">Quizz non effectué</p>
-            </div>
+    <div class="card viewQuizzes-cards" style="width:80%;margin:auto;">
+        <a class="viewQuizzes-button" href="${buttonSrc}">
+            <img class="card-img-top" src="${quizzImage}" alt="Card image cap">
+        </a>
+        <div class="card-body-viewQuizz">
+            <h3 class="card-title viewQuizzes-title-${difficultyColor}">Quizz n°${quizzNumber}</h5>
+            <p class="card-text-viewQuizz">${text}</p>
+        </div>
     </div>`;
 }
 
@@ -152,22 +167,6 @@ function createTitle (titleText, titleSize ) {
             ${titleText}
         </${titleSize}>
     `;
-
-};
-
-function chooseDifficultyColor( difficultyLevel ) {
-
-    const DIFFICULTIES_COLORS = [ "green", "orange", "red"];
-
-    return DIFFICULTIES_COLORS[difficultyLevel-1];
-
-};
-
-function chooseDifficultyName( difficultyLevel ) {
-
-    const DIFFICULTIES_NAMES = [ "Easy", "Medium", "Hard"];
-    
-    return DIFFICULTIES_NAMES[difficultyLevel-1];
 
 };
 

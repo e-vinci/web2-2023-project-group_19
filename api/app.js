@@ -9,8 +9,7 @@ const corsOptions = {
 
 const usersRouter = require('./routes/users');
 const quizzesRouter = require('./routes/quizzes');
-const classementRouter = require('./routes/classement');
-const creatQuizzRouter = require('./routes/creationQuizz');
+const authsRouter = require('./routes/auths');
 
 const app = express();
 
@@ -23,7 +22,6 @@ app.use(cookieParser());
 
 app.use('/users', usersRouter);
 app.use('/quizzes', quizzesRouter);
-app.use('/classement', classementRouter);
-app.use('/creationQuizz', creatQuizzRouter);
+app.use('/auths', authsRouter);
 
 module.exports = app;

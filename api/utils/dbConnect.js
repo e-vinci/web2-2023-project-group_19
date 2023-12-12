@@ -1,24 +1,5 @@
 const { Client } = require('pg');
 
-/*
-    Dans le dossier "api" :
-
-    -   Créer un dossier "databaseCredentials"
-    -   Dans le dossier "databaseCredentials", créer un fichier "userCredentials.json"
-    -   Dans le fichier "userCredentials.json", mettre ceci :
-
-        {
-            "user" : "postgres",
-            "host" : "localhost",
-            "database" : "quizzler",
-            "password" : "mdp",
-            "port" : "5432"
-        }
-
-    En cas de problème, contacter monsieur JS
-
-*/
-
 const userCredentials = require('../databaseCredentials/userCredentials.json');
 
 const client = new Client({

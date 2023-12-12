@@ -2,8 +2,9 @@ const { client } = require('../utils/dbConnect');
 
 async function readAllQuizzes(categorie) {
   const requestString = `
-    SELECT * 
-    FROM QUIZZLER.quizzes quizz
+      SELECT *
+      FROM QUIZZLER.quizzes q
+      ORDER BY q.id_quizz
   `;
   const result = await client.query(requestString);
 
@@ -16,16 +17,6 @@ async function readAllQuizzes(categorie) {
 
 function filterByCategory(result, categorie) {
   return result.rows.filter((x) => x.categorie === categorie);
-}
-
-async function getAllQuizzesByCategory(category) {
-  const requestString = `
-    SELECT * 
-    FROM QUIZZLER.quizzes quizz
-    WHERE quizz.categorie = ${category}
-  `;
-  const result = await client.query(requestString);
-  return result.rows;
 }
 
 async function getQuizzQuestions(quizzId) {
@@ -64,56 +55,133 @@ async function readOneQuizzContent(quizzId) {
 
   const quizzData = await client.query(requestQuizzData);
 
-  /**
-   * quizzObject = {
-   *    id_quizz,
-   *    difficultee,
-   *    categorie,
-   *    points_rapportes,
-   *    nbr_points_reussies
-   * }
-   *  */
-
   const quizzObject = quizzData.rows[0];
-
-  /**
-   * questionArray = [
-   *    { id_question : 1, numero : 1, intitule : "Question 1" },
-   *    { id_question : 2, numero : 2, intitule : "Question 2" },
-   *    ...
-   *    { id_question : 10, numero : 10, intitule : "Question 10" }
-   * ]
-   *  */
 
   const questionsArray = await getQuizzQuestions(quizzId);
 
+  console.log(`questionsArray : ${JSON.stringify(questionsArray)}`);
+
+  if (questionsArray.length === 0) return null;
+
   for (let i = 0; i < questionsArray.length; i += 1) {
     const question = questionsArray[i];
-    /**
-     * propositionsArray = [
-     *    { id_proposition : 1, intitule : "Proposition 1", isreponse : true, question : 1 },
-     *    { id_proposition : 2, intitule : "Proposition 2", isreponse : false, question : 1 },
-     *    { id_proposition : 3, intitule : "Proposition 3", isreponse : false, question : 1 }
-     * ]
-     *  */
 
     // eslint-disable-next-line no-await-in-loop
     const propositionsArray = await getQuizzQuestionPropositions(quizzId, question.id_question);
     question.propositions = propositionsArray;
   }
 
-  /**
-   * questionArray = [
-   *    { id_question : 1, numero : 1, intitule : "Question 1", propositions : [] },
-   *    { id_question : 2, numero : 2, intitule : "Question 2", propositions : [] },
-   *    ...
-   *    { id_question : 10, numero : 10, intitule : "Question 10", propositions : [] }
-   * ]
-   *  */
-
   quizzObject.questions = questionsArray;
 
   return quizzObject;
 }
 
-module.exports = { readAllQuizzes, readOneQuizzContent, getAllQuizzesByCategory };
+async function getLastQuizzId() {
+  const requestString = `
+    SELECT max(qu.id_quizz) as lastQuizzId
+    FROM QUIZZLER.quizzes qu
+      `;
+  const result = await client.query(requestString);
+  return result.rows[0];
+}
+async function getLastQuestionId() {
+  const requestString = `
+    SELECT max(que.id_question) as lastQuestionId
+    FROM QUIZZLER.questions que
+      `;
+  const result = await client.query(requestString);
+  return result.rows[0];
+}
+
+async function createQuizz(difficultee, categorie) {
+  const requestString = `
+      insert into QUIZZLER.quizzes(difficultee,categorie)
+      VALUES (${difficultee},'${categorie}')
+      RETURNING quizzes.id_quizz;
+      `;
+  const result = await client.query(requestString);
+  return result.rows[0];
+}
+
+async function createQuestion(quizz, numero, intitule) {
+  const requestString = `
+      insert into QUIZZLER.questions(quizz, numero, intitule) 
+      VALUES (${quizz},${numero},'${intitule}')
+      RETURNING questions.id_question;
+      `;
+  const result = await client.query(requestString);
+  return result.rows[0];
+}
+
+async function createProposition(propositions, question) {
+  const propositionsId = { propositionsId: [] };
+
+  for (let i = 0; i < propositions.length; i += 1) {
+    const { intitule, isReponse } = propositions[i];
+    const requestString = `
+    insert into QUIZZLER.propositions(intitule, isreponse, question) 
+    VALUES ('${intitule}',${isReponse},${question})
+    RETURNING propositions.id_proposition;
+    `;
+
+    // eslint-disable-next-line no-await-in-loop
+    const propositionId = await client.query(requestString);
+    propositionsId.propositionsId.push(propositionId.rows[0].id_proposition);
+  }
+  return propositionsId.rows[0];
+}
+
+async function createParticipation(quizzId, userId, countQuestionsSucceeded) {
+  const defaultAttemptsCount = 1;
+
+  const requestString = `
+  insert into QUIZZLER.participations(quizz, utilisateur, nbr_tentatives, nbr_questions_reussies)
+  VALUES ( ${quizzId}, ${userId}, ${defaultAttemptsCount}, ${countQuestionsSucceeded} )
+  RETURNING id_participation;
+  `;
+
+  const participationId = await client.query(requestString);
+
+  return participationId.rows[0];
+}
+
+async function getParticipation(quizzId, userId) {
+  const requestString = `
+  SELECT id_participation, nbr_tentatives, nbr_questions_reussies
+  FROM QUIZZLER.participations
+  WHERE quizz = ${quizzId}
+    AND utilisateur = ${userId}
+  `;
+
+  const participation = await client.query(requestString);
+
+  return participation.rows[0];
+}
+
+async function updateParticipation(userId, quizzId, countQuestionsSucceeded) {
+  const requestString = `
+    UPDATE QUIZZLER.participations
+    SET nbr_tentatives = nbr_tentatives + 1,
+    nbr_questions_reussies = ${countQuestionsSucceeded}
+    WHERE quizz = ${quizzId}
+      AND utilisateur = ${userId}
+    RETURNING nbr_tentatives, nbr_questions_reussies;
+  `;
+
+  const participation = await client.query(requestString);
+
+  return participation.rows[0];
+}
+
+module.exports = {
+  readAllQuizzes,
+  readOneQuizzContent,
+  getLastQuizzId,
+  getLastQuestionId,
+  createQuizz,
+  createQuestion,
+  createProposition,
+  createParticipation,
+  getParticipation,
+  updateParticipation,
+};

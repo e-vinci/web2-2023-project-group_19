@@ -8,7 +8,7 @@ function chooseDifficultyColor( difficultyLevel ) {
 
 function chooseDifficultyName( difficultyLevel ) {
 
-    const DIFFICULTIES_NAMES = [ "Easy", "Medium", "Hard"];
+    const DIFFICULTIES_NAMES = [ "Facile", "Moyen", "Difficile"];
     
     return DIFFICULTIES_NAMES[difficultyLevel-1];
 

@@ -1,4 +1,5 @@
 import { Fireworks } from 'fireworks-js';
+<<<<<<< HEAD
 import classement from './ClassementPage';
 
 const resultQuizz = () => {
@@ -9,10 +10,15 @@ const resultQuizz = () => {
             <div class="glass-container-resultQuizz" id="resultQuizz-glass-container">
                   <div class="main">
                       <h1> Résultat du Quizz </h1>
+=======
+import Navigate from '../Router/Navigate';
 
-                      <!--  Modifier la couleur en fonction de la réussite ou pas !! -->
-                      <h4 class="text-success"> Félicitation, vous avez réussi le quizz ! </h4>
+const resultQuizz = ( category = "Histoire", difficulty = "Moyenne", pointsTotauxRapportes = 0, percentageQuestionsSucceeded = 0 ) => {
+>>>>>>> e35f4f551edcea61d528ca42f98c98ef02d151e3
 
+  if ( category === undefined ) {
+
+<<<<<<< HEAD
                       <div class="box-result">
                           <div class="card-result">
                               <h4 class="fs-5"> Nombre de question(s) réussite(s) : <p class="text-success"> 7 </p> </h4>
@@ -44,6 +50,78 @@ const resultQuizz = () => {
   buttonResultClik.addEventListener('click', boutonClassement );
   const fireworks = createFireworks();
   endFireworks(fireworks);
+=======
+    return Navigate('/');
+
+  };
+
+  let textClassName;
+  let textContent;
+
+  const isSucceeded = percentageQuestionsSucceeded >= 50;
+
+  if ( isSucceeded ) {
+
+    textContent = 'Félicitation, vous avez réussi le quizz !';
+    textClassName = 'text-success';
+
+  } else {
+
+    textContent = 'Dommage, vous n\'avez pas réussi le quizz..';
+    textClassName = 'text-danger';
+
+  }
+
+  renderResults( category, difficulty, pointsTotauxRapportes, percentageQuestionsSucceeded, textContent, textClassName );
+
+  if ( isSucceeded ) {
+
+    const fireworks = createFireworks();
+    endFireworks(fireworks);
+
+  }
+  
+
+  return true;
+};
+
+function renderResults( category, difficulty, pointsTotauxRapportes, percentageQuestionsSucceeded, textContent, textClassName ) {
+
+    sessionStorage.clear();
+    
+    const main = document.querySelector('main');
+    main.innerHTML = `
+        <div class="container">
+                <div id="resultQuizz-fireworks"></div>
+                <div id="resultQuizz-glass-container">
+                    <div class="main">
+                        <h1> Résultat du Quizz </h1>
+
+                        <h4 class="${textClassName}"> ${textContent} </h4>
+
+                        <div class="box-result">
+                            <div class="card-result">
+                                <h4 class="fs-5"> Difficulté : <p class="${textClassName}"> ${difficulty} </p> </h4>
+                            </div>
+                            <div class="card-result">
+                                <h4 class="fs-5"> Catégorie : <p class="${textClassName}"> ${category} </p> </h4>
+                            </div>
+                            <div class="card-result">
+                                <h4 class="fs-5"> Points gagnés : <p class="${textClassName}"> ${pointsTotauxRapportes} pts </p> </h4>
+                            </div>
+                            <div class="card-result">
+                                <h4 class="fs-5"> Pourcentage de réussite : <p class="${textClassName}"> ${percentageQuestionsSucceeded}% </p> </h4>
+                            </div>
+        
+                            <button type="button" class="btn btn-outline-primary" id="button-result">Consulter le classement </button>
+                            </div>
+                    </div>
+                </div>
+                </div>
+        </div>
+    `;
+    
+>>>>>>> e35f4f551edcea61d528ca42f98c98ef02d151e3
 };
 
 function boutonClassement() {
@@ -81,15 +159,11 @@ function endFireworks(fireworks) {
 
             setTimeout(() => {
 
-                console.log( JSON.stringify( currentOptions ) );
-
                 let {intensity} = currentOptions;
 
                 if ( intensity <= 0 ) {
 
                     fireworks.stop();
-
-                    console.log( "fireworks stopped !!!!!" );
 
                 } else {
 

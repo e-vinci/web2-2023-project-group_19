@@ -1,0 +1,7 @@
+@baseUrl = http://localhost:3000
+
+### Read all users
+GET {{baseUrl}}/users/leaderboard
+
+### Read one user from username
+GET {{baseUrl}}/users?username=alexis
