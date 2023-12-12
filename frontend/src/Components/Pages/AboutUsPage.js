@@ -15,7 +15,7 @@ const aboutUs = () => {
     <button id="showStory">about Nicolas</button>
         <dialog id="Story">
           <form method="dialog">
-            <p>Nicolas est le responsable de la base de donnée. Il a conceptualisé la base de donnée, la remplit et la déployer avec Simon.
+            <p>Nicolas est le responsable de la base de donnée. Il a conceptualisé la base de donnée, la remplit et la déployer avec Simon Nicolas a également fait le backend de la page du classement et à participer au backend pour la création des quizzes.
             </p>
               <button id="confirmBtn">Close</button>
           </form>
