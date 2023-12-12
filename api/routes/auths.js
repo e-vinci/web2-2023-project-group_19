@@ -8,8 +8,6 @@ router.post('/login', async (req, res) => {
   const username = req?.body?.username?.length !== 0 ? req.body.username : undefined;
   const password = req?.body?.password?.length !== 0 ? req.body.password : undefined;
 
-  console.log(username, password);
-
   if (!username || !password) return res.sendStatus(400);
 
   const authenticatedUser = await loginUser(username, password);
@@ -34,8 +32,6 @@ router.post('/register', async (req, res) => {
     username,
     password,
   );
-
-  console.log(authenticatedUser);
 
   if (!authenticatedUser) return res.sendStatus(409);
 

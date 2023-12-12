@@ -66,9 +66,6 @@ router.post('/createParticipation', async (req, res) => {
   const userId = req?.body?.userId;
   const quizzId = req?.body?.quizzId;
   const countQuestionsSucceeded = req?.body?.countQuestionsSucceeded;
-  console.log(`route userId : ${userId}`);
-  console.log(`route quizzId : ${quizzId}`);
-  console.log(`route countQuestionsSucceeded : ${countQuestionsSucceeded}`);
   if (!userId || !quizzId || !countQuestionsSucceeded) return res.sendStatus(400);
   const createdParticipation = await createParticipation(quizzId, userId, countQuestionsSucceeded);
   return res.json(createdParticipation);

@@ -59,8 +59,6 @@ async function readOneQuizzContent(quizzId) {
 
   const questionsArray = await getQuizzQuestions(quizzId);
 
-  console.log(`questionsArray : ${JSON.stringify(questionsArray)}`);
-
   if (questionsArray.length === 0) return null;
 
   for (let i = 0; i < questionsArray.length; i += 1) {
