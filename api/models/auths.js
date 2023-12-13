@@ -33,13 +33,12 @@ async function registerUser(email, username, password) {
   if (userFoundFromEmail) return 'Email already registered';
 
   const encryptedPassword = bcrypt.hashSync(password, saltRounds);
-  const createdUser = await createOneUser(email, username, encryptedPassword);
+  await createOneUser(email, username, encryptedPassword);
 
   const token = jwt.sign({ username }, jwtSecret, { expiresIn: lifetimeJwt });
 
   const authenticatedUser = {
     username,
-    isAdmin: createdUser.isadmin,
     token,
   };
 

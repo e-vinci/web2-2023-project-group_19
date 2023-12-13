@@ -22,13 +22,11 @@ const Navbar = () => {
     
   };
 
-  // eslint-disable-next-line consistent-return
   const renderAdminLinks = () => {
     if(isAdmin()){
       return `<li class="nav-item"> <a class="nav-link" href="#" data-uri="/creationQuizz">(Creation)</a> </li>`;
     }
       return ``;
-    
   };
 
   const navbar = `

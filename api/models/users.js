@@ -28,7 +28,7 @@ async function deleteOneUser(username) {
 
 async function readOneUserFromUsername(username) {
   const requestString = `
-    SELECT id_user, username, nbr_points, mdp
+    SELECT id_user, username, nbr_points, mdp, isadmin
     FROM QUIZZLER.users
     WHERE username = '${username}'
   `;
