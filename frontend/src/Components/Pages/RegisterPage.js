@@ -36,7 +36,7 @@ const RegisterPage = () => {
                         <input type="password" name="password" id="registerPassword">
                     </div>
                     <div class="form-group">
-                        <label for="confirmPassword">Confirm passwor</label>
+                        <label for="confirmPassword">Confirm password</label>
                         <input type="password" name="confpassword" id="registerConfPassword">
                     </div>
                     <div class="form-group">
