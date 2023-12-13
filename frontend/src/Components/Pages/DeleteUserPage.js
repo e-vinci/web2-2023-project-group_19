@@ -6,11 +6,10 @@ import Navigate from '../Router/Navigate';
 const DeleteUserPage = () => {
 
     if(!isAuthenticated()){
-        window.location.href = '/'
+        return Navigate(process.env.PATH_PREFIX);
     }
 
     const authenticatedUser = getAuthenticatedUser();
-    console.log("authenticatedUser: ", authenticatedUser);
     const {username} = authenticatedUser;
 
     const main = document.querySelector('main');
@@ -42,7 +41,7 @@ const DeleteUserPage = () => {
 
     `
     const submitButton = document.querySelector("#deleteForm");
-    submitButton.addEventListener('submit', onDeleteUser);
+    return submitButton.addEventListener('submit', onDeleteUser);
   };
 
   async function onDeleteUser(e) {
@@ -52,7 +51,7 @@ const DeleteUserPage = () => {
   
     Navbar();
   
-    Navigate('/');
+    return Navigate(process.env.PATH_PREFIX);
   }
 
 export default DeleteUserPage;
