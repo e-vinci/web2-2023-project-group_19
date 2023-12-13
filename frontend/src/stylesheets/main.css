@@ -690,16 +690,33 @@ h5, .btn-primary{
     margin-bottom: 10px;
 }
 
-.Next-question-pageQuestion {
+.QuizzPage-default-style-button {
     width: 25%;
     height: 50px;
     margin-top: 3%;
     margin-left: 37.5%;
-    border: none;
+    position: relative;
+    background: #111;
+    color: white;
+    border-radius: 10px;
+    border:none;
+    outline: none;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.QuizzPage-default-style-button:hover {
+    cursor:not-allowed;
+}
+
+.QuizzPage-set-style-button {
+    width: 25%;
+    height: 50px;
+    margin-top: 3%;
+    margin-left: 37.5%;
     outline: none;
     color: white;
     background-color: transparent;
-    cursor: pointer;
     position: relative;
     border-radius: 10px;
     border:none;
@@ -715,7 +732,7 @@ h5, .btn-primary{
 *
 */
 
-.Next-question-pageQuestion:before {
+.QuizzPage-set-style-button:before {
     content: '';
     background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
     position: absolute;
@@ -732,19 +749,19 @@ h5, .btn-primary{
     border-radius: 10px;
 }
 
-.Next-question-pageQuestion:active {
+.QuizzPage-set-style-button:active {
     color: #000
 }
 
-.Next-question-pageQuestion:active:after {
+.QuizzPage-set-style-button:active:after {
     background: transparent;
 }
 
-.Next-question-pageQuestion:hover:before {
+.QuizzPage-set-style-button:hover:before {
     opacity: 1;
 }
 
-.Next-question-pageQuestion:after {
+.QuizzPage-set-style-button:after {
     z-index: -1;
     content: '';
     position: absolute;

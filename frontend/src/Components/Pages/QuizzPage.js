@@ -87,10 +87,6 @@ async function QuestionnairePage () {
         const pointsRapportes = quizz.points_rapportes;
         const numberOfQuestions = randomQuestionsOrderArray.length;
 
-        const countRightAnswers = Number( sessionStorage.getItem('countRightAnswers') );
-        console.log(`pointsRapportes : ${pointsRapportes}`);
-        console.log(`countRightAnswers : ${countRightAnswers}`);
-
         initializeSessionData( quizzId, randomQuestionsOrderArray, categoryName, difficultyName, pointsRapportes, numberOfQuestions, participationFound, userId );
 
     };
@@ -203,7 +199,7 @@ function addNextQuestionButton() {
     const nextQuestionButtonWrapper = document.querySelector('#nextQuestionButtonWrapper');
 
     nextQuestionButtonWrapper.innerHTML += `
-        <button class="Next-question-pageQuestion" id="nextQuestionButton">
+        <button class="QuizzPage-default-style-button" id="nextQuestionButton">
             Question suivante
         </button>
     `;
@@ -245,14 +241,6 @@ function checkAnswer( sessionCurrentIndex ) {
         sessionStorage.setItem('countRightAnswers', countRightAnswers+1);
 
     };
-
-    if ( sessionCurrentIndex < 9 ) {
-
-        const button = document.querySelector('#nextQuestionButton');
-
-        button.addEventListener('click', onNextQuestionButton );
-
-    }
 
 }
 
@@ -326,7 +314,7 @@ function addEndQuizzButton() {
     const endQuizzButtonWrapper = document.querySelector('#endQuizzButtonWrapper');
 
     endQuizzButtonWrapper.innerHTML += `
-        <button class="Next-question-pageQuestion" id="endQuizzButton">
+        <button class="QuizzPage-default-style-button" id="endQuizzButton">
             Terminer le quizz
         </button>
     `;
@@ -335,7 +323,10 @@ function addEndQuizzButton() {
 
 function addEndQuizzButtonListener() {
 
+    const classStyleame = 'QuizzPage-set-style-button';
     const button = document.querySelector('#endQuizzButton');
+
+    button.className = classStyleame;
 
     button.addEventListener('click', async () => {
 
@@ -359,6 +350,18 @@ function addEndQuizzButtonListener() {
         return true;
 
     });
+
+};
+
+function addNextQuestionButtonListener() {
+
+    const classStyleame = 'QuizzPage-set-style-button';
+
+    const button = document.querySelector('#nextQuestionButton');
+
+    button.className = classStyleame;
+
+    button.addEventListener('click', onNextQuestionButton );
 
 };
 
@@ -456,6 +459,10 @@ async function onPropositionClick(event) {
     if ( sessionCurrentIndex === questions.length - 1 ) {
 
         addEndQuizzButtonListener();
+
+    } else {
+
+        addNextQuestionButtonListener();
 
     };
 
