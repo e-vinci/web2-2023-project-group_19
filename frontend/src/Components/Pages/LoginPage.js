@@ -50,7 +50,6 @@ const LoginPage = () => {
     const authenticatedUser = await loginUser( username, password );
   
     setAuthenticatedUser(authenticatedUser);
-  
     Navbar();
   
     Navigate(process.env.PATH_PREFIX);

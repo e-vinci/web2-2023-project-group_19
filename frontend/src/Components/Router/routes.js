@@ -9,6 +9,7 @@ import ViewQuizzesPage from '../Pages/ViewQuizzesPage';
 import ResultQuizzPage from '../Pages/ResultQuizzPage';
 import QuizzPage from '../Pages/QuizzPage';
 import ConfidentialityPage from '../Pages/ConfidentialityPage';
+import DeleteUserPage from '../Pages/DeleteUserPage';
 
 const routes = {
   "/": HomePage,
@@ -21,7 +22,8 @@ const routes = {
   '/confidentiality' : ConfidentialityPage,
   '/viewQuizzes' : ViewQuizzesPage,
   '/resultQuizz' : ResultQuizzPage,
-  '/quizz': QuizzPage
+  '/quizz': QuizzPage,
+  '/deleteUser' : DeleteUserPage
 };
 
 export default routes;

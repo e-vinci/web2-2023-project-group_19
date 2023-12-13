@@ -74,7 +74,15 @@ const aboutUs = () => {
     <button id="showStory"> description </button>
     <dialog id="Story">
       <form method="dialog">
-        <p>Pudor in debeo sum nostro illum orationi fortius quidem fortius postulabat aetas fortius datam Neque robustioribus tuli patiebatur meum versari aliquis Atratino hunc accusationis accusationis erga dicendi et Vellem debeo enim Atratino dicendi tueri et accusationis patiebatur tuli parentemque istam tuus quidem et vobis accusationis accusationis moderatur beneficium in magis.
+        <p>
+          À l'aube de ses 21 ans, Ismet, l'étudiant en informatique au regard lumineux,
+          sculpte l'éclat du virtuel avec une virtuosité éblouissante. En tandem avec
+          son complice Keyvan, il danse entre les pixels en tant qu'artisan du frontend.
+           Cependant, ce n'est pas seulement l'élégance visuelle qui émane de ses doigts 
+           agiles ; Ismet tisse également la toile du backend avec une dextérité exceptionnelle. 
+           Aux côtés d'Alexis, il insuffle la vie aux portails d'authentification, 
+           érigeant des remparts numériques impénétrables. Ismet, sculpteur d'expériences, 
+           forge un cyberespace sécurisé où chaque clic résonne comme une symphonie technologique.
         </p>
           <button id="confirmBtn">Close</button>
       </form>

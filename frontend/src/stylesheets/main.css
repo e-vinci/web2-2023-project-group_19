@@ -333,6 +333,7 @@ h5, .btn-primary{
 
 /* LOGIN PAGE CSS */
 
+.container-delete,
 .container-register,
 .container-login {
     display: flex;
@@ -358,6 +359,7 @@ h5, .btn-primary{
     max-width: 100%;
 }
 
+.container-delete .right-container,
 .container-login .right-container,
 .container-register .right-container {
     background-color: #d9d9d9;
@@ -378,7 +380,7 @@ h5, .btn-primary{
     font-family: 'Tilt Warp', sans-serif;
     margin-bottom: 15px;
     margin-top: 15px;
-    font-size: 2vw;
+    font-size: 1.5vw;
     opacity: 67%;
 }
 
@@ -425,6 +427,10 @@ h5, .btn-primary{
     align-self: center;
 }
 
+.container-delete .form-group #submitBtn {
+    width: 150%;
+}
+
 .form-group #submitBtn:hover {
     border: 1px solid black;
 }
@@ -456,6 +462,7 @@ h5, .btn-primary{
 
 @media only screen and (max-width: 768px) {
     .left-container,
+    .container-delete .right-container,
     .container-login .right-container,
     .container-register .right-container {
         width: 90%;
