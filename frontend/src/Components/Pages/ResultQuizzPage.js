@@ -88,7 +88,9 @@ function addButtonElement() {
     const buttonWrapper = document.querySelector('#button-wrapper');
 
     buttonWrapper.innerHTML = `
-    <button type="button" class="btn btn-outline-primary" id="button-result">Consulter le classement </button>`;
+    <div class="text-center">
+    <button type="button" class="btn btn-outline-primary" id="button-result">Consulter le classement </button>
+    </div>`;
 
 }
 
