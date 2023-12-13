@@ -1,5 +1,5 @@
 const express = require('express');
-const { loginUser, registerUser } = require('../models/auths');
+const { loginUser, registerUser, deleteOneUser } = require('../models/auths');
 
 const router = express.Router();
 
@@ -43,5 +43,15 @@ router.post('/register', async (req, res) => {
 });
 // VALIDATOR UTILISE DANS LE FRONTEND
 // const validator = require('validator');
+
+router.delete('/:id', async (req, res) => {
+  const username = req?.body?.username?.length !== 0 ? req.body.username : undefined;
+
+  const usernameASupprimer = await deleteOneUser(username);
+
+  if (!usernameASupprimer) return res.sendStatus(409);
+
+  return res.json(usernameASupprimer);
+});
 
 module.exports = router;

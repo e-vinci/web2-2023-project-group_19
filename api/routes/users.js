@@ -8,7 +8,12 @@ const {
   updateUserPoints,
 } = require('../models/users');
 
+const { authorize } = require('../utils/auths');
+
 router.get('/leaderboard', async (req, res) => {
+  if (!authorize) {
+    res.sendStatus(400);
+  }
   const leaderboard = await getLeaderboard();
   res.json(leaderboard);
 });

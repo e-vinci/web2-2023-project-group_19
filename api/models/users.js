@@ -20,6 +20,12 @@ async function readOneUserFromEmail(email) {
   return result.rows[0];
 }
 
+async function deleteOneUser(username) {
+  const requestString = `DELETE FROM QUIZZLER.users WHERE username = '${username}' ;`;
+  const result = await client.query(requestString);
+  return result;
+}
+
 async function readOneUserFromUsername(username) {
   const requestString = `
     SELECT id_user, username, nbr_points, mdp
@@ -55,4 +61,5 @@ module.exports = {
   readOneUserFromEmail,
   getLeaderboard,
   updateUserPoints,
+  deleteOneUser,
 };

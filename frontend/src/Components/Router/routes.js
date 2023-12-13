@@ -7,8 +7,8 @@ import CreationQuizzPage from '../Pages/CreationQuizzPage';
 import LeaderboardPage from '../Pages/LeaderboardPage';
 import ViewQuizzesPage from '../Pages/ViewQuizzesPage';
 import ResultQuizzPage from '../Pages/ResultQuizzPage';
-import QuizzPage from '../Pages/QuizzPage'
-import ConfidentialityPage from '../Pages/ConfidentialityPage'
+import QuizzPage from '../Pages/QuizzPage';
+import ConfidentialityPage from '../Pages/ConfidentialityPage';
 
 const routes = {
   "/": HomePage,

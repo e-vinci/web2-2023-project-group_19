@@ -15,6 +15,8 @@ const {
   updateParticipation,
 } = require('../models/quizzes');
 
+const { isAdmin } = require('../utils/auths');
+
 /* GET users listing. */
 router.get('/', async (req, res) => {
   const category = req?.query?.categorie?.length !== 0 ? req.query.categorie : undefined;
@@ -24,6 +26,9 @@ router.get('/', async (req, res) => {
 });
 
 router.get('/getLastQuizzId', async (req, res) => {
+  if (!isAdmin) {
+    return res.sendStatus(400);
+  }
   const lastQuizzId = await getLastQuizzId();
   const response = lastQuizzId;
   return res.json(response);
@@ -36,6 +41,9 @@ router.get('/getLastQuestionId', async (req, res) => {
 });
 
 router.post('/createQuizz', async (req, res) => {
+  if (!isAdmin) {
+    return res.sendStatus(400);
+  }
   const difficultee = req?.body?.difficultee;
   const categorie = req?.body?.categorie?.length !== 0 ? req.body.categorie : undefined;
   if (!difficultee || !categorie) return res.sendStatus(400);
@@ -44,6 +52,9 @@ router.post('/createQuizz', async (req, res) => {
 });
 
 router.post('/createQuestion', async (req, res) => {
+  if (!isAdmin) {
+    return res.sendStatus(400);
+  }
   const quizzId = req?.body?.quizzId;
   const questionNumero = req?.body?.questionNumero;
   // eslint-disable-next-line max-len
@@ -54,6 +65,9 @@ router.post('/createQuestion', async (req, res) => {
 });
 
 router.post('/createPropositions', async (req, res) => {
+  if (!isAdmin) {
+    return res.sendStatus(400);
+  }
   const propositions = req?.body?.propositions;
   const questionId = req?.body?.questionId;
   if (!propositions || !questionId) return res.sendStatus(400);
