@@ -2590,8 +2590,8 @@ insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('6.63 x
 insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('9.8 m/s^2',false,270);
 
 -- insert users
-insert into QUIZZLER.users(email, mdp, username, nbr_points, isadmin) VALUES('nicolas.venturini@student.vinci.be','$2y$10$AowrDKtvBw/4QfiL7O/qC.LhF0ITfPUQRGC5cDOPL5TLVOis65Hjm','nicoco',0,true);
-insert into QUIZZLER.users(email, mdp, username, nbr_points, isadmin) VALUES('simon.bosseler@student.vinci.be','$2y$10$AowrDKtvBw/4QfiL7O/qC.LhF0ITfPUQRGC5cDOPL5TLVOis65Hjm','simon',0,true);
-insert into QUIZZLER.users(email, mdp, username, nbr_points, isadmin) VALUES('alexis.arnaud@student.vinci.be','$2y$10$AowrDKtvBw/4QfiL7O/qC.LhF0ITfPUQRGC5cDOPL5TLVOis65Hjm','alexis',0,true);
-insert into QUIZZLER.users(email, mdp, username, nbr_points, isadmin) VALUES('ismet.ismet@student.vinci.be','$2y$10$AowrDKtvBw/4QfiL7O/qC.LhF0ITfPUQRGC5cDOPL5TLVOis65Hjm','ismet',0,true);
-insert into QUIZZLER.users(email, mdp, username, nbr_points, isadmin) VALUES('keyvan.Nikazm@student.vinci.be','$2y$10$AowrDKtvBw/4QfiL7O/qC.LhF0ITfPUQRGC5cDOPL5TLVOis65Hjm','keyvan',0,true);
+insert into QUIZZLER.users(email, mdp, username, nbr_points, isadmin) VALUES('nicolas.venturini@student.vinci.be','$2b$10$2khoN2M.wab42y/RSVSOtOPA9JNyOZ2QWe1kvqvp6OvDQOdiR8tRS','nicoco',10000000,true);
+insert into QUIZZLER.users(email, mdp, username, nbr_points, isadmin) VALUES('simon.bosseler@student.vinci.be','$2b$10$2khoN2M.wab42y/RSVSOtOPA9JNyOZ2QWe1kvqvp6OvDQOdiR8tRS','simon',0,true);
+insert into QUIZZLER.users(email, mdp, username, nbr_points, isadmin) VALUES('alexis.arnaud@student.vinci.be','$2b$10$2khoN2M.wab42y/RSVSOtOPA9JNyOZ2QWe1kvqvp6OvDQOdiR8tRS','alexis',0,true);
+insert into QUIZZLER.users(email, mdp, username, nbr_points, isadmin) VALUES('ismet.ismet@student.vinci.be','$2b$10$2khoN2M.wab42y/RSVSOtOPA9JNyOZ2QWe1kvqvp6OvDQOdiR8tRS','ismet',0,true);
+insert into QUIZZLER.users(email, mdp, username, nbr_points, isadmin) VALUES('keyvan.Nikazm@student.vinci.be','$2b$10$2khoN2M.wab42y/RSVSOtOPA9JNyOZ2QWe1kvqvp6OvDQOdiR8tRS','keyvan',0,true);
