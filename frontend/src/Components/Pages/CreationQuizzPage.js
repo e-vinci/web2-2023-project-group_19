@@ -13,8 +13,7 @@ const creationQuizz = () => {
   }
 
    if (!isAdmin()) {
-    Navigate('/');
-    return;
+    return Navigate(process.env.PATH_PREFIX);
   }  
 
   let currentStepCreation = sessionStorage.getItem('currentStepCreation');
@@ -26,7 +25,7 @@ const creationQuizz = () => {
   currentStepCreation = Number(sessionStorage.getItem('currentStepCreation'));
 
   renderQuizzCreation(currentStepCreation);
-  makeReactiveForm(currentStepCreation);
+  return makeReactiveForm(currentStepCreation);
 };
 
 function createQuizzContainer(content, title, stepText, currentStepCreation) {

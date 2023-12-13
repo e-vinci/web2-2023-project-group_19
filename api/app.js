@@ -8,6 +8,8 @@ const corsOptions = {
     'http://localhost:8080',
     'https://lukenv.github.io/quizzler/',
     'https://lukenv.github.io',
+    'https://lukenv.github.io/quizzler/login',
+    'https://lukenv.github.io/quizzler/register',
   ],
 };
 

@@ -24,7 +24,7 @@ const Navbar = () => {
 
   const renderAdminLinks = () => {
     if(isAdmin()){
-      return `<li class="nav-item"> <a class="nav-link" href="#" data-uri="/creationQuizz">(Creation)</a> </li>`;
+      return `<li class="nav-item"> <a class="nav-link" href="#" data-uri="/creationQuizz">Creation</a> </li>`;
     }
       return ``;
   };

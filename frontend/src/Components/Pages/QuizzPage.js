@@ -19,7 +19,7 @@ async function QuestionnairePage () {
 
     if ( quizzId === undefined || Number.isNaN(Number(quizzId))) {
 
-        return Navigate('/');
+        return Navigate(process.env.PATH_PREFIX);
 
     };
 
@@ -86,6 +86,10 @@ async function QuestionnairePage () {
         const difficultyName = chooseDifficultyName( quizz.difficultee );
         const pointsRapportes = quizz.points_rapportes;
         const numberOfQuestions = randomQuestionsOrderArray.length;
+
+        const countRightAnswers = Number( sessionStorage.getItem('countRightAnswers') );
+        console.log(`pointsRapportes : ${pointsRapportes}`);
+        console.log(`countRightAnswers : ${countRightAnswers}`);
 
         initializeSessionData( quizzId, randomQuestionsOrderArray, categoryName, difficultyName, pointsRapportes, numberOfQuestions, participationFound, userId );
 
