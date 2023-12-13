@@ -2,8 +2,7 @@ import quizzlerLogo from "../../img/logo-site.png";
 import { setAuthenticatedUser } from '../../utils/auths';
 import Navbar from '../Navbar/Navbar';
 import Navigate from '../Router/Navigate';
-
-
+import { loginUser } from '../../utils/authsQueries';
 
 const LoginPage = () => {
     const main = document.querySelector('main');
@@ -47,23 +46,8 @@ const LoginPage = () => {
   
     const username = document.querySelector('#username').value;
     const password = document.querySelector('#password').value;
-  
-    const options = {
-      method: 'POST',
-      body: JSON.stringify({
-        username,
-        password,
-      }),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    };
-  
-    const response = await fetch('/api/auths/login', options);
-  
-    if (!response.ok) throw new Error(`fetch error : ${response.status} : ${response.statusText}`);
-  
-    const authenticatedUser = await response.json();
+
+    const authenticatedUser = await loginUser( username, password );
   
     setAuthenticatedUser(authenticatedUser);
   

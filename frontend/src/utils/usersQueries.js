@@ -1,7 +1,7 @@
 async function getLeaderboard() {
   let quizz;
   try {
-    const response = await fetch(`/api/users/leaderboard`);
+    const response = await fetch(`${process.env.API_BASE_URL}/users/leaderboard`);
 
     if (!response.ok) throw new Error(`fetch error : ${response.status} : ${response.statusText}`);
 
@@ -18,7 +18,7 @@ async function getUserFromUsername( username ) {
 
   let userFound;
   try {
-      const response = await fetch(`/api/users?username=${username}`);
+      const response = await fetch(`${process.env.API_BASE_URL}/users?username=${username}`);
 
       if (!response.ok) throw new Error(`fetch error : ${response.status} : ${response.statusText}`);
 
@@ -46,7 +46,7 @@ async function updateUserPoints( userId, countPointsToAdd ) {
 
   let updateCountPoints;
   try {
-      const response = await fetch(`/api/users/updateUserPoints`, options);
+      const response = await fetch(`${process.env.API_BASE_URL}/users/updateUserPoints`, options);
 
       if (!response.ok) throw new Error(`fetch error : ${response.status} : ${response.statusText}`);
 

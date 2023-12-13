@@ -1,7 +1,7 @@
 async function getOneQuizzContent(quizzId) {
   let quizz;
   try {
-    const response = await fetch(`/api/quizzes/${quizzId}`);
+    const response = await fetch(`${process.env.API_BASE_URL}/quizzes/${quizzId}`);
 
     if (!response.ok) throw new Error(`fetch error : ${response.status} : ${response.statusText}`);
 
@@ -45,7 +45,7 @@ async function createQuizz( difficultee, categorie ) {
 
   let quizz;
   try {
-    const response = await fetch(`/api/quizzes/createQuizz`, options);
+    const response = await fetch(`${process.env.API_BASE_URL}/quizzes/createQuizz`, options);
 
     if (!response.ok) throw new Error(`fetch error : ${response.status} : ${response.statusText}`);
 
@@ -72,7 +72,7 @@ async function createQuestion( quizzId, questionNumero, questionIntitule ) {
   };
   let quizz;
   try {
-    const response = await fetch(`/api/quizzes/createQuestion`, options);
+    const response = await fetch(`${process.env.API_BASE_URL}/quizzes/createQuestion`, options);
 
     if (!response.ok) throw new Error(`fetch error : ${response.status} : ${response.statusText}`);
 
@@ -99,7 +99,7 @@ async function createProposition( proposition, reponse ,questionId ) {
   };
   let quizz;
   try {
-    const response = await fetch(`/api/quizzes/createProposition`, options);
+    const response = await fetch(`${process.env.API_BASE_URL}/quizzes/createProposition`, options);
 
     if (!response.ok) throw new Error(`fetch error : ${response.status} : ${response.statusText}`);
 
@@ -115,7 +115,7 @@ async function createProposition( proposition, reponse ,questionId ) {
 async function getLastQuestionId() {
   let lastQuestionId;
   try {
-    const response = await fetch(`/api/quizzes/getLastQuestionId`);
+    const response = await fetch(`${process.env.API_BASE_URL}/quizzes/getLastQuestionId`);
 
     if (!response.ok) throw new Error(`fetch error : ${response.status} : ${response.statusText}`);
 
@@ -131,7 +131,7 @@ async function getLastQuestionId() {
 async function getLastQuizzId() {
   let lastQuizzId;
   try {
-    const response = await fetch(`/api/quizzes/getLastQuizzId`);
+    const response = await fetch(`${process.env.API_BASE_URL}/quizzes/getLastQuizzId`);
 
     if (!response.ok) throw new Error(`fetch error : ${response.status} : ${response.statusText}`);
 
