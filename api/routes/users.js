@@ -6,6 +6,8 @@ const {
   getLeaderboard,
   readOneUserFromUsername,
   updateUserPoints,
+  deleteInParticipationById,
+  deleteInUsersById,
 } = require('../models/users');
 
 const { authorize } = require('../utils/auths');
@@ -32,6 +34,20 @@ router.post('/updateUserPoints', async (req, res) => {
   if (!countPointsToAdd || !userId) return res.sendStatus(400);
   const currentCountPoints = await updateUserPoints(userId, countPointsToAdd);
   return res.json(currentCountPoints);
+});
+
+router.post('/deleteParticipationById', async (req, res) => {
+  const userId = req?.body?.userId ? req.body.userId : undefined;
+  if (!userId) return res.sendStatus(400);
+  const deleteParticipationUsers = await deleteInParticipationById(userId);
+  return res.json(deleteParticipationUsers);
+});
+
+router.post('/deleteUsersById', async (req, res) => {
+  const userId = req?.body?.userId ? req.body.userId : undefined;
+  if (!userId) return res.sendStatus(400);
+  const deleteUsersID = await deleteInUsersById(userId);
+  return res.json(deleteUsersID);
 });
 
 module.exports = router;

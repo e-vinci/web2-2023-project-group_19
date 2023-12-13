@@ -9,9 +9,10 @@ const Navbar = () => {
     if (isAuthenticated()) {
       // Si l'utilisateur est authentifié, affiche "Logout"
       return `
-      
-      <li class="nav-item"><a class="nav-link" href="#" data-uri="/leaderboard">Classement</a></li>
-      <li class="nav-item"><a class="nav-link" href="#" data-uri="/logout">Logout</a></li>
+          
+        <li class="nav-item"><a class="nav-link" href="#" data-uri="/logout">Logout</a></li>
+        <li class="nav-item"><a class="nav-link" href="#" data-uri="/deleteUser">supprimer le profil</a></li>
+        
       `;
     } 
       // Si l'utilisateur n'est pas authentifié, affiche "Login" et "Register"
@@ -24,7 +25,7 @@ const Navbar = () => {
 
   const renderAdminLinks = () => {
     if(isAdmin()){
-      return `<li class="nav-item"> <a class="nav-link" href="#" data-uri="/creationQuizz">(Creation)</a> </li>`;
+      return `<li class="nav-item"> <a class="nav-link" href="#" data-uri="/creationQuizz">Creation quizz</a> </li>`;
     }
       return ``;
   };

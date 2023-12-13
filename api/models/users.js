@@ -26,6 +26,18 @@ async function deleteOneUser(username) {
   return result;
 }
 
+async function deleteInParticipationById(userId) {
+  const requestString = `delete from QUIZZLER.participations pa WHERE pa.utilisateur = ${userId}`;
+  const result = await client.query(requestString);
+  return result.rows[0];
+}
+
+async function deleteInUsersById(userId) {
+  const requestString = `delete from QUIZZLER.users us where us.id_user = ${userId}`;
+  const result = await client.query(requestString);
+  return result.rows[0];
+}
+
 async function readOneUserFromUsername(username) {
   const requestString = `
     SELECT id_user, username, nbr_points, mdp, isadmin
@@ -62,4 +74,6 @@ module.exports = {
   getLeaderboard,
   updateUserPoints,
   deleteOneUser,
+  deleteInParticipationById,
+  deleteInUsersById,
 };

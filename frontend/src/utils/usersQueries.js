@@ -59,8 +59,66 @@ async function updateUserPoints( userId, countPointsToAdd ) {
   return updateCountPoints;
 }
 
+async function deleteInParticipationById(userId) {
+
+  const options = {
+    method: 'POST',
+    body: JSON.stringify({
+    userId
+    }),
+    headers: {
+    'Content-Type': 'application/json',
+    },
+};
+
+  let deleteIdPart;
+  try {
+      const response = await fetch(`${process.env.API_BASE_URL}/users/deleteParticipationById`, options);
+
+      if (!response.ok) throw new Error(`fetch error : ${response.status} : ${response.statusText}`);
+
+      deleteIdPart = await response.json();
+  } catch (err) {
+      // eslint-disable-next-line no-console
+      console.error('updateParticipation::error: ', err);
+  }
+
+  return deleteIdPart;
+}
+
+async function deleteInUsersById(userId) {
+
+  const options = {
+    method: 'POST',
+    body: JSON.stringify({
+    userId
+    }),
+    headers: {
+    'Content-Type': 'application/json',
+    },
+};
+
+  let deleteIdUsers;
+  try {
+      const response = await fetch(`${process.env.API_BASE_URL}/users/deleteUsersById`, options);
+
+      if (!response.ok) throw new Error(`fetch error : ${response.status} : ${response.statusText}`);
+
+      deleteIdUsers = await response.json();
+  } catch (err) {
+      // eslint-disable-next-line no-console
+      console.error('updateParticipation::error: ', err);
+  }
+
+  return deleteIdUsers;
+}
+
+
+
 module.exports = {
   getLeaderboard,
   getUserFromUsername,
   updateUserPoints,
+  deleteInParticipationById,
+  deleteInUsersById
 }; 
