@@ -12,7 +12,7 @@ import scienceImg2 from '../img/img_science/img_sci2.jpg';
 import scienceImg3 from '../img/img_science/img_sci3.jpg';
 
 
-const viewQuizzesPath = "http://localhost:8080/viewQuizzes";
+const viewQuizzesPath = 'viewQuizzes';
 
 const quizzesCategoriesData = [
     {
