@@ -7,11 +7,14 @@ import { chooseDifficultyColor, chooseDifficultyName } from '../../utils/difficu
 import { getParticipation } from '../../utils/participationsQueries';
 import { getAuthenticatedUser } from '../../utils/auths';
 import { getUserFromUsername } from '../../utils/usersQueries';
+import Navigate from '../Router/Navigate';
 
 const quizzUri = 'http://localhost:8080/quizz';
+const countQuestions = 10;
 
 async function viewQuizzes ( categorieName ) {
 
+    // eslint-disable-next-line no-console
     console.log( categorieName );
     
     clearPage();
@@ -22,15 +25,11 @@ async function viewQuizzes ( categorieName ) {
 
     if ( authenticatedUser !== undefined ) {
 
-        console.log( "authentifié!" );
-
         const {username} = authenticatedUser;
         const userFound = await getUserFromUsername(username);
         userId = userFound.id_user;
 
     } else {
-
-        console.log( "pas authentifié!" );
 
         userId = defaultUserId;
 
@@ -71,7 +70,7 @@ function animateGridElements() {
       });
 }
 
-async function generateQuizzesButtons ( quizzesParticipationsArray, quizzDataImages, quizzCategoryName ) {
+function generateQuizzesButtons ( quizzesParticipationsArray, quizzDataImages, quizzCategoryName ) {
 
     const main = document.querySelector('main');
 
@@ -81,7 +80,9 @@ async function generateQuizzesButtons ( quizzesParticipationsArray, quizzDataIma
 
     let quizzNumber = 1;
 
-    quizzesParticipationsArray.map( async (quizzesParticipations) => {
+    // Ajouter les éléments html
+
+    quizzesParticipationsArray.map( quizzesParticipations => {
 
         const difficultyLevel = quizzesParticipations.difficulty;
 
@@ -99,27 +100,49 @@ async function generateQuizzesButtons ( quizzesParticipationsArray, quizzDataIma
             const {quizz,participation} = quizzParticipation;
             const quizzId = quizz.id_quizz;
 
-            const buttonSrc = `${quizzUri}?quizzId=${quizzId}`;
-
             const indexDifficultyImg = difficultyLevel - 1;
 
             const quizzPointsRate = quizz.points_rapportes;
 
+            const cardId = `quizz-${quizzId}-card-${i}`;
+
             const image = createCard(
-                quizzDataImages[indexDifficultyImg], 
-                buttonSrc, 
+                quizzDataImages[indexDifficultyImg],
                 difficultyColor, 
                 quizzNumber, 
                 participation,
-                quizzPointsRate );
-
-            quizzNumber += 1;
+                quizzPointsRate,
+                cardId );
 
             box.innerHTML += image;
+
+            quizzNumber += 1;
 
         };
 
         main.appendChild( box );
+
+        return true;
+
+    });
+
+    // Ajouter les listeners aux éléments html
+
+    quizzesParticipationsArray.map( quizzesParticipations => {
+
+        for ( let i=0; i<quizzesParticipations.quizzes.length; i+=1 ) {
+
+            const quizzParticipation = quizzesParticipations.quizzes[i];
+            const {quizz} = quizzParticipation;
+            const quizzId = quizz.id_quizz;
+
+            const cardId = `quizz-${quizzId}-card-${i}`;
+
+            const buttonSrc = `${quizzUri}?quizzId=${quizzId}`;
+
+            addListenerToCard( cardId, buttonSrc );
+
+        };
 
         return true;
 
@@ -157,7 +180,7 @@ async function loadQuizzes( category, userId ) {
             participationFound = null;
     
         } else {
-            
+
             // eslint-disable-next-line no-await-in-loop
             participationFound = await getParticipation( userId, quizzId );
     
@@ -183,11 +206,12 @@ function createBox () {
 
 };
 
-function createCard (quizzImage, buttonSrc, difficultyColor, quizzNumber, participationFound, quizzPointsRate ) {
+function createCard (quizzImage, difficultyColor, quizzNumber, participationFound, quizzPointsRate, cardId ) {
+
+    let cardIdToUse = cardId;
+    let cursorToUse = 'pointer';
 
     let text;
-
-    console.log(`participationFound : ${participationFound}`);
 
     if ( participationFound === null ) {
 
@@ -195,20 +219,26 @@ function createCard (quizzImage, buttonSrc, difficultyColor, quizzNumber, partic
 
     } else {
 
-        console.log(JSON.stringify(participationFound));
-
-        const countMaxAttemps = 3;
-        const countAttemps = participationFound.nbr_tentatives;
+        const countMaxAttempts = 3;
+        const countAttempts = participationFound.nbr_tentatives;
         const countAnswersSucceeded = participationFound.nbr_questions_reussies;
         const countPoints = countAnswersSucceeded * quizzPointsRate;
+        const countMaxPoints = countQuestions * quizzPointsRate;
 
-        text = `Effectué ${countAttemps}/${countMaxAttemps} fois<br>${countPoints} points gagnés`;
+        if ( countAttempts === countMaxAttempts ) {
+
+            cardIdToUse = '';
+            cursorToUse = 'not-allowed';
+
+        }
+
+        text = `Effectué ${countAttempts}/${countMaxAttempts} fois<br>${countPoints}/${countMaxPoints} points gagnés`;
 
     }
 
     return `
     <div class="card viewQuizzes-cards" style="width:80%;margin:auto;">
-        <a class="viewQuizzes-button" href="${buttonSrc}">
+        <a class="viewQuizzes-button" id="${cardIdToUse}" style="cursor:${cursorToUse};">
             <img class="card-img-top" src="${quizzImage}" alt="Card image cap">
         </a>
         <div class="card-body-viewQuizz">
@@ -217,6 +247,22 @@ function createCard (quizzImage, buttonSrc, difficultyColor, quizzNumber, partic
         </div>
     </div>`;
 }
+
+function addListenerToCard( cardId, buttonSrc ) {
+
+    const card = document.querySelector(`#${cardId}`);
+
+    if ( card ) {
+
+        card.addEventListener('click', (e) => {
+            e.preventDefault();
+            Navigate(buttonSrc);
+            return true;
+        });
+
+    }
+
+};
 
 function createTitle (titleText, titleSize ) {
     

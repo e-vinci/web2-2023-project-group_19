@@ -3,7 +3,6 @@ let currentUser;
 const getAuthenticatedUser = () => currentUser;
 
 const setAuthenticatedUser = (authenticatedUser) => {
-  console.log(authenticatedUser);
   currentUser = authenticatedUser;
 };
 

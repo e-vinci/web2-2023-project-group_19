@@ -27,17 +27,13 @@ async function loginUser(username, password) {
 
 async function registerUser(email, username, password) {
   const userFoundFromUsername = await readOneUserFromUsername(username);
-  console.log(`userFoundFromUsername : ${userFoundFromUsername}`);
   if (userFoundFromUsername) return 'Username already registered';
 
   const userFoundFromEmail = await readOneUserFromEmail(username);
-  console.log(`userFoundFromEmail : ${userFoundFromEmail}`);
   if (userFoundFromEmail) return 'Email already registered';
 
   const encryptedPassword = bcrypt.hashSync(password, saltRounds);
   const createdUser = await createOneUser(email, username, encryptedPassword);
-
-  console.log(`createdUser : ${JSON.stringify(createdUser)}`);
 
   const token = jwt.sign({ username }, jwtSecret, { expiresIn: lifetimeJwt });
 

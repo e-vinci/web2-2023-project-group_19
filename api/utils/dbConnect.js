@@ -14,7 +14,8 @@ async function connectDb() {
   try {
     await client.connect();
   } catch (error) {
-    console.log(error);
+    // eslint-disable-next-line no-console
+    console.error(error);
   }
 }
 
@@ -22,7 +23,8 @@ async function disconnectDb() {
   try {
     await client.end();
   } catch (error) {
-    console.log(error);
+    // eslint-disable-next-line no-console
+    console.error(error);
   }
 }
 

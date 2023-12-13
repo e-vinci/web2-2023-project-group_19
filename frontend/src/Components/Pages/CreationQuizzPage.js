@@ -1,14 +1,21 @@
 /* eslint-disable no-param-reassign */
-import { createQuizz /* createQuestion,createProposition */ } from '../../utils/quizzesQueries';
+import { createQuizz, createQuestion, createProposition, getLastQuestionId, getLastQuizzId } from '../../utils/quizzesQueries';
+import Navigate from '../Router/Navigate';
 import { isAdmin } from '../../utils/auths';
 
 const numberMaxSteps = 11;
 
 const creationQuizz = () => {
+  let compteurQuestion = sessionStorage.getItem('compteurQuestion');
+  if (compteurQuestion === null) {
+    initializeSessionData();
+    compteurQuestion = sessionStorage.getItem('compteurQuestion');
+  }
 
-  if (!isAdmin()) {
-    window.location.href = '/';
-  } 
+   if (!isAdmin()) {
+    Navigate('/');
+    return;
+  }  
 
   let currentStepCreation = sessionStorage.getItem('currentStepCreation');
 
@@ -120,31 +127,53 @@ async function onAddQuestionQuizz(e) {
 
   if (currentStepCreation === 1) {
     const categorieQuizz = document.querySelector('#categorieQuizz').value;
+    if(categorieQuizz !== "histoire" || categorieQuizz !== "sciences"  || categorieQuizz !== "géographie"){
+     throw new Error('la categorie n est pas correct !');
+    }
     const difficultee = document.querySelector('#niveauDifQuizz').value;
 
-    const createdQuizz = await createQuizz(difficultee, categorieQuizz);
+    // Create quizz
+    await createQuizz(difficultee, categorieQuizz);
 
-    // eslint-disable-next-line no-console
-    console.log(`createdQuizz : ${createdQuizz}`);
   } else {
     const question = document.querySelector('#questionQuizz').value;
-    // const proposition1 = document.querySelector("#proposition1");
-    // const proposition2 = document.querySelector("#proposition2");
-    // const proposition3 = document.querySelector("#proposition3");
+    const proposition1 = document.querySelector('#proposition1').value;
+    const proposition2 = document.querySelector('#proposition2').value;
+    const proposition3 = document.querySelector('#proposition3').value;
+    const reponseQuestion = document.querySelector('#reponseQuizz').value;
+// add question
+  const compteurQuestion = Number (sessionStorage.getItem('compteurQuestion'));
+  const lastQuizzId = await getLastQuizzId();
+    // Create question
+    await createQuestion(lastQuizzId.lastquizzid,compteurQuestion,question);
+    sessionStorage.setItem('compteurQuestion',compteurQuestion+1);
+    if(compteurQuestion === 10){
+      sessionStorage.setItem('compteurQuestion',1);
+    }
+    
+    const lastIdQuestion = await getLastQuestionId();
 
-    // TODO : créer la question et les propositions
+    const proposition1IsReponse = proposition1 === reponseQuestion;
+    const proposition2IsReponse = proposition2 === reponseQuestion;
+    const proposition3IsReponse = proposition3 === reponseQuestion;
 
-    // eslint-disable-next-line no-console
-    console.log(`question : ${question}`);
+    // Create proposition 1
+    await createProposition(proposition1, proposition1IsReponse ,lastIdQuestion.lastquestionid);
+
+    // Create proposition 2
+    await createProposition(proposition2, proposition2IsReponse,lastIdQuestion.lastquestionid);
+
+    // Create proposition 3
+    await createProposition(proposition3,proposition3IsReponse,lastIdQuestion.lastquestionid);
+
   }
 
   if (currentStepCreation > 1 && !checkPropisitionsNotEquals()) return false;
 
   if ( currentStepCreation === 11 ) {
 
-    // TODO : rediriger vers une page ou bien montrer les infos du quizz
-    
-    console.log( "END" );
+    Navigate('/');
+    sessionStorage.clear();
     
   } else {
 
@@ -162,13 +191,12 @@ function checkPropisitionsNotEquals() {
   const proposition2 = document.getElementById('proposition2').value;
   const proposition3 = document.getElementById('proposition3').value;
 
-  // TODO : afficher un message d'erreur / montrer les inputs égaux
-
   if (
     proposition1 === proposition2 ||
     proposition1 === proposition3 ||
     proposition2 === proposition3
   ) {
+    // eslint-disable-next-line no-alert
     alert('Input text values cannot be equal. Please try again.');
     return false;
   }
@@ -189,8 +217,9 @@ function setAnswerProposition(propositionId, radioId) {
 
 function initializeSessionData(currentQuizzId) {
   sessionStorage.setItem('quizzId', currentQuizzId);
-
+  sessionStorage.setItem('compteurQuestion', 1);
   sessionStorage.setItem('currentStepCreation', 1);
 }
+
 
 export default creationQuizz;

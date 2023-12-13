@@ -3,7 +3,7 @@ import { setAuthenticatedUser } from '../../utils/auths';
 import { clearPage, renderPageTitle } from '../../utils/render';
 import Navbar from '../Navbar/Navbar';
 import Navigate from '../Router/Navigate';
-
+import { registerUser } from '../../utils/authsQueries';
 
 const RegisterPage = () => {
     clearPage();
@@ -71,37 +71,14 @@ const RegisterPage = () => {
     if (password !== confPassword) {
         throw new Error ("Passwords do not match");
     }
-    const options = {
-        method: 'POST',
-        body: JSON.stringify({
-            email,
-            username,
-            password
-        }),
-        headers: {
-            'Content-Type': 'application/json',
-        },
-    }
-    
-    console.log(options.body);
-    const response = await fetch('/api/auths/register', options);
-    console.log(response.status);
-    const authenticatedUser = await response.json();
-  
-    try{
 
-        if (!response.ok) throw new Error(`fetch error : ${response.status} : ${response.statusText}`);
-        
-        console.log('Newly registered & authenticated user : ', authenticatedUser);
+    const authenticatedUser = await registerUser( email, username, password );
+    
+    setAuthenticatedUser(authenticatedUser);
       
-        setAuthenticatedUser(authenticatedUser);
-      
-        Navbar();
-      
-        Navigate('/');
-    }catch(error){
-        alert(authenticatedUser);
-    } 
+    Navbar();
+
+    Navigate('/');
 }
 
   export default RegisterPage;

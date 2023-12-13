@@ -18,6 +18,7 @@ const authorize = (req, res, next) => {
     req.user = existingUser; // request.user object is available in all other middleware functions
     return next();
   } catch (err) {
+    // eslint-disable-next-line no-console
     console.error('authorize: ', err);
     return res.sendStatus(401);
   }
@@ -26,7 +27,6 @@ const authorize = (req, res, next) => {
 const isAdmin = (req, res, next) => {
   const { isadmin } = req.user;
 
-  console.log('isadmin: ', isadmin);
   if (!isadmin) return res.sendStatus(403);
   return next();
 };

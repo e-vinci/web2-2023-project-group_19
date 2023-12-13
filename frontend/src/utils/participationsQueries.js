@@ -14,7 +14,7 @@ async function createParticipation( userId, quizzId, countQuestionsSucceeded ) {
 
     let participationCreated;
     try {
-        const response = await fetch(`/api/quizzes/createParticipation`, options);
+        const response = await fetch(`${process.env.API_BASE_URL}quizzes/createParticipation`, options);
 
         if (!response.ok) throw new Error(`fetch error : ${response.status} : ${response.statusText}`);
 
@@ -42,7 +42,7 @@ async function getParticipation( userId, quizzId ) {
 
     let participationFound;
     try {
-        const response = await fetch(`/api/quizzes/getParticipation`, options);
+        const response = await fetch(`${process.env.API_BASE_URL}/quizzes/getParticipation`, options);
 
         if (!response.ok) throw new Error(`fetch error : ${response.status} : ${response.statusText}`);
 
@@ -71,7 +71,7 @@ async function updateParticipation( userId, quizzId, countQuestionsSucceeded ) {
 
     let participationUpdated;
     try {
-        const response = await fetch(`/api/quizzes/updateParticipation`, options);
+        const response = await fetch(`${process.env.API_BASE_URL}/quizzes/updateParticipation`, options);
 
         if (!response.ok) throw new Error(`fetch error : ${response.status} : ${response.statusText}`);
 

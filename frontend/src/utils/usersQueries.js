@@ -1,7 +1,7 @@
 async function getLeaderboard() {
   let quizz;
   try {
-    const response = await fetch(`/api/users/leaderboard`);
+    const response = await fetch(`${process.env.API_BASE_URL}/users/leaderboard`);
 
     if (!response.ok) throw new Error(`fetch error : ${response.status} : ${response.statusText}`);
 
@@ -18,7 +18,7 @@ async function getUserFromUsername( username ) {
 
   let userFound;
   try {
-      const response = await fetch(`/api/users?username=${username}`);
+      const response = await fetch(`${process.env.API_BASE_URL}/users?username=${username}`);
 
       if (!response.ok) throw new Error(`fetch error : ${response.status} : ${response.statusText}`);
 
@@ -31,7 +31,36 @@ async function getUserFromUsername( username ) {
   return userFound;
 }
 
+async function updateUserPoints( userId, countPointsToAdd ) {
+
+  const options = {
+    method: 'POST',
+    body: JSON.stringify({
+    userId,
+    countPointsToAdd,
+    }),
+    headers: {
+    'Content-Type': 'application/json',
+    },
+};
+
+  let updateCountPoints;
+  try {
+      const response = await fetch(`${process.env.API_BASE_URL}/users/updateUserPoints`, options);
+
+      if (!response.ok) throw new Error(`fetch error : ${response.status} : ${response.statusText}`);
+
+      updateCountPoints = await response.json();
+  } catch (err) {
+      // eslint-disable-next-line no-console
+      console.error('updateParticipation::error: ', err);
+  }
+
+  return updateCountPoints;
+}
+
 module.exports = {
   getLeaderboard,
   getUserFromUsername,
+  updateUserPoints,
 }; 

@@ -1,7 +1,7 @@
 async function getOneQuizzContent(quizzId) {
   let quizz;
   try {
-    const response = await fetch(`/api/quizzes/${quizzId}`);
+    const response = await fetch(`${process.env.API_BASE_URL}/quizzes/${quizzId}`);
 
     if (!response.ok) throw new Error(`fetch error : ${response.status} : ${response.statusText}`);
 
@@ -45,7 +45,7 @@ async function createQuizz( difficultee, categorie ) {
 
   let quizz;
   try {
-    const response = await fetch(`/api/quizzes/createQuizz`, options);
+    const response = await fetch(`${process.env.API_BASE_URL}/quizzes/createQuizz`, options);
 
     if (!response.ok) throw new Error(`fetch error : ${response.status} : ${response.statusText}`);
 
@@ -72,7 +72,7 @@ async function createQuestion( quizzId, questionNumero, questionIntitule ) {
   };
   let quizz;
   try {
-    const response = await fetch(`/api/quizzes/createQuestion`, options);
+    const response = await fetch(`${process.env.API_BASE_URL}/quizzes/createQuestion`, options);
 
     if (!response.ok) throw new Error(`fetch error : ${response.status} : ${response.statusText}`);
 
@@ -85,11 +85,12 @@ async function createQuestion( quizzId, questionNumero, questionIntitule ) {
   return quizz;
 }
 
-async function createPropositions( propositions, questionId ) {
+async function createProposition( proposition, reponse ,questionId ) {
   const options = {
     method: 'POST',
     body: JSON.stringify({
-      propositions,
+      proposition,
+      reponse,
       questionId
     }),
     headers: {
@@ -98,7 +99,7 @@ async function createPropositions( propositions, questionId ) {
   };
   let quizz;
   try {
-    const response = await fetch(`/api/quizzes/createProposition`, options);
+    const response = await fetch(`${process.env.API_BASE_URL}/quizzes/createProposition`, options);
 
     if (!response.ok) throw new Error(`fetch error : ${response.status} : ${response.statusText}`);
 
@@ -111,10 +112,44 @@ async function createPropositions( propositions, questionId ) {
   return quizz;
 }
 
+async function getLastQuestionId() {
+  let lastQuestionId;
+  try {
+    const response = await fetch(`${process.env.API_BASE_URL}/quizzes/getLastQuestionId`);
+
+    if (!response.ok) throw new Error(`fetch error : ${response.status} : ${response.statusText}`);
+
+    lastQuestionId = await response.json();
+  } catch (err) {
+    // eslint-disable-next-line no-console
+    console.error('getLastQuestionId::error: ', err);
+  }
+
+  return lastQuestionId;
+}
+
+async function getLastQuizzId() {
+  let lastQuizzId;
+  try {
+    const response = await fetch(`${process.env.API_BASE_URL}/quizzes/getLastQuizzId`);
+
+    if (!response.ok) throw new Error(`fetch error : ${response.status} : ${response.statusText}`);
+
+    lastQuizzId = await response.json();
+  } catch (err) {
+    // eslint-disable-next-line no-console
+    console.error('getLastQuizzId::error: ', err);
+  }
+
+  return lastQuizzId;
+}
+
 module.exports = {
   getOneQuizzContent,
   getAllQuizzes,
   createQuizz,
   createQuestion,
-  createPropositions,
+  createProposition,
+  getLastQuestionId,
+  getLastQuizzId,
 }

@@ -286,7 +286,7 @@ insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('Anne',
 --proposition 1 question 4
 insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('romain d Occident',false,24);
 --proposition 2 question 4
-insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES (' Empire byzantin',true,24);
+insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('Empire byzantin',true,24);
 --proposition 3 question 4
 insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('Empire sassanide',false,24);
 -- proposition question 5
@@ -316,7 +316,7 @@ insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('100 an
 --proposition 2 question 8
 insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('111 ans',false,28);
 --proposition 3 question 8
-insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('116ans',true,28);
+insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('116 ans',true,28);
 -- proposition question 9
 --proposition 1 question 9
 insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('Confucius',false,29);
@@ -401,7 +401,7 @@ insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('Attaqu
 --proposition 1 question 7
 insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('La dynastie Han',false,37);
 --proposition 2 question 7
-insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES (' La dynastie Tang',false,37);
+insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('La dynastie Tang',false,37);
 --proposition 3 question 7
 insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('La dynastie Qin',true,37);
 -- proposition question 8
@@ -511,7 +511,7 @@ insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('Hannib
 --proposition 2 question 9
 insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('Hamilcar Barca',false,49);
 --proposition 3 question 9
-insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES (' Hasdrubal',false,49);
+insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('Hasdrubal',false,49);
 -- proposition question 10
 --proposition 1 question 10
 insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('La guerre du Pacifique',false,50);
@@ -863,7 +863,7 @@ insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('La cri
 insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('Les tensions ethniques',false,85);
 -- proposition question 6
 --proposition 1 question 6
-insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES (' Henri VII',false,86);
+insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('Henri VII',false,86);
 --proposition 2 question 6
 insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('Richard III',true,86);
 --proposition 3 question 6
@@ -933,7 +933,7 @@ insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('Le Nil
 --proposition 2 question 2
 insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('Le Mississippi',false,92);
 --proposition 3 question 2
-insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('Amazone',true,92);
+insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('L Amazone',true,92);
 -- proposition question 3
 --proposition 1 question 3
 insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('Le mont Kilimandjaro',false,93);
@@ -1149,7 +1149,7 @@ insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('Le Ken
 --proposition 2 question 6
 insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('La Tanzanie',true,116);
 --proposition 3 question 6
-insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('Ouganda',false,116);
+insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('L Ouganda',false,116);
 -- proposition question 7
 --proposition 1 question 7
 insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('Les Alpes',false,117);
@@ -1598,7 +1598,7 @@ insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('Mer Mo
 --proposition 2 question 3
 insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('Lac Assal',false,163);
 --proposition 3 question 3
-insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES (' Grand Lac Salé',true,163);
+insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('Grand Lac Salé',true,163);
 -- proposition question 4
 --proposition 1 question 4
 insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('Algérie',false,164);
@@ -1737,7 +1737,7 @@ insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('Zanzib
 insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('Socotra',false,179);
 -- proposition question 10
 --proposition 1 question 10
-insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES (' Geirangerfjord',false,180);
+insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('Geirangerfjord',false,180);
 --proposition 2 question 10
 insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('Milford Sound',false,180);
 --proposition 3 question 10
@@ -1812,7 +1812,7 @@ insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('NaCl',
 --proposition 1 question 7
 insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('Le fémur',true,187);
 --proposition 2 question 7
-insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('Humérus',false,187);
+insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('L humérus',false,187);
 --proposition 3 question 7
 insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('Le radius',false,187);
 -- proposition question 8
@@ -1869,11 +1869,11 @@ insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('Le foi
 insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('Les reins',false,191);
 -- proposition question 2
 --proposition 1 question 2
-insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('étrier',true,192);
+insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('L étrier',true,192);
 --proposition 2 question 2
 insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('Le marteau',false,192);
 --proposition 3 question 2
-insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('enclume',false,192);
+insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('L enclume',false,192);
 -- proposition question 3
 --proposition 1 question 3
 insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('Jupiter',false,193);
@@ -1981,7 +1981,7 @@ insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('Le foi
 --proposition 2 question 4
 insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('Le pancréas',false,204);
 --proposition 3 question 4
-insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('estomac',true,204);
+insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('L estomac',true,204);
 -- proposition question 5
 --proposition 1 question 5
 insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('CaCO3',false,205);
@@ -2590,8 +2590,8 @@ insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('6.63 x
 insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('9.8 m/s^2',false,270);
 
 -- insert users
-insert into QUIZZLER.users(email, mdp, username, nbr_points, isadmin) VALUES('nicolas.venturini@student.vinci.be','$2y$10$AowrDKtvBw/4QfiL7O/qC.LhF0ITfPUQRGC5cDOPL5TLVOis65Hjm','nicoco',222,true);
-insert into QUIZZLER.users(email, mdp, username, nbr_points, isadmin) VALUES('simon.bosseler@student.vinci.be','$2y$10$AowrDKtvBw/4QfiL7O/qC.LhF0ITfPUQRGC5cDOPL5TLVOis65Hjm','simon',200,true);
-insert into QUIZZLER.users(email, mdp, username, nbr_points, isadmin) VALUES('alexis.arnaud@student.vinci.be','$2y$10$AowrDKtvBw/4QfiL7O/qC.LhF0ITfPUQRGC5cDOPL5TLVOis65Hjm','alexis',190,true);
-insert into QUIZZLER.users(email, mdp, username, nbr_points, isadmin) VALUES('ismet.ismet@student.vinci.be','$2y$10$AowrDKtvBw/4QfiL7O/qC.LhF0ITfPUQRGC5cDOPL5TLVOis65Hjm','ismet',180,true);
-insert into QUIZZLER.users(email, mdp, username, nbr_points, isadmin) VALUES('keyvan.Nikazm@student.vinci.be','$2y$10$AowrDKtvBw/4QfiL7O/qC.LhF0ITfPUQRGC5cDOPL5TLVOis65Hjm','keyvan',170,true);
+insert into QUIZZLER.users(email, mdp, username, nbr_points, isadmin) VALUES('nicolas.venturini@student.vinci.be','$2y$10$AowrDKtvBw/4QfiL7O/qC.LhF0ITfPUQRGC5cDOPL5TLVOis65Hjm','nicoco',0,true);
+insert into QUIZZLER.users(email, mdp, username, nbr_points, isadmin) VALUES('simon.bosseler@student.vinci.be','$2y$10$AowrDKtvBw/4QfiL7O/qC.LhF0ITfPUQRGC5cDOPL5TLVOis65Hjm','simon',0,true);
+insert into QUIZZLER.users(email, mdp, username, nbr_points, isadmin) VALUES('alexis.arnaud@student.vinci.be','$2y$10$AowrDKtvBw/4QfiL7O/qC.LhF0ITfPUQRGC5cDOPL5TLVOis65Hjm','alexis',0,true);
+insert into QUIZZLER.users(email, mdp, username, nbr_points, isadmin) VALUES('ismet.ismet@student.vinci.be','$2y$10$AowrDKtvBw/4QfiL7O/qC.LhF0ITfPUQRGC5cDOPL5TLVOis65Hjm','ismet',0,true);
+insert into QUIZZLER.users(email, mdp, username, nbr_points, isadmin) VALUES('keyvan.Nikazm@student.vinci.be','$2y$10$AowrDKtvBw/4QfiL7O/qC.LhF0ITfPUQRGC5cDOPL5TLVOis65Hjm','keyvan',0,true);
