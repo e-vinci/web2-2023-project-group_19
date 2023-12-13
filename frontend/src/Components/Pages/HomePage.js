@@ -7,6 +7,7 @@ const HomePage = () => {
   generateStructure();
   generateCards();
   renderThreeDimension();
+  handleContextCanvas();
 };
 
 function generateRandomPointsDistanceColor( pointsCount, pointsDistance ) {
@@ -39,7 +40,7 @@ function renderThreeDimension (){
  const camera = new PerspectiveCamera(
   75,
   window.innerWidth / window.innerHeight,
-  0.01, 
+  0.1, 
   1000); // camera qui permet de regarder la scene
  camera.position.y = 0.5;
  camera.position.z = 2; // pousser la camera pour regarder le centre
@@ -153,6 +154,16 @@ function generateCards() {
     });
 
   });
+}
+
+function handleContextCanvas() {
+
+  const canvas = document.querySelector('canvas');
+
+  canvas.addEventListener("webglcontextlost", (e) => {
+    e.preventDefault();
+  }, false);
+
 }
 
 export default HomePage;
