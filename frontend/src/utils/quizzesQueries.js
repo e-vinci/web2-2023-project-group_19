@@ -17,7 +17,7 @@ async function getOneQuizzContent(quizzId) {
 async function getAllQuizzes(category) {
   let quizzes;
   try {
-    const response = await fetch(`/api/quizzes?categorie=${category}`);
+    const response = await fetch(`${process.env.API_BASE_URL}/quizzes?categorie=${category}`);
 
     if (!response.ok) throw new Error(`fetch error : ${response.status} : ${response.statusText}`);
 
