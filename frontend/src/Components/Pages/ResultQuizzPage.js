@@ -1,11 +1,12 @@
 import { Fireworks } from 'fireworks-js';
 import Navigate from '../Router/Navigate';
+import { isAuthenticated } from '../../utils/auths';
 
 const ResultQuizzPage = ( category = "Histoire", difficulty = "Moyenne", pointsTotauxRapportes = 0, percentageQuestionsSucceeded = 0 ) => {
 
   if ( category === undefined ) {
 
-    return Navigate('/');
+    return Navigate(process.env.PATH_PREFIX);
 
   };
 
@@ -27,6 +28,12 @@ const ResultQuizzPage = ( category = "Histoire", difficulty = "Moyenne", pointsT
   }
 
   renderResults( category, difficulty, pointsTotauxRapportes, percentageQuestionsSucceeded, textContent, textClassName );
+  
+  if ( isAuthenticated() ) {
+
+    addButtonElement();
+    addListenerToButton();
+  }
 
   if ( isSucceeded ) {
 
@@ -66,8 +73,7 @@ function renderResults( category, difficulty, pointsTotauxRapportes, percentageQ
                             <div class="card-result">
                                 <h4 class="fs-5"> Pourcentage de réussite : <p class="${textClassName}"> ${percentageQuestionsSucceeded}% </p> </h4>
                             </div>
-        
-                            <button type="button" class="btn btn-outline-primary" id="button-result">Consulter le classement </button>
+                            <div id="button-wrapper"></div>
                             </div>
                     </div>
                 </div>
@@ -76,6 +82,28 @@ function renderResults( category, difficulty, pointsTotauxRapportes, percentageQ
     `;
     
 };
+
+function addButtonElement() {
+
+    const buttonWrapper = document.querySelector('#button-wrapper');
+
+    buttonWrapper.innerHTML = `
+    <button type="button" class="btn btn-outline-primary" id="button-result">Consulter le classement </button>`;
+
+}
+
+function addListenerToButton() {
+
+    const button = document.querySelector('#button-result');
+
+    button.addEventListener('click', (e) => {
+
+        e.preventDefault();
+
+        Navigate(`${process.env.PATH_PREFIX}leaderboard`)
+
+    });
+}
 
 
 function createFireworks() {

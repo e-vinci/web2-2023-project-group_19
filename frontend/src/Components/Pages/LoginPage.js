@@ -53,10 +53,7 @@ const LoginPage = () => {
   
     Navbar();
   
-    Navigate('/');
+    Navigate(process.env.PATH_PREFIX);
   }
-  
-
-  
 
   export default LoginPage;
