@@ -68,7 +68,7 @@ router.post('/createPropositions', async (req, res) => {
   if (!isAdmin) {
     return res.sendStatus(400);
   }
-  const propositions = req?.body?.propositions;
+  const proposition = req?.body?.propositions;
   const questionId = req?.body?.questionId;
   const reponse = req?.body?.reponse;
   if (!proposition || !questionId) return res.sendStatus(400);

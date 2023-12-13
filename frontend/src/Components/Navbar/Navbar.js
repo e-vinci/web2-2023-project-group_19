@@ -9,7 +9,8 @@ const Navbar = () => {
     if (isAuthenticated()) {
       // Si l'utilisateur est authentifié, affiche "Logout"
       return `
-          
+         
+      <li class="nav-item"><a class="nav-link" href="#" data-uri="/leaderboard">classement</a></li>
         <li class="nav-item"><a class="nav-link" href="#" data-uri="/logout">Logout</a></li>
         <li class="nav-item"><a class="nav-link" href="#" data-uri="/deleteUser">supprimer le profil</a></li>
         
