@@ -55,12 +55,3 @@ Content-Type: application/json
     "username":"manager",
     "password":"manager"
 }
-
-
-### Delete the manager user
-POST {{baseUrl}}/auths/deleteUser
-Content-Type: application/json
-
-{
-    "username":"ALEXIS"
-}

@@ -50,13 +50,9 @@ const LoginPage = () => {
     const authenticatedUser = await loginUser( username, password );
   
     setAuthenticatedUser(authenticatedUser);
-  
     Navbar();
   
-    Navigate('/');
+    Navigate(process.env.PATH_PREFIX);
   }
-  
-
-  
 
   export default LoginPage;

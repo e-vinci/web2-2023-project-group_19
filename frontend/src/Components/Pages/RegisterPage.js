@@ -36,13 +36,13 @@ const RegisterPage = () => {
                         <input type="password" name="password" id="registerPassword">
                     </div>
                     <div class="form-group">
-                        <label for="confirmPassword">Confirm passwor</label>
+                        <label for="confirmPassword">Confirm password</label>
                         <input type="password" name="confpassword" id="registerConfPassword">
                     </div>
                     <div class="form-group">
                         <p>
                             En vous inscrivant, vous acceptez<br>
-                            nos <a href="/confidentiality">conditions générales d'utilisation</a>
+                            nos <a href="${process.env.PATH_PREFIX}confidentiality">conditions générales d'utilisation</a>
                         </p>
                     </div>
                     <div class="form-group">
@@ -78,7 +78,7 @@ const RegisterPage = () => {
       
     Navbar();
 
-    Navigate('/');
+    Navigate(process.env.PATH_PREFIX);
 }
 
   export default RegisterPage;

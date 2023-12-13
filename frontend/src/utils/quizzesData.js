@@ -11,8 +11,16 @@ import scienceImg1 from '../img/img_science/img_sci1.jpg';
 import scienceImg2 from '../img/img_science/img_sci2.jpg';
 import scienceImg3 from '../img/img_science/img_sci3.jpg';
 
+let viewQuizzesPath;
+if ( process.env.PATH_PREFIX === '/quizzler/' ) {
 
-const viewQuizzesPath = "http://localhost:8080/viewQuizzes";
+  viewQuizzesPath = '/viewQuizzes'
+
+} else {
+
+  viewQuizzesPath = 'viewQuizzes'
+
+}
 
 const quizzesCategoriesData = [
     {

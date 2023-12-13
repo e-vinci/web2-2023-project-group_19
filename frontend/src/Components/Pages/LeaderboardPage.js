@@ -5,12 +5,13 @@ import medailleArgent from '../../img/medaille_argent.png';
 import {getLeaderboard} from '../../utils/usersQueries';
 
 import { isAuthenticated } from '../../utils/auths';
+import Navigate from '../Router/Navigate';
 
 const main = document.querySelector('main');
 const ClassementPage = async() => {
 
     if(!isAuthenticated()){
-        window.location.href = '/'
+        return Navigate(process.env.PATH_PREFIX);
     }
  
   const quizzClassement = await getLeaderboard();
@@ -62,7 +63,7 @@ const ClassementPage = async() => {
 
 
     `;
-    creatCase(quizzClassement);
+    return creatCase(quizzClassement);
 };
 
 function creatCase(quizzClassement){

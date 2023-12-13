@@ -6,7 +6,8 @@ import Navigate from '../Router/Navigate';
 const HomePage = () => {
   generateStructure();
   generateCards();
-  renderThreeDimension();
+  const animationId = renderThreeDimension();
+  handleContextCanvas(animationId);
 };
 
 function generateRandomPointsDistanceColor( pointsCount, pointsDistance ) {
@@ -39,7 +40,7 @@ function renderThreeDimension (){
  const camera = new PerspectiveCamera(
   75,
   window.innerWidth / window.innerHeight,
-  0.01, 
+  0.1, 
   1000); // camera qui permet de regarder la scene
  camera.position.y = 0.5;
  camera.position.z = 2; // pousser la camera pour regarder le centre
@@ -50,7 +51,6 @@ function renderThreeDimension (){
 
  const Geometrie = new BufferGeometry() // cette ligne permet de créer des geometrie plus complexe par exemple des faces
 
- 
  Geometrie.setAttribute('position', new Float32BufferAttribute(points, 3));// l'attribut va s'appeler position et va contenir des triplet d'element et prendre 3 elements qui correspond a une coordonner
  Geometrie.setAttribute('color', new Float32BufferAttribute(colors, 3));
  const pointMaterial = new PointsMaterial({
@@ -89,7 +89,7 @@ function tick (){ // une function pour avoir un nouveau rendu
 
 }
 
-tick();
+  const animationId = tick();
 
 window.addEventListener('resize', () => {
   camera.aspect = window.innerWidth / window.innerHeight; // changer l'aspect de la camera
@@ -97,6 +97,8 @@ window.addEventListener('resize', () => {
   renderer.setSize(window.innerWidth, window.innerHeight); // changer la taille du renderer
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2)) // changement du pixel ratio exemple changement d'ecran
 })
+
+  return animationId;
 
 };
 function generateStructure() {
@@ -153,6 +155,17 @@ function generateCards() {
     });
 
   });
+}
+
+function handleContextCanvas(animationId) {
+
+  const canvas = document.querySelector('canvas');
+
+  canvas.addEventListener("webglcontextlost", (e) => {
+    e.preventDefault();
+    cancelAnimationFrame(animationId); 
+  }, false);
+
 }
 
 export default HomePage;
