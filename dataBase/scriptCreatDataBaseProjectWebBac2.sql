@@ -2181,9 +2181,9 @@ insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('HNO3',
 --proposition 1 question 6
 insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('23',false,226);
 --proposition 2 question 6
-insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('46',false,226);
+insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('46',true,226);
 --proposition 3 question 6
-insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('64',true,226);
+insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('64',false,226);
 -- proposition question 7
 --proposition 1 question 7
 insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('Loi de Newton',false,227);
@@ -2261,9 +2261,9 @@ insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('CaCl2'
 --proposition 1 question 4
 insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('Le foie',false,234);
 --proposition 2 question 4
-insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('Les reins',false,234);
+insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('Les reins',true,234);
 --proposition 3 question 4
-insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('Le pancréas',true,234);
+insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('Le pancréas',false,234);
 -- proposition question 5
 --proposition 1 question 5
 insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('NH4NO3',true,235);
@@ -2590,7 +2590,7 @@ insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('6.63 x
 insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('9.8 m/s^2',false,270);
 
 -- insert users
-insert into QUIZZLER.users(email, mdp, username, nbr_points, isadmin) VALUES('nicolas.venturini@student.vinci.be','$2b$10$2khoN2M.wab42y/RSVSOtOPA9JNyOZ2QWe1kvqvp6OvDQOdiR8tRS','nicoco',10000000,true);
+insert into QUIZZLER.users(email, mdp, username, nbr_points, isadmin) VALUES('nicolas.venturini@student.vinci.be','$2b$10$IBfWfujqq1mHkHeVq6Otr.3SDXCYO2NU2asLyPtNcNqMq7tMfGxMe','nicoco',10000000,true);
 insert into QUIZZLER.users(email, mdp, username, nbr_points, isadmin) VALUES('simon.bosseler@student.vinci.be','$2b$10$2khoN2M.wab42y/RSVSOtOPA9JNyOZ2QWe1kvqvp6OvDQOdiR8tRS','simon',0,true);
 insert into QUIZZLER.users(email, mdp, username, nbr_points, isadmin) VALUES('alexis.arnaud@student.vinci.be','$2b$10$2khoN2M.wab42y/RSVSOtOPA9JNyOZ2QWe1kvqvp6OvDQOdiR8tRS','alexis',0,true);
 insert into QUIZZLER.users(email, mdp, username, nbr_points, isadmin) VALUES('ismet.ismet@student.vinci.be','$2b$10$2khoN2M.wab42y/RSVSOtOPA9JNyOZ2QWe1kvqvp6OvDQOdiR8tRS','ismet',0,true);
