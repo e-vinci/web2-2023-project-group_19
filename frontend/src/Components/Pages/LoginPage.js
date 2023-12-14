@@ -1,13 +1,17 @@
-import quizzlerLogo from "../../img/logo-site.png";
+import quizzlerLogo from '../../img/logo-site.png';
 import { setAuthenticatedUser } from '../../utils/auths';
 import Navbar from '../Navbar/Navbar';
 import Navigate from '../Router/Navigate';
 import { loginUser } from '../../utils/authsQueries';
 
 const LoginPage = () => {
-    const main = document.querySelector('main');
-    main.innerHTML = 
-    `
+  renderLoginPage();
+  addListenerToRegisterText();
+};
+
+function renderLoginPage() {
+  const main = document.querySelector('main');
+  main.innerHTML = `
     <div class="container-login">
         <div class="left-container">
             <div class="center-content">
@@ -31,28 +35,50 @@ const LoginPage = () => {
                         <input type="submit" id="submitBtn">
                     </div>
                 </form>
-                <a href="/register">Vous n'avez pas de compte ?</a>
+                <a id="href-register">Vous n'avez pas de compte ?</a>
             </div>
         </div>
     </div>
 
-    `
-    const submitButton = document.querySelector("#loginForm");
-    submitButton.addEventListener('submit', onLogin);
-  };
-  
-  async function onLogin(e) {
+    `;
+  const submitButton = document.querySelector('#loginForm');
+  submitButton.addEventListener('submit', onLogin);
+}
+
+
+function addListenerToRegisterText() {
+    const text = document.querySelector('#href-register');
+
+    text.style.cursor = 'pointer';
+    text.style.textDecoration = 'underline';
+
+    text.addEventListener('click', (e) => {
+        onLoginText(e);
+    });
+};
+
+function onLoginText(e) {
     e.preventDefault();
-  
-    const username = document.querySelector('#username').value;
-    const password = document.querySelector('#password').value;
 
-    const authenticatedUser = await loginUser( username, password );
-  
-    setAuthenticatedUser(authenticatedUser);
-    Navbar();
-  
-    Navigate(process.env.PATH_PREFIX);
-  }
+    Navigate(`/register`);
 
-  export default LoginPage;
+    return true;
+};
+
+async function onLogin(e) {
+  e.preventDefault();
+
+  const username = document.querySelector('#username').value;
+  const password = document.querySelector('#password').value;
+
+  const authenticatedUser = await loginUser(username, password);
+
+  setAuthenticatedUser(authenticatedUser);
+  Navbar();
+
+  Navigate('/');
+
+  return true;
+}
+
+export default LoginPage;

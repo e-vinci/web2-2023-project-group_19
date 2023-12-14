@@ -898,7 +898,7 @@ insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('Consta
 insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('Trajan',false,90);
 
 -- Quizz 10 :
-insert into QUIZZLER.quizzes(difficultee, categorie, points_rapportes) VALUES (1,'geographie',3);
+insert into QUIZZLER.quizzes(difficultee, categorie, points_rapportes) VALUES (1,'geographie',1);
 -- question 1 quizz 2:
 insert into QUIZZLER.questions(quizz, numero, intitule) VALUES (10,1,'Quel est le plus grand océan de la planète ?');
 -- question 2 quizz 2:
