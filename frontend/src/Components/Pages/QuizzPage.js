@@ -116,15 +116,11 @@ function randomQuestionsOrder(quizz) {
 
     const randomQuestionIndex = Math.floor(Math.random() * questions.length);
 
-    console.log( JSON.stringify(questions[randomQuestionIndex]));
-
     const randomQuestion = questions[randomQuestionIndex];
 
     questions.splice(randomQuestionIndex, 1);
 
     const {propositions} = randomQuestion;
-
-    console.log(JSON.stringify(propositions));
 
     const randomPropositionsOrderArray = [];
 
