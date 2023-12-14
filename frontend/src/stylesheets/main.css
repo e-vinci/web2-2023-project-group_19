@@ -432,7 +432,7 @@ h5, .btn-primary{
 }
 
 .form-group #submitBtn:hover {
-    border: 1px solid black;
+    box-shadow: 0px 0px 20px rgb(248, 239, 239);
 }
 
 .form-group input[type="text"],
