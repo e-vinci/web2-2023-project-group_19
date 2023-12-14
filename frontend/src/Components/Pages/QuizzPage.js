@@ -113,13 +113,36 @@ function randomQuestionsOrder(quizz) {
   const randomQuestionsOrderArray = [];
 
   while (questions.length > 0) {
-    const randomIndex = Math.floor(Math.random() * questions.length);
 
-    const randomQuestion = questions[randomIndex];
+    const randomQuestionIndex = Math.floor(Math.random() * questions.length);
 
-    questions.splice(randomIndex, 1);
+    console.log( JSON.stringify(questions[randomQuestionIndex]));
 
+    const randomQuestion = questions[randomQuestionIndex];
+
+    questions.splice(randomQuestionIndex, 1);
+
+    const {propositions} = randomQuestion;
+
+    console.log(JSON.stringify(propositions));
+
+    const randomPropositionsOrderArray = [];
+
+    while ( propositions.length > 0 ) {
+
+      const randomPropositionIndex = Math.floor(Math.random() * propositions.length);
+
+      const randomProposition = propositions[randomPropositionIndex];
+
+      propositions.splice(randomPropositionIndex, 1);
+  
+      randomPropositionsOrderArray.push(randomProposition);
+
+    }
+
+    randomQuestion.propositions = randomPropositionsOrderArray;
     randomQuestionsOrderArray.push(randomQuestion);
+
   }
 
   return randomQuestionsOrderArray;
