@@ -3,12 +3,11 @@ import Navigate from '../Router/Navigate';
 import { deleteInParticipationById, getUserFromUsername, deleteInUsersById } from '../../utils/usersQueries';
 import { getAuthenticatedUser, clearAuthenticatedUser } from '../../utils/auths';
 
-
 const DeleteUser = () => {
   DeleteUserM();
   clearAuthenticatedUser();
   Navbar();
-  Navigate(process.env.PATH_PREFIX);
+  Navigate('/');
 };
 
 async function DeleteUserM() {
