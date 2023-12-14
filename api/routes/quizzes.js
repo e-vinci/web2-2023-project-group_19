@@ -64,11 +64,11 @@ router.post('/createQuestion', async (req, res) => {
   return res.json(createdQuestion);
 });
 
-router.post('/createPropositions', async (req, res) => {
+router.post('/createProposition', async (req, res) => {
   if (!isAdmin) {
     return res.sendStatus(400);
   }
-  const proposition = req?.body?.propositions;
+  const proposition = req?.body?.proposition;
   const questionId = req?.body?.questionId;
   const reponse = req?.body?.reponse;
   if (!proposition || !questionId) return res.sendStatus(400);
