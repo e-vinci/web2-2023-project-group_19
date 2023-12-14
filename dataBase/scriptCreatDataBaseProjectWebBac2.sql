@@ -2181,9 +2181,9 @@ insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('HNO3',
 --proposition 1 question 6
 insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('23',false,226);
 --proposition 2 question 6
-insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('46',false,226);
+insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('46',true,226);
 --proposition 3 question 6
-insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('64',true,226);
+insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('64',false,226);
 -- proposition question 7
 --proposition 1 question 7
 insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('Loi de Newton',false,227);
