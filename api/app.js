@@ -6,10 +6,10 @@ const cors = require('cors');
 const corsOptions = {
   origin: [
     'http://localhost:8080',
-    'https://lukenv.github.io/quizzler/',
+    'https://quizzlerr.github.io/quizzlerr/',
     'https://lukenv.github.io',
-    'https://lukenv.github.io/quizzler/login',
-    'https://lukenv.github.io/quizzler/register',
+    'https://quizzlerr.github.io/quizzlerr/login',
+    'https://quizzlerr.github.io/quizzlerr/register',
   ],
 };
 
