@@ -894,24 +894,6 @@ h5, .btn-primary{
     color: var(--bs-card-color);
 }
 
-#showStory{
-    border-radius: 16px;
-    margin-left: 30%;
-    background-color: #fff;
-    color: rgb(0, 0, 0);
-    border: none;
-    letter-spacing: 1px;
-}
-
-#showStory:hover{
-    background-color: #3498db;
-    color: #fff;
-    border: none;
-}
-
-
-
-
 dialog::backdrop{
     backdrop-filter: blur(10px); /* Effet de flou sur le backdrop */
 }
@@ -923,7 +905,13 @@ dialog form {
     margin-left: 25px;
     font-family: 'Playfair Display', sans-serif;
     letter-spacing: 1px;
-    padding: 2% 0 10% 0;
+    padding: 2% 0 2% 0;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+dialog::-webkit-scrollbar {
+    display: none;
 }
 
 dialog{
@@ -934,18 +922,11 @@ dialog{
     background-color:#fff;
 }
 
-dialog button{
-    padding: 2% 5% 2% 5%;
-    background-color: rgba(158, 231, 253, 0.366);
-    border: none;
-    border-radius: 16px;
-    letter-spacing: 1px;
-    font-weight: 700;
-    font-family: sans-serif;
-    margin-top: 50px;
+.AboutUsPage-description-button {
+    color:white;
+    font-family:sans-serif;
 }
 
-dialog button:hover{
-    background-color: #badbf1;
+.AboutUsPage-description-button:hover {
+    color:white;
 }
-
