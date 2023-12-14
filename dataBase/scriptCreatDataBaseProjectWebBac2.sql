@@ -985,9 +985,9 @@ insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('Océan
 insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('Océan Pacifique',false,99);
 -- proposition question 10
 --proposition 1 question 10
-insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('Inde',false,100);
+insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('Inde',true,100);
 --proposition 2 question 10
-insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('Chine',true,100);
+insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('Chine',false,100);
 --proposition 3 question 10
 insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('États-Unis',false,100);
 
@@ -2261,9 +2261,9 @@ insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('CaCl2'
 --proposition 1 question 4
 insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('Le foie',false,234);
 --proposition 2 question 4
-insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('Les reins',false,234);
+insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('Les reins',true,234);
 --proposition 3 question 4
-insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('Le pancréas',true,234);
+insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('Le pancréas',false,234);
 -- proposition question 5
 --proposition 1 question 5
 insert into QUIZZLER.propositions(intitule, isreponse, question) VALUES ('NH4NO3',true,235);
