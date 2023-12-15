@@ -63,22 +63,22 @@ function renderResults(
                 <div id="resultQuizz-fireworks"></div>
                 <div id="resultQuizz-glass-container">
                     <div class="main">
-                        <h1> Résultat du Quizz </h1>
+                        <h1 class="ResultQuizz-text"> Résultat du Quizz </h1>
 
-                        <h4 class="${textClassName}"> ${textContent} </h4>
+                        <h4 class="${textClassName} ResultQuizz-text-color"> ${textContent} </h4>
 
                         <div class="box-result">
                             <div class="card-result">
-                                <h4 class="fs-5"> Difficulté : <p class="${textClassName}"> ${difficulty} </p> </h4>
+                                <h4 class="titre-resultat"> Difficulté : </h4><p class="${textClassName}"> ${difficulty} </p> 
                             </div>
                             <div class="card-result">
-                                <h4 class="fs-5"> Catégorie : <p class="${textClassName}"> ${category} </p> </h4>
+                                <h4 class="titre-resultat"> Catégorie : </h4><p class="${textClassName}"> ${category} </p> 
                             </div>
                             <div class="card-result">
-                                <h4 class="fs-5"> Points gagnés : <p class="${textClassName}"> ${pointsTotauxRapportes} pts </p> </h4>
+                                <h4 class="titre-resultat"> Points gagnés : </h4><p class="${textClassName}"> ${pointsTotauxRapportes} pts </p> 
                             </div>
                             <div class="card-result">
-                                <h4 class="fs-5"> Pourcentage de réussite : <p class="${textClassName}"> ${percentageQuestionsSucceeded}% </p> </h4>
+                                <h4 class="titre-resultat"> Pourcentage de réussite : </h4><p class="${textClassName}"> ${percentageQuestionsSucceeded}% </p> 
                             </div>
                             <div id="button-wrapper"></div>
                             </div>
