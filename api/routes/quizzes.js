@@ -2,6 +2,8 @@ const express = require('express');
 
 const router = express.Router();
 
+const { authorize } = require('../utils/auths');
+
 const {
   readAllQuizzes,
   readOneQuizzContent,
@@ -35,6 +37,9 @@ router.get('/getLastQuizzId', async (req, res) => {
 });
 
 router.get('/getLastQuestionId', async (req, res) => {
+  if (!isAdmin) {
+    return res.sendStatus(400);
+  }
   const lastQuizzId = await getLastQuestionId();
   const response = lastQuizzId;
   return res.json(response);
@@ -77,6 +82,9 @@ router.post('/createProposition', async (req, res) => {
 });
 
 router.post('/createParticipation', async (req, res) => {
+  if (!authorize) {
+    res.sendStatus(400);
+  }
   const userId = req?.body?.userId;
   const quizzId = req?.body?.quizzId;
   const countQuestionsSucceeded = req?.body?.countQuestionsSucceeded;
@@ -85,15 +93,21 @@ router.post('/createParticipation', async (req, res) => {
   return res.json(createdParticipation);
 });
 
-router.post('/getParticipation', async (req, res) => {
-  const userId = req?.body?.userId;
-  const quizzId = req?.body?.quizzId;
+router.get('/getParticipation', async (req, res) => {
+  if (!authorize) {
+    res.sendStatus(400);
+  }
+  const userId = req?.query?.userId;
+  const quizzId = req?.query?.quizzId;
   if (!userId || !quizzId) return res.sendStatus(400);
   const participation = await getParticipation(quizzId, userId);
   return res.json(participation);
 });
 
 router.post('/updateParticipation', async (req, res) => {
+  if (!authorize) {
+    res.sendStatus(400);
+  }
   const userId = req?.body?.userId;
   const quizzId = req?.body?.quizzId;
   const countQuestionsSucceeded = req?.body?.countQuestionsSucceeded;

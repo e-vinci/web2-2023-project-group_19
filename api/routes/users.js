@@ -29,6 +29,9 @@ router.get('/', async (req, res) => {
 });
 
 router.post('/updateUserPoints', async (req, res) => {
+  if (!authorize) {
+    res.sendStatus(400);
+  }
   const countPointsToAdd = req?.body?.countPointsToAdd ? req.body.countPointsToAdd : undefined;
   const userId = req?.body?.userId ? req.body.userId : undefined;
   if (!countPointsToAdd || !userId) return res.sendStatus(400);
@@ -37,6 +40,9 @@ router.post('/updateUserPoints', async (req, res) => {
 });
 
 router.post('/deleteParticipationById', async (req, res) => {
+  if (!authorize) {
+    res.sendStatus(400);
+  }
   const userId = req?.body?.userId ? req.body.userId : undefined;
   if (!userId) return res.sendStatus(400);
   const deleteParticipationUsers = await deleteInParticipationById(userId);
@@ -44,6 +50,9 @@ router.post('/deleteParticipationById', async (req, res) => {
 });
 
 router.post('/deleteUsersById', async (req, res) => {
+  if (!authorize) {
+    res.sendStatus(400);
+  }
   const userId = req?.body?.userId ? req.body.userId : undefined;
   if (!userId) return res.sendStatus(400);
   const deleteUsersID = await deleteInUsersById(userId);

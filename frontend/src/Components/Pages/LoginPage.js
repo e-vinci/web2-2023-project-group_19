@@ -86,8 +86,6 @@ async function onLogin(e) {
   } 
     setAuthenticatedUser(authenticatedUser);
 
-    console.log(authenticatedUser);
-
     Navbar();
 
     Navigate('/');
