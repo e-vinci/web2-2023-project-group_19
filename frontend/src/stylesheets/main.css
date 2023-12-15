@@ -879,6 +879,10 @@ visibility: visible;
 
 /* css pour la page du result quizz */
 
+.card-result{
+    text-align: center;
+}
+
 #resultQuizz-fireworks {
     position: absolute;
     z-index : -1; 
@@ -1060,17 +1064,86 @@ dialog{
     }
 
     .proposition-element{
-        font-size: 10px;
-        font-weight: 700;
+        font-size: 9px;
+        font-weight: 1100;
         margin-bottom: 10px;
      }
 
     .QuizzPage-default-style-button{
-       width: auto;
-       padding-left: 5px;
-       margin-left: 10%;
-       font-size: 20px;
-       font-weight: 500;
+        display: block;
+        align-items: center;
+        margin-right: 30%;
+        width: auto;
+        font-size: 12px;
+        font-weight: 800;
     }
+    .QuizzPage-set-style-button{
+        display: block;
+        align-items: center;
+        margin:auto;
+        width: 100%;
+        font-size: 12px;
+        font-weight: 800;
+    }
+}
+
+@media screen and (max-width: 950px) {
+    .card-header{
+        display: block;
+        justify-content: center;
+        align-items: center;
+    }
+    .QuizzPage-default-style-button{
+        margin-left: 28%;
+    }
+}
+
+@media screen and (max-width: 800px){
+    .toggler-container{
+        visibility: hidden;
+    }
+
+    #creationQuizzContainer2 {
+        margin: 2%;
+    }
+}
+
+@media screen and (max-width: 800px){
+    .medal{
+        width: 15vh;
+    }
+
+    .medal img{
+        height: 14vh;
+        width: 10vh;
+    }
+}
+
+@media screen and (max-width : 800px) {
+   .card-result p{
+    font-size: 15px;
+   }
+
+   .card-result{
+    text-align: center;
+   }
+
+   .ResultQuizz-text-color{
+    font-size: 20px;
+    font-weight: 500;
+    text-align: center;
+   }
+
+   .ResultQuizz-text{
+    font-size: 50px;
+    font-weight: 500;
+    text-align: center;
+   }
+
+   .titre-resultat {
+    font-size: 15px;
+    margin: 10%;
+   }
+
 }
 
