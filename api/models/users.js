@@ -1,101 +1,79 @@
-const jwt = require('jsonwebtoken');
-const bcrypt = require('bcrypt');
-const path = require('node:path');
-const { parse, serialize } = require('../utils/json');
+const { client } = require('../utils/dbConnect');
 
-const jwtSecret = 'ilovemypizza!';
-const lifetimeJwt = 24 * 60 * 60 * 1000; // in ms : 24 * 60 * 60 * 1000 = 24h
-
-const saltRounds = 10;
-
-const jsonDbPath = path.join(__dirname, '/../data/users.json');
-
-const defaultUsers = [
-  {
-    id: 1,
-    username: 'admin',
-    password: bcrypt.hashSync('admin', saltRounds),
-  },
-];
-
-async function login(username, password) {
-  const userFound = readOneUserFromUsername(username);
-  if (!userFound) return undefined;
-
-  const passwordMatch = await bcrypt.compare(password, userFound.password);
-  if (!passwordMatch) return undefined;
-
-  const token = jwt.sign(
-    { username }, // session data added to the payload (payload : part 2 of a JWT)
-    jwtSecret, // secret used for the signature (signature part 3 of a JWT)
-    { expiresIn: lifetimeJwt }, // lifetime of the JWT (added to the JWT payload)
-  );
-
-  const authenticatedUser = {
-    username,
-    token,
-  };
-
-  return authenticatedUser;
+async function createOneUser(email, username, password) {
+  const requestString = `
+    INSERT INTO QUIZZLER.users (email, username, mdp )
+    VALUES ( '${email}', '${username}', '${password}' )
+    RETURNING users.id_user;
+  `;
+  const result = await client.query(requestString);
+  return result.rows[0];
 }
 
-async function register(username, password) {
-  const userFound = readOneUserFromUsername(username);
-  if (userFound) return undefined;
-
-  await createOneUser(username, password);
-
-  const token = jwt.sign(
-    { username }, // session data added to the payload (payload : part 2 of a JWT)
-    jwtSecret, // secret used for the signature (signature part 3 of a JWT)
-    { expiresIn: lifetimeJwt }, // lifetime of the JWT (added to the JWT payload)
-  );
-
-  const authenticatedUser = {
-    username,
-    token,
-  };
-
-  return authenticatedUser;
+async function readOneUserFromEmail(email) {
+  const requestString = `
+    SELECT *
+    FROM QUIZZLER.users
+    WHERE email = '${email}'
+  `;
+  const result = await client.query(requestString);
+  return result.rows[0];
 }
 
-function readOneUserFromUsername(username) {
-  const users = parse(jsonDbPath, defaultUsers);
-  const indexOfUserFound = users.findIndex((user) => user.username === username);
-  if (indexOfUserFound < 0) return undefined;
-
-  return users[indexOfUserFound];
+async function deleteOneUser(username) {
+  const requestString = `DELETE FROM QUIZZLER.users WHERE username = '${username}' ;`;
+  const result = await client.query(requestString);
+  return result;
 }
 
-async function createOneUser(username, password) {
-  const users = parse(jsonDbPath, defaultUsers);
-
-  const hashedPassword = await bcrypt.hash(password, saltRounds);
-
-  const createdUser = {
-    id: getNextId(),
-    username,
-    password: hashedPassword,
-  };
-
-  users.push(createdUser);
-
-  serialize(jsonDbPath, users);
-
-  return createdUser;
+async function deleteInParticipationById(userId) {
+  const requestString = `delete from QUIZZLER.participations pa WHERE pa.utilisateur = ${userId}`;
+  const result = await client.query(requestString);
+  return result.rows[0];
 }
 
-function getNextId() {
-  const users = parse(jsonDbPath, defaultUsers);
-  const lastItemIndex = users?.length !== 0 ? users.length - 1 : undefined;
-  if (lastItemIndex === undefined) return 1;
-  const lastId = users[lastItemIndex]?.id;
-  const nextId = lastId + 1;
-  return nextId;
+async function deleteInUsersById(userId) {
+  const requestString = `delete from QUIZZLER.users us where us.id_user = ${userId}`;
+  const result = await client.query(requestString);
+  return result.rows[0];
+}
+
+async function readOneUserFromUsername(username) {
+  const requestString = `
+    SELECT id_user, username, nbr_points, mdp, isadmin
+    FROM QUIZZLER.users
+    WHERE username = '${username}'
+  `;
+  const result = await client.query(requestString);
+  return result.rows[0];
+}
+
+async function getLeaderboard() {
+  const requestString = `
+  SELECT us.id_user, us.username, us.nbr_points
+  FROM QUIZZLER.users us
+  ORDER BY us.nbr_points DESC`;
+  const result = await client.query(requestString);
+  return result.rows;
+}
+
+async function updateUserPoints(userId, points) {
+  const requestString = `
+  UPDATE QUIZZLER.users
+  SET nbr_points = nbr_points + ${points}
+  WHERE id_user = ${userId}
+  RETURNING nbr_points;`;
+  const result = await client.query(requestString);
+  return result.rows[0];
 }
 
 module.exports = {
-  login,
-  register,
+  createOneUser,
   readOneUserFromUsername,
+  readOneUserFromEmail,
+  getLeaderboard,
+  updateUserPoints,
+  deleteOneUser,
+  deleteInParticipationById,
+  deleteInUsersById,
 };

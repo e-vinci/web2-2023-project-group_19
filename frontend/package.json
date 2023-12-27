@@ -1,5 +1,5 @@
 {
-  "name": "js-phaser-boilerplate",
+  "name": "quizzler-frontend",
   "version": "1.0.0",
   "description": "myJScourse's modern frontend boilerplate to build a phaser game",
   "scripts": {
@@ -29,11 +29,15 @@
   },
   "dependencies": {
     "@popperjs/core": "^2.9.2",
+    "animejs": "^3.2.2",
     "bootstrap": "^5.0.1",
     "clean-webpack-plugin": "^4.0.0",
-    "phaser": "^3.55.2",
+    "express": "^4.18.2",
+    "fireworks-js": "^2.10.7",
     "gh-pages": "^4.0.0",
+    "phaser": "^3.55.2",
     "terser-webpack-plugin": "^5.3.6",
+    "three": "^0.158.0",
     "webpack-merge": "^5.8.0"
   }
 }

@@ -1,5 +1,24 @@
 @baseUrl = http://localhost:3000
 
+### Login a user
+POST {{baseUrl}}/auths/login
+Content-Type: application/json
+
+{
+    "username":"ALEXIS",
+    "password":"ADMIN"
+}
+
+### Register a user
+POST {{baseUrl}}/auths/register
+Content-Type: application/json
+
+{
+    "username":"ALEXIS",
+    "email":"alexis.lucas.arnaud@gmail.com",
+    "password":"ADMIN"
+}
+
 ### Try to login an unknow user
 POST {{baseUrl}}/auths/login
 Content-Type: application/json
